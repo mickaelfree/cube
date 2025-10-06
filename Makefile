@@ -18,7 +18,8 @@ printstart:
 SRCDIR = src
 BUILDDIR = obj
 
-SRCS = $(SRCDIR)/main.c
+#SRCS = $(SRCDIR)/main.c
+SRCS = main.c
 
 -include $(MKFILES)
 
