@@ -33,7 +33,7 @@ MAKEFLAGS += --no-print-directory
 # Base rule
 all: printstart $(CUBE)
 
-$(cube): $(OBJS) $(LIBFT)
+$(CUBE): $(OBJS) $(LIBFT)
 	@printf "\n$(MAGENTA)🔨Compile exec🔨$(CYAN)\n"
 	@printf "$(YELLOW)Compile $(CYAN)$@ $(YELLOW)from $(CYAN)$^$(RESET)\n"
 	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS) $(LIBFT)
