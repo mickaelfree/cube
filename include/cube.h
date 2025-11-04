@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:17:44 by mickmart          #+#    #+#             */
-/*   Updated: 2025/11/04 15:55:46 by mickmart         ###   ########.fr       */
+/*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
+/*   Updated: 2025/11/04 18:06:55 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main (int argc,char **argv)
+#ifndef CUBE_H
+# define CUBE_H
+
+# include "../libs/mlx/mlx.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
+# include <stdbool.h>
+
+
+typedef struct s_game
 {
-        //t_game game;
-        
+	void	*mlx;
+	void	*win;
+	void	*img;
 
+}			t_game;
 
-        //TODO: faire la struct du jeux et toute les struct qui en decoule 
-        //TODO: parser la map
-        //TODO: init le jeux
-        //TODO init le joueur
-        //TODO: 
-
-}
+#endif
