@@ -19,9 +19,8 @@ SRCDIR = src
 BUILDDIR = obj
 
 #SRCS = $(SRCDIR)/main.c
-SRCS = main.c
+SRCS = main.c 
 
--include $(MKFILES)
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(BUILDDIR)/%.o)
 DEPS = $(OBJS:.o=.d)
@@ -33,14 +32,14 @@ MAKEFLAGS += --no-print-directory
 # Base rule
 all: printstart $(CUBE)
 
-$(CUBE): $(OBJS) $(LIBFT)
+$(CUBE): $(OBJS) #$(LIBFT)
 	@printf "\n$(MAGENTA)🔨Compile exec🔨$(CYAN)\n"
 	@printf "$(YELLOW)Compile $(CYAN)$@ $(YELLOW)from $(CYAN)$^$(RESET)\n"
-	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS) #$(LIBFT)
 	@printf "\n$(YELLOW)✅ Build done!$(RESET)\n\n"
 
-$(LIBFT): FORCE
-	@$(MAKE) -C ./libft
+# $(LIBFT): FORCE
+# 	@$(MAKE) -C ./libft
 
 # Relink prevention for linked projects
 FORCE:
@@ -83,7 +82,6 @@ norm:
 gdb:
 	gdb ./$(CUBE) -ex "break main"
 
--include $(DEPS)
 
 .PHONY: all FORCE clean fclean re debug gdb tester
 

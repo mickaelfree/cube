@@ -10,16 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int main (int argc,char **argv)
+#include <stdio.h>
+int main(int argc,char **argv)
 {
-        //t_game game;
-        
+        //t_game game
 
 
         //TODO: faire la struct du jeux et toute les struct qui en decoule 
         //TODO: parser la map
         //TODO: init le jeux
         //TODO init le joueur
-        //TODO: 
+        //TODO:
+        printf("hello");
+        (void)argc;
+        (void)argv;
 
 }
