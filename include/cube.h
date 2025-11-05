@@ -28,4 +28,5 @@ typedef struct s_game
 
 }			t_game;
 
+void	run_game(t_game *g);
 #endif

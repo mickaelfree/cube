@@ -1,7 +1,7 @@
 CUBE= cube
 CFLAGS = -Wall -Wextra -Werror
 NORELINK = -MMD -MP
-INCLUDE = -I inc -I libft/include
+INCLUDE = -I /include -I libft/include
 LIBFT ?= libft/libft.a
 LIBS ?= -lreadline -lncurses
 
@@ -19,7 +19,8 @@ SRCDIR = src
 BUILDDIR = obj
 
 #SRCS = $(SRCDIR)/main.c
-SRCS = main.c 
+SRCS = main.c \
+	core/loop.c
 
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(BUILDDIR)/%.o)

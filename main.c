@@ -11,17 +11,21 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "include/cube.h"
+
 int main(int argc,char **argv)
 {
-        //t_game game
+        t_game game;
 
 
         //TODO: faire la struct du jeux et toute les struct qui en decoule 
         //TODO: parser la map
+        //parser(&game.map)
+
         //TODO: init le jeux
-        //TODO init le joueur
-        //TODO:
         printf("hello");
+        game.mlx = NULL;
+        run_game(&game);
         (void)argc;
         (void)argv;
 
