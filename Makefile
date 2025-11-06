@@ -20,7 +20,8 @@ BUILDDIR = obj
 
 #SRCS = $(SRCDIR)/main.c
 SRCS = main.c \
-	core/loop.c
+	core/loop.c \
+	io/input.c
 
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(BUILDDIR)/%.o)
