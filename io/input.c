@@ -6,12 +6,64 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:59:56 by mickmart          #+#    #+#             */
-/*   Updated: 2025/11/06 12:23:57 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:57:30 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cube.h"
 
+#define ESC 65307
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define Q 113
+#define E 101
+#define AR_LEFT 65361
+#define AR_RIGHT 65363
+
+
+
+int key_press(int keycode, t_game *game)
+{
+        if (keycode == ESC )
+                game->input.forward = 1;
+        if (keycode == A)
+                game->input.left = 1;
+        if (keycode == S)
+                game->input.backward = 1;
+        if (keycode == D)
+                game->input.right= 1;
+        if (keycode == Q)
+                game->input.rotate_right= 1;
+        if (keycode == E)
+                game->input.rotate_left= 1;
+        if (keycode == AR_LEFT)
+                game->input.rotate_right= 1;
+        if (keycode == AR_RIGHT)
+                game->input.rotate_left= 1;
+        return (0);
+}
+int key_release(int keycode, t_game *game)
+{
+        if (keycode == ESC )
+                game->input.forward = 0;
+        if (keycode == A)
+                game->input.left = 0;
+        if (keycode == S)
+                game->input.backward = 0;
+        if (keycode == D)
+                game->input.right= 0;
+        if (keycode == Q)
+                game->input.rotate_right= 0;
+        if (keycode == E)
+                game->input.rotate_left= 0;
+        if (keycode == AR_LEFT)
+                game->input.rotate_right= 0;
+        if (keycode == AR_RIGHT)
+                game->input.rotate_left= 0;
+        return (0);
+}
 void init_hook(t_game *game)
 {
         //mlx_hook(game->win, 2, KeyPressMask, key_press, game);
