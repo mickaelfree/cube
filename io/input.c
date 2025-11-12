@@ -66,8 +66,8 @@ int key_release(int keycode, t_game *game)
 }
 void init_hook(t_game *game)
 {
-        //mlx_hook(game->win, 2, KeyPressMask, key_press, game);
-        //mlx_hook(game->win, 3, KeyPressMask, key_relasee, game);
-        //mlx_hook(game->win, 17, KeyPressMask, key_relasee, game);
-       // mlx_loop_hook(game->mlx,/*game_loop*/,g)
+        mlx_hook(game->win, 2, 1L<<0, key_press, game);
+        mlx_hook(game->win, 3, 1L<<1, key_release, game);
+        mlx_hook(game->win, 17, 0, key_release, game);
+        //mlx_loop_hook(game->mlx,/*game_loop*/,game);
 }
