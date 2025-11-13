@@ -12,6 +12,8 @@
 
 #include "../include/cube.h"
 
+#include <X11/X.h>
+#include <X11/keysym.h>
 #define ESC 65307
 #define W 119
 #define A 97
@@ -24,9 +26,11 @@
 
 
 
-int key_press(int keycode, t_game *game)
+int key_press(int keycode,t_game *game)
 {
         if (keycode == ESC )
+                game->input.quit = 1;
+        if (keycode == W )
                 game->input.forward = 1;
         if (keycode == A)
                 game->input.left = 1;
@@ -47,6 +51,8 @@ int key_press(int keycode, t_game *game)
 int key_release(int keycode, t_game *game)
 {
         if (keycode == ESC )
+                game->input.quit = 0;
+        if (keycode == W )
                 game->input.forward = 0;
         if (keycode == A)
                 game->input.left = 0;
@@ -64,10 +70,16 @@ int key_release(int keycode, t_game *game)
                 game->input.rotate_left= 0;
         return (0);
 }
-void init_hook(t_game *game)
+
+int	close_hook(t_game *game)
 {
-        mlx_hook(game->win, 2, 1L<<0, key_press, game);
-        mlx_hook(game->win, 3, 1L<<1, key_release, game);
-        mlx_hook(game->win, 17, 0, key_release, game);
-        //mlx_loop_hook(game->mlx,/*game_loop*/,game);
+	game->input.quit = 1;
+	return (0);
+}
+void init_hooks(t_game *game)
+{
+        mlx_hook(game->win,2,1L<<0, key_press,game);
+        mlx_hook(game->win,KeyRelease,KeyReleaseMask, key_release, game);
+        mlx_hook(game->win,17,0, close_hook, game);
+        mlx_loop_hook(game->mlx,game_loop,game);
 }

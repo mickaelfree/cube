@@ -1,9 +1,9 @@
 CUBE= cube
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wno-error=cast-function-type -Wno-error=incompatible-pointer-types
 NORELINK = -MMD -MP
-INCLUDE = -I /include -I libft/include
-LIBFT ?= libft/libft.a
-LIBS ?= -lreadline -lncurses
+INCLUDE = -I /include -I minilibx-linux
+LIBS = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm
+MLXLIB = libmlx_Linux.a
 
 PRINTSTART = @printf "\n$(MAGENTA)🔨Compiling cube🔨$(RESET)\n"
 printstart:
@@ -34,10 +34,10 @@ MAKEFLAGS += --no-print-directory
 # Base rule
 all: printstart $(CUBE)
 
-$(CUBE): $(OBJS) #$(LIBFT)
+$(CUBE):$(MLXLIB) $(OBJS) #$(LIBFT)
 	@printf "\n$(MAGENTA)🔨Compile exec🔨$(CYAN)\n"
 	@printf "$(YELLOW)Compile $(CYAN)$@ $(YELLOW)from $(CYAN)$^$(RESET)\n"
-	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS) #$(LIBFT)
+	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS)
 	@printf "\n$(YELLOW)✅ Build done!$(RESET)\n\n"
 
 # $(LIBFT): FORCE
@@ -51,6 +51,11 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@printf "$(GREEN)🔨Compiling $(CYAN) $@ $(GREEN)from $(CYAN)$<"
 	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ -c $<
 	@printf "$(RESET)\n"
+
+$(MLXLIB):
+	@echo "🔧 Building MiniLibX..."
+	@$(MAKE) -C minilibx-linux > /dev/null 2>&1
+
 
 clean:
 	@printf "$(RED)🗑️  "

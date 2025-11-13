@@ -13,7 +13,7 @@
 #ifndef CUBE_H
 # define CUBE_H
 
-# include "../libs/mlx/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -38,6 +38,8 @@ typedef struct s_game
 
 }			t_game;
 
+
+void		init_hooks(t_game *g);
 void		run_game(t_game *g);
-void		init_hook(t_game *g);
+int             game_loop(void *g);
 #endif

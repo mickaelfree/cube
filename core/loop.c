@@ -14,6 +14,21 @@
 
 #include "../include/cube.h"
 
+int game_loop(void *game)
+{
+        t_game *g_game = (t_game *)game;
+        	if (g_game->input.quit)
+        {
+                printf("ok\n");
+
+		       return (0);
+        }
+        //jeux s'arrete
+        //jeux continue
+        //jeux pause
+        //render la minimaps
+        return 1;
+}
 void	run_game(t_game *g)
 {
 	g->mlx = mlx_init();
@@ -21,4 +36,5 @@ void	run_game(t_game *g)
 		exit(1);
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "cube");
 	init_hooks(g);
+        mlx_loop(g->mlx);
 }
