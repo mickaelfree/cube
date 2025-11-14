@@ -39,10 +39,41 @@ static void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color)
 		i++;
 	}
 }
+static void	draw_grid(t_game *g)
+{
+	int			mx;
+	int			my;
+	int			px;
+	int			py;
+	int			size;
+	uint32_t	wall_color;
+	uint32_t	floor_color;
+
+	size = WIN_W / 100;
+	wall_color = 0xFFFFFF;
+	floor_color = 0x000000;
+
+	my = 0;
+	while (my < 100)
+	{
+		mx = 0;
+		while (mx < 100)
+		{
+			px = 20 + mx * size;
+			py = WIN_H - 20 - (100 - my) * size;
+
+				draw_rect(&g->framebuffer, px, py, size, size, wall_color);
+
+			mx++;
+		}
+		my++;
+	}
+}
+
 
 void	render_minimap(t_game *g)
 {
-        draw_rect(&g->framebuffer,  WIN_W - 100, WIN_H - 100, 100, 100, 0XFFFFFF);
+        draw_grid(g);
         
 }
 int game_loop(t_game *game)
