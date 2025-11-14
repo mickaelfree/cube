@@ -1,5 +1,5 @@
 CUBE= cube
-CFLAGS = -Wall -Wextra -Werror -Wno-error=cast-function-type -Wno-error=incompatible-pointer-types
+CFLAGS = -Wall -Wextra -Werror
 NORELINK = -MMD -MP
 INCLUDE = -I /include -I minilibx-linux
 LIBS = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm

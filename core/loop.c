@@ -14,19 +14,48 @@
 
 #include "../include/cube.h"
 
-int game_loop(void *game)
+static inline void	put_pixel(t_texture *fb, int x, int y, uint32_t color)
 {
-        t_game *g_game = (t_game *)game;
-        	if (g_game->input.quit)
-        {
-                printf("ok\n");
+	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
+		return;
+	*(uint32_t *)(fb->data + y * fb->line_size + x * (fb->bpp / 8)) = color;
+}
 
-		       return (0);
+static void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < h)
+	{
+		j = 0;
+		while (j < w)
+		{
+			put_pixel(fb, x + j, y + i, color);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	render_minimap(t_game *g)
+{
+        
+}
+int game_loop(t_game *game)
+{
+        if (game->input.quit == 1)
+        {
+                printf("input.quit = %d \n", game->input.quit);
+                mlx_destroy_window(game->mlx, game->win);
+                exit(0);
         }
         //jeux s'arrete
         //jeux continue
         //jeux pause
         //render la minimaps
+	render_minimap(game);
         return 1;
 }
 void	run_game(t_game *g)
@@ -35,6 +64,8 @@ void	run_game(t_game *g)
 	if (!g->mlx)
 		exit(1);
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "cube");
+        if (!g->win)
+                exit(1);
 	init_hooks(g);
         mlx_loop(g->mlx);
 }

@@ -30,10 +30,10 @@ int key_press(int keycode,t_game *game)
 {
         if (keycode == ESC )
                 game->input.quit = 1;
-        if (keycode == W )
-                game->input.forward = 1;
         if (keycode == A)
                 game->input.left = 1;
+        if (keycode == W )
+                game->input.forward = 1;
         if (keycode == S)
                 game->input.backward = 1;
         if (keycode == D)

@@ -29,6 +29,16 @@ typedef struct s_input
 	int		quit;
 }			t_input;
 
+typedef struct s_texture {
+	void	*img; //image de mlx
+	char	*data; // data des pixel
+	int		width;
+	int		height;
+	int		bpp; //bits par pixel
+	int		line_size;
+	int		endian; //ordre des octes
+}	t_texture;
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -41,5 +51,5 @@ typedef struct s_game
 
 void		init_hooks(t_game *g);
 void		run_game(t_game *g);
-int             game_loop(void *g);
+int		game_loop(t_game *g);
 #endif
