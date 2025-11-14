@@ -13,6 +13,7 @@
 #define WIN_H 720
 
 #include "../include/cube.h"
+#include <stdint.h>
 
 static inline void	put_pixel(t_texture *fb, int x, int y, uint32_t color)
 {
@@ -41,6 +42,7 @@ static void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color)
 
 void	render_minimap(t_game *g)
 {
+        draw_rect(&g->framebuffer,  WIN_W - 100, WIN_H - 100, 100, 100, 0XFFFFFF);
         
 }
 int game_loop(t_game *game)
@@ -56,6 +58,7 @@ int game_loop(t_game *game)
         //jeux pause
         //render la minimaps
 	render_minimap(game);
+        mlx_put_image_to_window(game->mlx, game->win, game->framebuffer.img, 0, 0);
         return 1;
 }
 void	run_game(t_game *g)
@@ -65,6 +68,12 @@ void	run_game(t_game *g)
 		exit(1);
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "cube");
         if (!g->win)
+                exit(1);
+        g->framebuffer.img = mlx_new_image(g->mlx, WIN_W, WIN_H);
+        if (!g->framebuffer.img)
+                exit(1);
+        g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img, &g->framebuffer.bpp, &g->framebuffer.line_size, &g->framebuffer.endian);
+        if (!g->framebuffer.data)
                 exit(1);
 	init_hooks(g);
         mlx_loop(g->mlx);

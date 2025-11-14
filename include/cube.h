@@ -45,6 +45,7 @@ typedef struct s_game
 	void	*win;
 	void	*img;
 	t_input	input;
+        t_texture	framebuffer;
 
 }			t_game;
 

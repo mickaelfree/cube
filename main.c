@@ -23,7 +23,6 @@ int main(int argc,char **argv)
         //parser(&game.map)
 
         //TODO: init le jeux
-        printf("hello");
         game.mlx = NULL;
         run_game(&game);
         (void)argc;
