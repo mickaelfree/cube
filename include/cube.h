@@ -18,6 +18,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef struct s_map {
+  int **grid;
+  int width;
+  int height;
+} t_map;
+
 typedef struct s_input
 {
 	int		forward;
@@ -46,6 +52,8 @@ typedef struct s_game
 	void	*img;
 	t_input	input;
         t_texture	framebuffer;
+        t_map	map;
+        
 
 }			t_game;
 
