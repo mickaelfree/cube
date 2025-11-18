@@ -54,15 +54,18 @@ static void	draw_grid(t_game *g)
 	floor_color = 0x000000;
 
 	my = 0;
-	while (my < 100)
+	while (my < g->map.height)
 	{
 		mx = 0;
-		while (mx < 100)
+		while (mx < g->map.width)
 		{
 			px = 20 + mx * size;
-			py = WIN_H - 20 - (100 - my) * size;
+			py = WIN_H - 20 - (g->map.height - my) * size;
 
+			if (g->map.grid[my][mx] > 0)
 				draw_rect(&g->framebuffer, px, py, size, size, wall_color);
+			else
+				draw_rect(&g->framebuffer, px, py, size, size, floor_color);
 
 			mx++;
 		}
@@ -74,7 +77,6 @@ static void	draw_grid(t_game *g)
 void	render_minimap(t_game *g)
 {
         draw_grid(g);
-        
 }
 int game_loop(t_game *game)
 {

@@ -53,7 +53,6 @@ typedef struct s_game
 	t_input	input;
         t_texture	framebuffer;
         t_map	map;
-        
 
 }			t_game;
 
