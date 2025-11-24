@@ -59,14 +59,14 @@ $(MLXLIB):
 
 clean:
 	@printf "$(RED)🗑️  "
-	@$(MAKE) clean -C ./libft > /dev/null
+#	@$(MAKE) clean -C ./libft > /dev/null
 	$(RM) -r $(BUILDDIR)
 	@printf "$(RESET)\n"
 
 
 fclean: clean
 	@printf "$(RED)🗑️  "
-	@$(MAKE) fclean -C ./libft > /dev/null
+#	@$(MAKE) fclean -C ./libft > /dev/null
 	$(RM) $(CUBE)
 	@printf "$(RESET)\n"
 
