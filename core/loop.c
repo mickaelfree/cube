@@ -16,6 +16,12 @@
 #include "../include/cube.h"
 #include <stdint.h>
 
+float	ft_absf(float x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
+}
 static inline void	put_pixel(t_texture *fb, int x, int y, uint32_t color)
 {
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
@@ -79,21 +85,26 @@ void	render_minimap(t_game *g)
 {
         draw_grid(g);
 }
-void raycast_frame(t_game *g)
-{
-        int x = 0;
-
-        while(x < WIN_W)
-        {
-               // init_ray(g);
-               // cast_ray(g);
-               // draw_column(g, x);
-               // x++;
-        }
-
-
-
-}
+// void raycast_frame(t_game *g)
+// {
+//         int x = 0;
+//
+//         while(x < WIN_W)
+//         {
+//                // init_ray(g);
+//                // cast_ray(g);
+//                // draw_column(g, x);
+//                // x++;
+//         }
+// }
+// void init_ray(t_game *g)
+// {
+//         int x = 0;
+//         float normalized = x / (float)WIN_W;
+//         float camera_x = normalized * 2 - 1;
+//
+//
+// }
 int game_loop(t_game *game)
 {
         if (game->input.quit == 1)
