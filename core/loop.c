@@ -12,6 +12,7 @@
 #define WIN_W 1280
 #define WIN_H 720
 
+
 #include "../include/cube.h"
 #include <stdint.h>
 
@@ -51,7 +52,7 @@ static void	draw_grid(t_game *g)
 
 	size = WIN_W / 100;
 	wall_color = 0xFFFFFF;
-	floor_color = 0x000000;
+	floor_color = 0x0000FF;
 
 	my = 0;
 	while (my < g->map.height)
@@ -77,6 +78,21 @@ static void	draw_grid(t_game *g)
 void	render_minimap(t_game *g)
 {
         draw_grid(g);
+}
+void raycast_frame(t_game *g)
+{
+        int x = 0;
+
+        while(x < WIN_W)
+        {
+               // init_ray(g);
+               // cast_ray(g);
+               // draw_column(g, x);
+               // x++;
+        }
+
+
+
 }
 int game_loop(t_game *game)
 {

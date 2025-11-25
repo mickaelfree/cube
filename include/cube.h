@@ -18,6 +18,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+#define SCREEN_LEFT  -1.0f
+#define SCREEN_RIGHT  1.0f
+#define SCREEN_RANGE  (SCREEN_RIGHT - SCREEN_LEFT)
+#define TILE_SIZE 1.0f
+
 typedef struct s_map {
   int **grid;
   int width;
