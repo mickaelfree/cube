@@ -53,13 +53,25 @@ int key_release(int keycode, t_game *game)
         if (keycode == ESC )
                 game->input.quit = 0;
         if (keycode == W )
+        {
                 game->input.forward = 0;
+                game->player.position.y-= 0.1f;
+        }
         if (keycode == A)
+        {
                 game->input.left = 0;
+                game->player.position.x-= 0.1f;
+        }
         if (keycode == S)
+        {
                 game->input.backward = 0;
+                game->player.position.y+= 0.1f;
+        }
         if (keycode == D)
+        {
                 game->input.right= 0;
+                game->player.position.x+= 0.1f;
+        }
         if (keycode == Q)
                 game->input.rotate_right= 0;
         if (keycode == E)
@@ -75,6 +87,19 @@ int	close_hook(t_game *game)
 {
 	game->input.quit = 1;
 	return (0);
+}
+
+void process_input(t_game *game)
+{
+        (void)game;
+        // if (game->input.forward == 1)
+        //         game->player.position.y--;  // Up
+        // if (game->input.backward == 1)
+        //         game->player.position.y++;  // Down
+        // if (game->input.left == 1)
+        //         game->player.position.x--;  // Left
+        // if (game->input.right == 1)
+        //         game->player.position.x++;  // Right
 }
 void init_hooks(t_game *game)
 {

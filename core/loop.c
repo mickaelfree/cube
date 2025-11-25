@@ -80,10 +80,27 @@ static void	draw_grid(t_game *g)
 	}
 }
 
+static void	draw_player_dot(t_game *g)
+{
+	int			px;
+	int			py;
+	int			size;
+	uint32_t	player_color;
+
+	size =  WIN_W / 100;
+	player_color = 0x00FF00;
+
+	px = 20 + (int)(g->player.position.x * size);
+	py = WIN_H - 20 - (int)((g->map.height - g->player.position.y) * size);
+
+	draw_rect(&g->framebuffer, px - 2, py - 2, 4, 4, player_color);
+}
+
 
 void	render_minimap(t_game *g)
 {
         draw_grid(g);
+        draw_player_dot(g);
 }
 // void raycast_frame(t_game *g)
 // {
@@ -113,6 +130,7 @@ int game_loop(t_game *game)
                 mlx_destroy_window(game->mlx, game->win);
                 exit(0);
         }
+        process_input(game);
         //jeux s'arrete
         //jeux continue
         //jeux pause

@@ -71,10 +71,12 @@ typedef struct s_game
 	t_input		input;
 	t_texture	framebuffer;
 	t_map		map;
+	t_player	player;
 
 }				t_game;
 
 void			init_hooks(t_game *g);
 void			run_game(t_game *g);
+void			process_input(t_game *g);
 int				game_loop(t_game *g);
 #endif
