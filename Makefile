@@ -1,104 +1,114 @@
-CUBE= cube
-CFLAGS = -Wall -Wextra -Werror
-NORELINK = -MMD -MP
-INCLUDE = -I /include -I minilibx-linux
-LIBS = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm
-MLXLIB = libmlx_Linux.a
+# Executable
+CUBE = cube
 
-PRINTSTART = @printf "\n$(MAGENTA)🔨Compiling cube🔨$(RESET)\n"
-printstart:
-	$(PRINTSTART)
+# Directories
+OBJ_DIR = obj/
+LIBFT_DIR = libft/
+MLX_DIR = minilibx-linux/
 
-# MKFILES=src/builtins/builtins.mk\
-# 	src/exec/exec.mk\
-# 	src/parsing/parsing.mk\
-# 	src/signal/signal.mk\
-# 	src/utils/utils.mk
+# Compiler & Flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -MMD -MP \
+	-I include \
+	-I $(MLX_DIR) \
+	-I $(LIBFT_DIR)libft_functions/includes \
+	-I $(LIBFT_DIR)vectors/includes \
+	-I $(LIBFT_DIR)ft_printf/includes \
+	-I $(LIBFT_DIR)get_next_line/includes
 
-SRCDIR = src
-BUILDDIR = obj
+# Libraries
+LIBFT = $(LIBFT_DIR)libft.a
+MLXLIB = $(MLX_DIR)libmlx_Linux.a
+LDFLAGS = -L $(LIBFT_DIR) -L $(MLX_DIR)
+LDLIBS = -lft -lmlx_Linux -lXext -lX11 -lm -lbsd
 
-#SRCS = $(SRCDIR)/main.c
+# Sources
 SRCS = main.c \
 	core/loop.c \
 	io/input.c
 
-
-OBJS = $(SRCS:$(SRCDIR)/%.c=$(BUILDDIR)/%.o)
-DEPS = $(OBJS:.o=.d)
+# Objects & deps
+OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+DEPS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.d))
 
 MAKEFLAGS += --no-print-directory
+.DEFAULT_GOAL = all
 
-.DEFAULT_GOAL = all  # Set default goal to make all
-
-# Base rule
-all: printstart $(CUBE)
-
-$(CUBE):$(MLXLIB) $(OBJS) #$(LIBFT)
-	@printf "\n$(MAGENTA)🔨Compile exec🔨$(CYAN)\n"
-	@printf "$(YELLOW)Compile $(CYAN)$@ $(YELLOW)from $(CYAN)$^$(RESET)\n"
-	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS)
-	@printf "\n$(YELLOW)✅ Build done!$(RESET)\n\n"
-
-# $(LIBFT): FORCE
-# 	@$(MAKE) -C ./libft
-
-# Relink prevention for linked projects
-FORCE:
-# Individual source file rule
-$(BUILDDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(dir $@)
-	@printf "$(GREEN)🔨Compiling $(CYAN) $@ $(GREEN)from $(CYAN)$<"
-	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ -c $<
-	@printf "$(RESET)\n"
-
-$(MLXLIB):
-	@echo "🔧 Building MiniLibX..."
-	@$(MAKE) -C minilibx-linux > /dev/null 2>&1
-
-
-clean:
-	@printf "$(RED)🗑️  "
-#	@$(MAKE) clean -C ./libft > /dev/null
-	$(RM) -r $(BUILDDIR)
-	@printf "$(RESET)\n"
-
-
-fclean: clean
-	@printf "$(RED)🗑️  "
-#	@$(MAKE) fclean -C ./libft > /dev/null
-	$(RM) $(CUBE)
-	@printf "$(RESET)\n"
-
-re: fclean all
-
-# Compile for valgrind
-debug: CFLAGS = -Wall -Wextra -Werror -g3
-debug: fclean all
-	valgrind $(shell cat .valgrindrc) ./cube
-
-# Compile for debug mode + valgrind
-fdebug: CFLAGS = -Wall -Wextra -Werror -g3 -DDEBUG_MODE=1
-fdebug: fclean all
-	DEBUG_MODE=1 valgrind $(shell cat .valgrindrc) --trace-children=yes ./cube
-
-# Norminette for source and include
-norm:
-	norminette src/ inc/
-
-gdb:
-	gdb ./$(CUBE) -ex "break main"
-
-
-.PHONY: all FORCE clean fclean re debug gdb tester
-
-# COLORS
+# Colors
 RESET = \033[0m
 RED = \033[1;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
-BLUE = \033[1;34m
 MAGENTA = \033[1;35m
 CYAN = \033[1;36m
-WHITE = \033[1;37m
-GREY = \033[1;90m
+
+# Banner / start
+all: printstart lib $(CUBE)
+
+printstart:
+	@printf "\n$(MAGENTA)🔨Compiling cube🔨$(RESET)\n"
+
+# Build executable (after libs)
+$(CUBE): $(OBJS) $(LIBFT) $(MLXLIB)
+	@printf "\n$(MAGENTA)🔨Link exec🔨$(CYAN)\n"
+	@printf "$(YELLOW)Link $(CYAN)$@ $(YELLOW)from $(CYAN)$(OBJS) $(LIBFT) $(MLXLIB)$(RESET)\n"
+	@if [ ! -f "$(LIBFT)" ]; then echo "$(RED)Error: $(LIBFT) not found. Build libft first (tabs in libft/Makefile?).$(RESET)"; exit 1; fi
+	@if [ ! -f "$(MLXLIB)" ]; then echo "$(RED)Error: $(MLXLIB) not found. Build MiniLibX first.$(RESET)"; exit 1; fi
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(LDLIBS)
+	@printf "\n$(YELLOW)✅ Build done!$(RESET)\n\n"
+
+# Object rule
+$(OBJ_DIR)%.o: %.c Makefile
+	@mkdir -p $(dir $@)
+	@printf "$(GREEN)🔨Compiling $(CYAN)$@ $(GREEN)from $(CYAN)$<$(RESET)\n"
+	$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(DEPS)
+
+# Lib aggregation
+data:
+	@true
+
+.PHONY: lib FORCE
+FORCE:
+
+lib: $(LIBFT) $(MLXLIB)
+
+$(LIBFT): FORCE
+	@echo "🔧 Building libft..."
+	@$(MAKE) -C $(LIBFT_DIR) || echo "[cube] Warning: libft build failed (likely spaces instead of tabs at reported line). Fix libft/Makefile around line shown by make and rerun. Continuing without refreshed libft." 
+
+$(MLXLIB): FORCE
+	@echo "🔧 Building MiniLibX..."
+	@$(MAKE) -C $(MLX_DIR) || true
+
+# Cleaning
+clean:
+	@printf "$(RED)🗑️  Cleaning objects...$(RESET)\n"
+	@$(MAKE) -C $(LIBFT_DIR) clean || true
+	@$(MAKE) -C $(MLX_DIR) clean || true
+	$(RM) -r $(OBJ_DIR)
+
+fclean: clean
+	@printf "$(RED)🗑️  Full clean...$(RESET)\n"
+	@$(MAKE) -C $(LIBFT_DIR) fclean || true
+	$(RM) -f $(CUBE)
+
+re: fclean all
+
+# Debug targets
+debug: CFLAGS += -g3
+debug: re
+	valgrind --leak-check=full --show-leak-kinds=all ./$(CUBE)
+
+fdebug: CFLAGS += -g3 -DDEBUG_MODE=1
+fdebug: re
+	DEBUG_MODE=1 valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./$(CUBE)
+
+norm:
+	norminette . include/
+
+gdb:
+	gdb ./$(CUBE) -ex "break main"
+
+.PHONY: all clean fclean re debug fdebug norm gdb printstart lib

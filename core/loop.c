@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2025/11/06 12:19:09 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/11/26 23:43:25 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#define WIN_W 1280
+
 #define WIN_H 720
+#define WIN_W 1280
 
 
 #include "../include/cube.h"
@@ -81,6 +82,7 @@ void	render_minimap(t_game *g)
 }
 void raycast_frame(t_game *g)
 {
+	(void)g; // unused
         int x = 0;
 
         while(x < WIN_W)
