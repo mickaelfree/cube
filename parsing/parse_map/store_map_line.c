@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   store_map_line.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/27 03:27:10 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/11/27 03:38:21 by akarapkh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include "vectors.h"
+
+int	store_map_line(char *line, t_vector *map_lines)
+{
+	char	*dup;
+
+	dup = ft_strdup(line);
+	if (!dup)
+		return (-1);
+	if (add_vector(map_lines, &dup, 1) == -1)
+	{
+		free(dup);
+		return (-1);
+	}
+	return (0);
+}
