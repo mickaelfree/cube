@@ -26,6 +26,18 @@
 
 
 
+static int inbound(t_game *g,float x,float y)
+{
+        int map_x;
+        int map_y;
+
+        map_x = (int)x;
+        map_y = (int)y;
+        if(map_x < 0 || map_x >= g->map.width || map_y < 0 || map_y >= g->map.height)
+                return (0);
+        return (g->map.grid[map_y][map_x] == 0);
+
+}
 int key_press(int keycode,t_game *game)
 {
         if (keycode == ESC )
