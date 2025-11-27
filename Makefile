@@ -1,4 +1,3 @@
-# Makefile for cube (42 project) modeled after minishell style
 NAME = cube
 
 # Directories
