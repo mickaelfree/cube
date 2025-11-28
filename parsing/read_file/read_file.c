@@ -6,16 +6,54 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 05:06:42 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/28 05:45:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/11/28 08:14:23 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line_bonus.h"
+#include "libft.h"
 #include "vectors.h"
+#include <fcntl.h>
 
-int	read_file(const char *filename, t_vector lines)
+static int	store_line(char *line, t_vector *lines);
+
+int	read_file(const char *filename, t_vector *lines)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
-	fd = read(filename, )
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	line = get_next_line(fd);
+	if (!line)
+		return (-1);
+	while (line)
+	{
+		if (store_line(line, lines) == -1)
+		{
+			free(line);
+			close(fd);
+			return (-1);
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
+}
+
+static int	store_line(char *line, t_vector *lines)
+{
+	char *dup;
+
+	dup = ft_strdup(line);
+	if (!dup)
+		return (-1);
+	if (add_vector(lines, &dup, 1) == -1)
+	{
+		free(dup);
+		return (-1);
+	}
+	return (0);
 }
