@@ -39,6 +39,7 @@ typedef struct s_vector
 typedef struct s_player
 {
 	t_vector	position;
+        float		angle;
 
 }				t_player;
 typedef struct s_input

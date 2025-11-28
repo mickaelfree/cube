@@ -46,6 +46,70 @@ static void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color)
 		i++;
 	}
 }
+
+static void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1, uint32_t color)
+{
+	int dx = ft_absf(x1 - x0);
+	int dy = ft_absf(y1 - y0);
+	int sx, sy;
+	
+	if (x0 < x1)
+		sx = 1;
+	else
+		sx = -1;
+	if (y0 < y1)
+		sy = 1;
+	else
+		sy = -1;
+	int err = dx - dy;
+	
+	while (1)
+	{
+		put_pixel(fb, x0, y0, color);
+		if (x0 == x1 && y0 == y1)
+			break;
+		int e2 = 2 * err;
+		if (e2 > -dy)
+		{
+			err -= dy;
+			x0 += sx;
+		}
+		if (e2 < dx)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
+}
+
+static void	draw_player_ray(t_game *g)
+{
+	int size = WIN_W / 100;
+	int px = 20 + (int)(g->player.position.x * size);
+	int py = WIN_H - 20 - (int)((g->map.height - g->player.position.y) * size);
+	
+	float step = 0.1f;
+	float ray_x = g->player.position.x;
+	float ray_y = g->player.position.y;
+	float dx = cos(g->player.angle) * step;
+	float dy = sin(g->player.angle) * step;
+	
+	while (ray_x >= 0 && ray_x < g->map.width &&
+		   ray_y >= 0 && ray_y < g->map.height)
+	{
+		if (g->map.grid[(int)ray_y][(int)ray_x] == 1)
+			break;
+		
+		ray_x += dx;
+		ray_y += dy;
+	}
+	
+	int end_x = 20 + (int)(ray_x * size);
+	int end_y = WIN_H - 20 - (int)((g->map.height - ray_y) * size);
+	
+	draw_line(&g->framebuffer, px, py, end_x, end_y, 0xFF0000);
+}
+
 static void	draw_grid(t_game *g)
 {
 	int			mx;
@@ -80,6 +144,7 @@ static void	draw_grid(t_game *g)
 	}
 }
 
+
 static void	draw_player_dot(t_game *g)
 {
 	int			px;
@@ -96,11 +161,11 @@ static void	draw_player_dot(t_game *g)
 	draw_rect(&g->framebuffer, px - 2, py - 2, 4, 4, player_color);
 }
 
-
 void	render_minimap(t_game *g)
 {
         draw_grid(g);
         draw_player_dot(g);
+        draw_player_ray(g);
 }
 // void raycast_frame(t_game *g)
 // {
@@ -153,6 +218,7 @@ void	run_game(t_game *g)
         g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img, &g->framebuffer.bpp, &g->framebuffer.line_size, &g->framebuffer.endian);
         if (!g->framebuffer.data)
                 exit(1);
+
 	init_hooks(g);
         mlx_loop(g->mlx);
 }

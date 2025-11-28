@@ -23,7 +23,8 @@
 #define E 101
 #define AR_LEFT 65361
 #define AR_RIGHT 65363
-#define MOVE_SPEED 0.1f
+#define MOVE_SPEED 0.2f
+#define ROTATION_SPEED 0.01f
 
 
 
@@ -108,16 +109,19 @@ int	close_hook(t_game *game)
 
 void process_input(t_game *game)
 {
-        (void)game;
-        // if (game->input.forward == 1)
-        //         game->player.position.y--;  // Up
-        // if (game->input.backward == 1)
-        //         game->player.position.y++;  // Down
-        // if (game->input.left == 1)
-        //         game->player.position.x--;  // Left
-        // if (game->input.right == 1)
-        //         game->player.position.x++;  // Right
+    float rotation_speed = ROTATION_SPEED;
+    
+    if (game->input.rotate_left == 1)
+        game->player.angle += rotation_speed;
+    if (game->input.rotate_right == 1)
+        game->player.angle -= rotation_speed;
+        
+    if (game->player.angle < 0)
+        game->player.angle += 2 * M_PI;
+    if (game->player.angle >= 2 * M_PI)
+        game->player.angle -= 2 * M_PI;
 }
+
 void init_hooks(t_game *game)
 {
         mlx_hook(game->win,2,1L<<0, key_press,game);

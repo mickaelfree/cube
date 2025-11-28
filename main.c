@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
 #include "include/cube.h"
 static int	**malloc_grid(int width, int height)
 {
@@ -40,28 +41,36 @@ int	load_test_map(t_map *map)
 {
 	int	i;
 	int	j;
-	int	test_grid[8][8] = {
-		{1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 1, 1, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1}
+	int	test_grid[16][16] = {
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+		{1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+		{1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1},
+		{1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+		{1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	};
 
-	map->width = 8;
-	map->height = 8;
-	map->grid = malloc_grid(8, 8);
+	map->width = 16;
+	map->height = 16;
+	map->grid = malloc_grid(16, 16);
 	if (!map->grid)
 		return (0);
 
 	i = 0;
-	while (i < 8)
+	while (i < 16)
 	{
 		j = 0;
-		while (j < 8)
+		while (j < 16)
 		{
 			map->grid[i][j] = test_grid[i][j];
 			j++;
@@ -70,6 +79,13 @@ int	load_test_map(t_map *map)
 	}
 
 	return (1);
+}
+
+void init_player(t_game *g)
+{
+	g->player.position.x = 8.5;
+	g->player.position.y = 8.5;
+	g->player.angle = 0.1f;
 }
 
 int main(int argc,char **argv)
@@ -83,9 +99,8 @@ int main(int argc,char **argv)
 
         //TODO: init le jeux
         game.mlx = NULL;
-        game.player.position.x = 4.5f;
-        game.player.position.y = 4.5f;
-
+        init_player(&game);
+        memset(&game.input, 0, sizeof(t_input));
 
 	load_test_map(&game.map);
         run_game(&game);
