@@ -23,6 +23,7 @@
 #define E 101
 #define AR_LEFT 65361
 #define AR_RIGHT 65363
+#define MOVE_SPEED 0.1f
 
 
 
@@ -67,26 +68,26 @@ int key_release(int keycode, t_game *game)
         if (keycode == W )
         {
                 game->input.forward = 0;
-                if (inbound(game,game->player.position.x,game->player.position.y - 0.1f))
-                        game->player.position.y-= 0.1f;
+                if (inbound(game,game->player.position.x,game->player.position.y - MOVE_SPEED))
+                        game->player.position.y-= MOVE_SPEED;
         }
         if (keycode == A)
         {
                 game->input.left = 0;
-                if (inbound(game,game->player.position.x - 0.1f,game->player.position.y))
-                        game->player.position.x-= 0.1f;
+                if (inbound(game,game->player.position.x - MOVE_SPEED,game->player.position.y))
+                        game->player.position.x-= MOVE_SPEED;
         }
         if (keycode == S)
         {
                 game->input.backward = 0;
-                if (inbound(game,game->player.position.x ,game->player.position.y + 0.1f ))
-                        game->player.position.y+= 0.1f;
+                if (inbound(game,game->player.position.x ,game->player.position.y + MOVE_SPEED))
+                        game->player.position.y+= MOVE_SPEED;
         }
         if (keycode == D)
         {
                 game->input.right= 0;
-                if (inbound(game,game->player.position.x + 0.1f,game->player.position.y))
-                        game->player.position.x+= 0.1f;
+                if (inbound(game,game->player.position.x + MOVE_SPEED,game->player.position.y))
+                        game->player.position.x+= MOVE_SPEED;
         }
         if (keycode == Q)
                 game->input.rotate_right= 0;
