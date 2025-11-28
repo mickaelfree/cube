@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_texture_id.c                                    :+:      :+:    :+:   */
+/*   validate_extension.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 03:39:16 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/28 01:31:58 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/11/28 04:57:43 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/11/28 05:00:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parsing.h"
 
-int	is_texture_id(char *line)
+int	validate_extension(const char *filename)
 {
-	size_t				i;
-	const char *const	ids[] = {
-	[ID_NO] = "NO ",
-	[ID_SO] = "SO ",
-	[ID_WE] = "WE ",
-	[ID_EA] = "EA ",
-	};
+	size_t	len;
 
-	if (!line)
+	len = ft_strlen(filename);
+	if (len < 5)
 		return (-1);
-	i = 0;
-	while (i < ID_COUNT)
-	{
-		if (ft_strncmp(line, ids[i], 3) == 0)
-			return (1);
-		i++;
-	}
+	if (ft_strncmp(filename + len + 4, ".cub", 4) != 0)
+		return (-1);
 	return (0);
 }

@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_texture_id.c                                    :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 03:39:16 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/28 01:31:58 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/11/28 05:06:42 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/11/28 05:45:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "parsing.h"
+#include "vectors.h"
 
-int	is_texture_id(char *line)
+int	read_file(const char *filename, t_vector lines)
 {
-	size_t				i;
-	const char *const	ids[] = {
-	[ID_NO] = "NO ",
-	[ID_SO] = "SO ",
-	[ID_WE] = "WE ",
-	[ID_EA] = "EA ",
-	};
+	int fd;
+	char *line;
 
-	if (!line)
-		return (-1);
-	i = 0;
-	while (i < ID_COUNT)
-	{
-		if (ft_strncmp(line, ids[i], 3) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
+	fd = read(filename, )
 }

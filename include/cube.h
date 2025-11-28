@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2025/11/27 00:33:55 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/11/28 04:48:07 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_game
 	t_input		input;
 	t_texture	framebuffer;
 	t_map		map;
-
+	t_config	config;
 }				t_game;
 
 void			init_hooks(t_game *g);

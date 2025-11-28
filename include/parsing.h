@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 23:44:19 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/27 05:49:31 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/11/28 05:01:03 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,16 @@ int				is_texture_id(char *line);
 int				set_texture_path(char *line, t_parse *parse, size_t id);
 int				parse_texture_line(char *line, t_parse *parse,
 					t_parser *parser);
+
+// PARSE COLORS
+int				is_color_id(char *line);
+int				parse_color_line(char *line, t_config *config,
+					t_parser *parser);
+
+// PARSE FILE
+int				parse_lines(t_parser *parser, t_config *config);
+
+// READ FILE
+int				validate_extension(const char *filename);
 
 #endif
