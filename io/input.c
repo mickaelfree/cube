@@ -67,22 +67,26 @@ int key_release(int keycode, t_game *game)
         if (keycode == W )
         {
                 game->input.forward = 0;
-                game->player.position.y-= 0.1f;
+                if (inbound(game,game->player.position.x,game->player.position.y - 0.1f))
+                        game->player.position.y-= 0.1f;
         }
         if (keycode == A)
         {
                 game->input.left = 0;
-                game->player.position.x-= 0.1f;
+                if (inbound(game,game->player.position.x - 0.1f,game->player.position.y))
+                        game->player.position.x-= 0.1f;
         }
         if (keycode == S)
         {
                 game->input.backward = 0;
-                game->player.position.y+= 0.1f;
+                if (inbound(game,game->player.position.x ,game->player.position.y + 0.1f ))
+                        game->player.position.y+= 0.1f;
         }
         if (keycode == D)
         {
                 game->input.right= 0;
-                game->player.position.x+= 0.1f;
+                if (inbound(game,game->player.position.x + 0.1f,game->player.position.y))
+                        game->player.position.x+= 0.1f;
         }
         if (keycode == Q)
                 game->input.rotate_right= 0;

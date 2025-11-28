@@ -83,6 +83,9 @@ int main(int argc,char **argv)
 
         //TODO: init le jeux
         game.mlx = NULL;
+        game.player.position.x = 4.5f;
+        game.player.position.y = 4.5f;
+
 
 	load_test_map(&game.map);
         run_game(&game);
