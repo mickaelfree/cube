@@ -81,6 +81,36 @@ static void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1, uint32_t co
 		}
 	}
 }
+static void	draw_fov_cone(t_game *g)
+{
+	int		size;
+	int		px;
+	int		py;
+	float	fov;
+	float	half_fov;
+	float	left_angle;
+	float	right_angle;
+	float	max_distance;
+	int		left_end_x;
+	int		left_end_y;
+	int		right_end_x;
+	int		right_end_y;
+
+	size = WIN_W / 100;
+	px = 20 + (int)(g->player.position.x * size);
+	py = WIN_H - 20 - (int)((g->map.height - g->player.position.y) * size);
+	fov = M_PI / 3.0f;
+	half_fov = fov / 2.0f;
+	left_angle = g->player.angle - half_fov;
+	right_angle = g->player.angle + half_fov;
+	max_distance = 5.0f;
+	left_end_x = px + (int)(cos(left_angle) * max_distance * size);
+	left_end_y = py + (int)(sin(left_angle) * max_distance * size);
+	draw_line(&g->framebuffer, px, py, left_end_x, left_end_y, 0xFFFF00);
+	right_end_x = px + (int)(cos(right_angle) * max_distance * size);
+	right_end_y = py + (int)(sin(right_angle) * max_distance * size);
+	draw_line(&g->framebuffer, px, py, right_end_x, right_end_y, 0xFFFF00);
+}
 
 static void	draw_player_ray(t_game *g)
 {
@@ -166,6 +196,7 @@ void	render_minimap(t_game *g)
         draw_grid(g);
         draw_player_dot(g);
         draw_player_ray(g);
+        draw_fov_cone(g);
 }
 // void raycast_frame(t_game *g)
 // {
