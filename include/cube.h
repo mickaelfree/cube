@@ -50,6 +50,7 @@ typedef struct s_input
 	int			right;
 	int			rotate_left;
 	int			rotate_right;
+        int                     togle_minimap;
 	int			quit;
 }				t_input;
 
@@ -76,6 +77,9 @@ typedef struct s_game
 
 }				t_game;
 
+//TODO: faire une struct pour ranger tout les variable de draw
+//
+//TODO: ranger toute les fontion dans le bon fichier
 void			init_hooks(t_game *g);
 void			run_game(t_game *g);
 void			process_input(t_game *g);
