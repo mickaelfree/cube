@@ -57,7 +57,7 @@ typedef struct s_input
 typedef struct s_texture
 {
 	void *img;  // image de mlx
-	char *data; // data des pixel
+	int *data; // data des pixel
 	int			width;
 	int			height;
 	int bpp; // bits par pixel
