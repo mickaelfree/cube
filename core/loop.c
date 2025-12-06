@@ -6,117 +6,11 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2025/11/06 12:19:09 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/06 19:45:57 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#define WIN_W 1280
-#define WIN_H 720
-
-#include "../include/cube.h"
 #include <stdint.h>
-
-float	ft_absf(float x)
-{
-	if (x < 0)
-		return (-x);
-	return (x);
-}
-static inline void	put_pixel(t_texture *fb, int x, int y, uint32_t color)
-{
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-		return ;
-	*(uint32_t *)(fb->data + y * fb->line_size + x * (fb->bpp / 8)) = color;
-}
-
-static void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < h)
-	{
-		j = 0;
-		while (j < w)
-		{
-			put_pixel(fb, x + j, y + i, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1,
-		uint32_t color)
-{
-	int	dx;
-	int	dy;
-	int	err;
-	int	e2;
-
-	dx = ft_absf(x1 - x0);
-	dy = ft_absf(y1 - y0);
-	int sx, sy;
-	if (x0 < x1)
-		sx = 1;
-	else
-		sx = -1;
-	if (y0 < y1)
-		sy = 1;
-	else
-		sy = -1;
-	err = dx - dy;
-	while (1)
-	{
-		put_pixel(fb, x0, y0, color);
-		if (x0 == x1 && y0 == y1)
-			break ;
-		e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			x0 += sx;
-		}
-		if (e2 < dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
-	}
-}
-
-static void	draw_3d_column(t_game *g, int x, float distance)
-{
-	int	wall_height;
-	int	wall_start;
-	int	wall_end;
-	int	y;
-
-	if (distance == 0)
-		distance = 0.1f;
-	wall_height = (int)(WIN_H / distance);
-	wall_start = (WIN_H - wall_height) / 2;
-	wall_end = wall_start + wall_height;
-	y = 0;
-	while (y < wall_start)
-	{
-		put_pixel(&g->framebuffer, x, y, 0x87CEEB);
-		y++;
-	}
-	y = wall_start;
-	while (y < wall_end && y < WIN_H)
-	{
-		put_pixel(&g->framebuffer, x, y, 0x8B4513);
-		y++;
-	}
-	y = wall_end;
-	while (y < WIN_H)
-	{
-		put_pixel(&g->framebuffer, x, y, 0x228B22);
-		y++;
-	}
-}
-
+#include "../include/draw.h"
 static void	render_3d_view(t_game *g)
 {
 	float	fov;

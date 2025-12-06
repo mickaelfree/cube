@@ -1,5 +1,5 @@
 CUBE= cube
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 NORELINK = -MMD -MP
 INCLUDE = -I /include -I minilibx-linux
 LIBS = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm
@@ -21,6 +21,12 @@ BUILDDIR = obj
 #SRCS = $(SRCDIR)/main.c
 SRCS = main.c \
 	core/loop.c \
+	draw/draw_3d_column.c\
+	draw/draw_line.c \
+	draw/draw_player_dot.c \
+	draw/draw_rect.c \
+	draw/put_pixel.c \
+	draw/utils.c \
 	io/input.c
 
 
