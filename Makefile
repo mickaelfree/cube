@@ -27,6 +27,7 @@ SRCS = main.c \
 	draw/draw_rect.c \
 	draw/put_pixel.c \
 	draw/utils.c \
+	assets/xpm.c \
 	io/input.c
 
 

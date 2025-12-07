@@ -241,8 +241,7 @@ void	run_game(t_game *g)
 	g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img,
 			&g->framebuffer.bpp, &g->framebuffer.line_size,
 			&g->framebuffer.endian);
-	if (!g->framebuffer.data)
-		exit(1);
+	load_all_textures(g);
 	init_hooks(g);
 	mlx_loop(g->mlx);
 }

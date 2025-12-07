@@ -57,7 +57,7 @@ typedef struct s_input
 typedef struct s_texture
 {
 	void *img;  // image de mlx
-	int *data; // data des pixel
+	char *data; // data des pixel
 	int			width;
 	int			height;
 	int bpp; // bits par pixel
@@ -72,6 +72,7 @@ typedef struct s_game
 	void		*img;
 	t_input		input;
 	t_texture	framebuffer;
+        t_texture       wall_texture;
 	t_map		map;
 	t_player	player;
 

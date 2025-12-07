@@ -32,5 +32,8 @@ void	put_pixel(t_texture *fb, int x, int y, uint32_t color);
 void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1, uint32_t color);
 void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color);
 void	draw_3d_column(t_game *g, int x, float distance);
+int	get_texture_pixel(t_texture *texture, int x, int y);
+void	load_all_textures(t_game *game);
+
 
 #endif
