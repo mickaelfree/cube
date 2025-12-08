@@ -1,6 +1,6 @@
 /* XPM */
 static char *doom_wall_xpm[] = {
-"64 64 6 1",
+"64 64 31 1",
 "0 c #1A1A1A",  /* noir doux */
 "1 c #2E2E2E",  /* gris foncé */
 "2 c #555555",  /* gris métal */
