@@ -42,7 +42,6 @@ void	draw_3d_column(t_game *g, int x, float distance)
 		}
 		else
 		{
-			// Fallback: couleur unie
 			put_pixel(&g->framebuffer, x, y, 0x8B4513);
 		}
 		y++;

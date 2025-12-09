@@ -6,7 +6,7 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/08 20:07:12 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/09 23:12:23 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@
 float	ft_absf(float x);
 void	put_pixel(t_texture *fb, int x, int y, uint32_t color);
 void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1, uint32_t color);
+void	draw_player_dot(t_game *g);
+void	draw_grid(t_game *g);
 void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color);
+void	draw_player_ray(t_game *g);
+void	draw_fov_cone(t_game *g);
 void	draw_3d_column(t_game *g, int x, float distance);
 int	get_texture_pixel(t_texture *texture, int x, int y);
 void	load_all_textures(t_game *game);

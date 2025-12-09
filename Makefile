@@ -24,9 +24,13 @@ SRCS = main.c \
 	draw/draw_3d_column.c\
 	draw/draw_line.c \
 	draw/draw_player_dot.c \
+	draw/draw_player_ray.c \
+	draw/draw_fov_cone.c \
+	draw/draw_grid.c \
 	draw/draw_rect.c \
 	draw/put_pixel.c \
 	draw/utils.c \
+	render/render_minimap.c \
 	assets/xpm.c \
 	io/input.c
 
