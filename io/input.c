@@ -24,7 +24,7 @@
 #define M 109
 #define AR_LEFT 65361
 #define AR_RIGHT 65363
-#define MOVE_SPEED 0.2f
+#define MOVE_SPEED 0.01f
 #define ROTATION_SPEED 0.01f
 
 
@@ -67,59 +67,16 @@ int key_press(int keycode,t_game *game)
 }
 int key_release(int keycode, t_game *game)
 {
-        float cos_angle; 
-        float sin_angle; 
-        cos_angle = cos(game->player.angle);
-        sin_angle = sin(game->player.angle);
-        float new_x;
-        float new_y;
         if (keycode == ESC )
                 game->input.quit = 0;
         if (keycode == W )
-        {
                 game->input.forward = 0;
-                new_x = game->player.position.x + cos_angle * MOVE_SPEED;
-                new_y = game->player.position.y + sin_angle * MOVE_SPEED;
-                if (inbound(game,new_x,new_y))
-                {
-                        game->player.position.x = new_x;
-                        game->player.position.y = new_y;
-                }
-
-        }
         if (keycode == A)
-        {
                 game->input.left = 0;
-                new_x = game->player.position.x + sin_angle * MOVE_SPEED;
-                new_y = game->player.position.y - cos_angle * MOVE_SPEED;
-                if (inbound(game,new_x,new_y))
-                {
-                        game->player.position.x = new_x;
-                        game->player.position.y = new_y;
-                }
-        }
         if (keycode == S)
-        {
                 game->input.backward = 0;
-                new_x = game->player.position.x - cos_angle * MOVE_SPEED;
-                new_y = game->player.position.y - sin_angle * MOVE_SPEED;
-                if (inbound(game,new_x,new_y))
-                {
-                        game->player.position.x = new_x;
-                        game->player.position.y = new_y;
-                }
-        }
         if (keycode == D)
-        {
                 game->input.right= 0;
-                new_x = game->player.position.x - sin_angle * MOVE_SPEED;
-                new_y = game->player.position.y + cos_angle * MOVE_SPEED;
-                if (inbound(game,new_x,new_y))
-                {
-                        game->player.position.x = new_x;
-                        game->player.position.y = new_y;
-                }
-        }
         if (keycode == Q)
                 game->input.rotate_right= 0;
         if (keycode == E)
@@ -140,12 +97,56 @@ int	close_hook(t_game *game)
 void process_input(t_game *game)
 {
     float rotation_speed = ROTATION_SPEED;
-    
-    if (game->input.rotate_left == 1)
-        game->player.angle += rotation_speed;
-    if (game->input.rotate_right == 1)
-        game->player.angle -= rotation_speed;
+    float cos_angle = cos(game->player.angle);
+    float sin_angle = sin(game->player.angle);
+    float new_x;
+    float new_y;
         
+    
+        if (game->input.rotate_left == 1)
+                game->player.angle += rotation_speed;
+        if (game->input.rotate_right == 1)
+                game->player.angle -= rotation_speed;
+        if (game->input.forward == 1)
+        {
+                new_x = game->player.position.x + cos_angle * MOVE_SPEED;
+                new_y = game->player.position.y + sin_angle * MOVE_SPEED;
+                if (inbound(game, new_x, new_y))
+                {
+                game->player.position.x = new_x;
+                game->player.position.y = new_y;
+                }
+        }
+        if (game->input.backward == 1)
+        {
+                new_x = game->player.position.x - cos_angle * MOVE_SPEED;
+                new_y = game->player.position.y - sin_angle * MOVE_SPEED;
+                if (inbound(game, new_x, new_y))
+                {
+                game->player.position.x = new_x;
+                game->player.position.y = new_y;
+                }
+        }
+        if (game->input.left == 1)
+        {
+                new_x = game->player.position.x + sin_angle * MOVE_SPEED;
+                new_y = game->player.position.y - cos_angle * MOVE_SPEED;
+                if (inbound(game, new_x, new_y))
+                {
+                game->player.position.x = new_x;
+                game->player.position.y = new_y;
+                }
+        }
+        if (game->input.right == 1)
+        {
+                new_x = game->player.position.x - sin_angle * MOVE_SPEED;
+                new_y = game->player.position.y + cos_angle * MOVE_SPEED;
+                if (inbound(game, new_x, new_y))
+                {
+                game->player.position.x = new_x;
+                game->player.position.y = new_y;
+                }
+        }
     if (game->player.angle < 0)
         game->player.angle += 2 * M_PI;
     if (game->player.angle >= 2 * M_PI)

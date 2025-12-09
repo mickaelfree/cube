@@ -19,10 +19,10 @@ void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1,
 	int	dy;
 	int	err;
 	int	e2;
+	int sx, sy;
 
 	dx = ft_absf(x1 - x0);
 	dy = ft_absf(y1 - y0);
-	int sx, sy;
 	if (x0 < x1)
 		sx = 1;
 	else

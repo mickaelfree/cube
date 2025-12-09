@@ -6,7 +6,7 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2025/11/06 12:19:02 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/08 18:58:20 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_game
         t_texture       wall_texture;
 	t_map		map;
 	t_player	player;
+        void            *draw_data;
 
 }				t_game;
 

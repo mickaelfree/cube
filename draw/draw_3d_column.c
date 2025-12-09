@@ -6,7 +6,7 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 19:08:20 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/06 19:16:44 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:09:06 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@ void	draw_3d_column(t_game *g, int x, float distance)
 	wall_height = (int)(WIN_H / distance);
 	wall_start = (WIN_H - wall_height) / 2;
 	wall_end = wall_start + wall_height;
-
-	// Ciel
 	y = 0;
 	while (y < wall_start)
 	{
 		put_pixel(&g->framebuffer, x, y, 0x87CEEB);
 		y++;
 	}
-	
-	// Mur - SÉCURISÉ
 	y = wall_start;
 	while (y < wall_end && y < WIN_H)
 	{
@@ -51,8 +47,6 @@ void	draw_3d_column(t_game *g, int x, float distance)
 		}
 		y++;
 	}
-	
-	// Sol
 	y = wall_end;
 	while (y < WIN_H)
 	{

@@ -6,7 +6,7 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/06 19:46:19 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/08 20:07:12 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define SCREEN_RIGHT 1.0f
 # define SCREEN_RANGE (SCREEN_RIGHT - SCREEN_LEFT)
 # define TILE_SIZE 1.0f
+
 
 float	ft_absf(float x);
 void	put_pixel(t_texture *fb, int x, int y, uint32_t color);
