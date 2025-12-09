@@ -22,6 +22,19 @@
 # define SCREEN_RIGHT 1.0f
 # define SCREEN_RANGE (SCREEN_RIGHT - SCREEN_LEFT)
 # define TILE_SIZE 1.0f
+//binding
+#define ESC 65307
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define Q 113
+#define E 101
+#define M 109
+#define AR_LEFT 65361
+#define AR_RIGHT 65363
+#define MOVE_SPEED 0.2f
+#define ROTATION_SPEED 0.01f
 
 typedef struct s_map
 {

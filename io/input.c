@@ -10,22 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cube.h"
 
+#include "../include/cube.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
-#define ESC 65307
-#define W 119
-#define A 97
-#define S 115
-#define D 100
-#define Q 113
-#define E 101
-#define M 109
-#define AR_LEFT 65361
-#define AR_RIGHT 65363
-#define MOVE_SPEED 0.01f
-#define ROTATION_SPEED 0.01f
 
 
 
