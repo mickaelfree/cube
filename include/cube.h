@@ -6,7 +6,7 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/09 23:13:59 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/10 02:03:11 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 #define AR_LEFT 65361
 #define AR_RIGHT 65363
 #define MOVE_SPEED 0.2f
-#define ROTATION_SPEED 0.01f
+#define ROTATION_SPEED 0.02f
 
 typedef struct s_map
 {
@@ -100,4 +100,5 @@ void			run_game(t_game *g);
 void			process_input(t_game *g);
 void	render_minimap(t_game *g);
 int				game_loop(t_game *g);
+void	render_3d_view(t_game *g);
 #endif

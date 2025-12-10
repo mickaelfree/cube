@@ -20,7 +20,8 @@ BUILDDIR = obj
 
 #SRCS = $(SRCDIR)/main.c
 SRCS = main.c \
-	core/loop.c \
+	core/run_game.c \
+	core/game_loop.c \
 	draw/draw_3d_column.c\
 	draw/draw_line.c \
 	draw/draw_player_dot.c \
@@ -31,6 +32,7 @@ SRCS = main.c \
 	draw/put_pixel.c \
 	draw/utils.c \
 	render/render_minimap.c \
+	render/render_3d_view.c \
 	assets/xpm.c \
 	io/input.c
 
