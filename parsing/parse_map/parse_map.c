@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 09:24:31 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/09 22:00:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/10 03:33:53 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	alloc_grid(t_map *map)
 	while (i < map->height)
 	{
 		map->grid[i] = malloc(sizeof(int) * map->width);
-		if (!map->grid)
+		if (!map->grid[i])
 			return (-1);
 		ft_memset(map->grid[i], -1, sizeof(int) * map->width);
 		i++;

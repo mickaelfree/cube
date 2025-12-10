@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 23:44:19 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 03:28:25 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/10 03:35:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 typedef enum s_texture_id
 {
 	ID_NO = 1,
-	ID_SO = 1 << 1,
-	ID_WE = 1 << 2,
-	ID_EA = 1 << 3,
-	ID_COUNT = 1 << 4
+	ID_SO = 2,
+	ID_WE = 3,
+	ID_EA = 4,
+	ID_COUNT = 5
 }				t_texture_id;
 
 typedef enum s_color_id

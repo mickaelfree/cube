@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 04:49:22 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 03:08:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/10 05:46:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	parse_texture_line(char *line, t_parse *parse, t_parser *parser)
 {
 	int	id;
 
-	printf("Parsing texture line: '%s'\n", line);
 	id = get_texture_id(line);
 	if (id == -1)
 		return (-1);
@@ -30,7 +29,6 @@ int	parse_texture_line(char *line, t_parse *parse, t_parser *parser)
 		return (-1);
 	}
 	parser->textures_set++;
-	printf("Texture ID %d set successfully. Total textures set: %d\n", id, parser->textures_set);
 	return (0);
 }
 
@@ -46,10 +44,10 @@ static int	get_texture_id(char *line)
 
 	if (!line)
 		return (-1);
-	i = 0;
+	i = 1;
 	while (i < ID_COUNT)
 	{
-		if (ft_strncmp(line, ids[i], 3) == 0)
+		if (ids[i] && ft_strncmp(line, ids[i], 3) == 0)
 			return (i);
 		i++;
 	}

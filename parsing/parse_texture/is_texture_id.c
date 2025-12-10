@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 03:39:16 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/28 01:31:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/10 03:40:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	is_texture_id(char *line)
 
 	if (!line)
 		return (-1);
-	i = 0;
+	i = 1;
 	while (i < ID_COUNT)
 	{
-		if (ft_strncmp(line, ids[i], 3) == 0)
+		if (ids[i] && ft_strncmp(line, ids[i], 3) == 0)
 			return (1);
 		i++;
 	}
