@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_extension.c                               :+:      :+:    :+:   */
+/*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/28 04:57:43 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 02:56:21 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/12/10 00:55:33 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/12/10 01:10:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parsing.h"
+#include "vectors.h"
 
-int	validate_extension(const char *filename)
+static void	free_lines_vector(t_vector *vec);
+
+void	free_parser(t_parser *parser)
 {
-	size_t	len;
+	free_lines_vector(&parser->lines);
+	free_lines_vector(&parser->map_lines);
+}
 
-	len = ft_strlen(filename);
-	if (len < 5)
-		return (-1);
-	if (ft_strncmp(filename + len - 4, ".cub", 4) != 0)
-		return (-1);
-	return (0);
+static void	free_lines_vector(t_vector *vec)
+{
+	size_t	i;
+	char	**line;
+
+	i = 0;
+	while (i < vec->size)
+	{
+		line = (char **)at_vector(vec, i);
+		if (*line)
+			free(*line);
+		i++;
+	}
+	free_vector(vec);
 }

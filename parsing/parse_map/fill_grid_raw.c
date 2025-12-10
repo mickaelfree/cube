@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_extension.c                               :+:      :+:    :+:   */
+/*   fill_grid_raw.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/28 04:57:43 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 02:56:21 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/12/09 22:01:27 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/12/09 22:09:38 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	validate_extension(const char *filename)
+int	fill_grid_row(char *line, int *row, int width)
 {
-	size_t	len;
+	int	x;
 
-	len = ft_strlen(filename);
-	if (len < 5)
-		return (-1);
-	if (ft_strncmp(filename + len - 4, ".cub", 4) != 0)
-		return (-1);
+	x = 0;
+	while (line[x])
+	{
+		if (line[x] == '1')
+			row[x] = 1;
+		else if (line[x] == '0' || line[x] == 'N' || line[x] == 'S'
+			|| line[x] == 'E' || line[x] == 'W')
+			row[x] = 0;
+		else if (line[x] == ' ')
+			row[x] = -1;
+		else
+			return (-1);
+		x++;
+	}
+	while (x < width)
+		row[x++] = -1;
 	return (0);
 }

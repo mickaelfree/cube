@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 23:44:19 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/28 08:14:38 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/10 03:28:25 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,21 @@ typedef struct s_parser
 // UTILS
 char			*skip_spaces(char *str);
 int				is_empty_line(char *line);
+int				is_player_char(char c);
+void			free_parser(t_parser *parser);
 
 // PARSE MAP
 int				is_map_char(char c);
 int				store_map_line(char *line, t_vector *map_lines);
+int				fill_grid_row(char *line, int *row, int width);
+int				parse_map(t_parser *parser, t_game *game);
+
+// VALIDATE MAP
+int				validate_map(t_game *game);
 
 // PARSE TEXTURE
 int				is_texture_id(char *line);
-int				set_texture_path(char *line, t_parse *parse, size_t id);
+int				set_texture_path(char *line, t_parse *parse, int id);
 int				parse_texture_line(char *line, t_parse *parse,
 					t_parser *parser);
 
@@ -61,6 +68,7 @@ int				parse_color_line(char *line, t_config *config,
 
 // PARSE FILE
 int				parse_lines(t_parser *parser, t_config *config);
+int				parse_file(const char *filename, t_game *game);
 
 // READ FILE
 int				validate_extension(const char *filename);

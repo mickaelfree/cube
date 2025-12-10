@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 05:08:54 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/11/27 05:50:01 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/10 03:28:03 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "parsing.h"
 #include <stddef.h>
 
-static char	**get_texture_ptr(t_parse *parse, size_t id);
+static char	**get_texture_ptr(t_parse *parse, int id);
 
-int	set_texture_path(char *line, t_parse *parse, size_t id)
+int	set_texture_path(char *line, t_parse *parse, int id)
 {
 	char	**texture_ptr;
 	char	*path;
@@ -31,7 +31,7 @@ int	set_texture_path(char *line, t_parse *parse, size_t id)
 	return (0);
 }
 
-static char	**get_texture_ptr(t_parse *parse, size_t id)
+static char	**get_texture_ptr(t_parse *parse, int id)
 {
 	if (id == ID_NO)
 		return (&parse->no_texture);
