@@ -4,19 +4,39 @@ NORELINK = -MMD -MP
 INCLUDE = -I /include -I minilibx-linux
 LIBS = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm
 MLXLIB = libmlx_Linux.a
+NAME = cube
 
-PRINTSTART = @printf "\n$(MAGENTA)🔨Compiling cube🔨$(RESET)\n"
-printstart:
-	$(PRINTSTART)
+# Directories
+CORE_DIR = core/
+IO_DIR = io/
+PARSING_DIR = parsing/
+PARSING_FILES = parse_colors/is_color_id.c\
+				parse_colors/parse_color_line.c\
+				parse_file/parse_file.c\
+				parse_file/parse_line.c\
+				parse_map/fill_grid_raw.c\
+				parse_map/is_map_char.c\
+				parse_map/parse_map.c\
+				parse_map/store_map_line.c\
+				parse_texture/is_texture_id.c\
+				parse_texture/parse_texture_line.c\
+				parse_texture/set_texture_path.c\
+				read_file/read_file.c\
+				read_file/validate_extension.c\
+				utils_parsing/free_parser.c\
+				utils_parsing/is_empty_line.c\
+				utils_parsing/is_player_char.c\
+				utils_parsing/skip_spaces.c\
+				validate_map/validate_map.c
 
-# MKFILES=src/builtins/builtins.mk\
-# 	src/exec/exec.mk\
-# 	src/parsing/parsing.mk\
-# 	src/signal/signal.mk\
-# 	src/utils/utils.mk
+OBJ_DIR = .obj/
+LIBFT_DIR = libft/
+MLX_DIR = minilibx-linux/
 
-SRCDIR = src
-BUILDDIR = obj
+# Source lists
+CORE_FILES = loop.c
+IO_FILES = input.c
+MAIN_FILES = main.c
 
 #SRCS = $(SRCDIR)/main.c
 SRCS = main.c \
@@ -35,83 +55,102 @@ SRCS = main.c \
 	render/render_3d_view.c \
 	assets/xpm.c \
 	io/input.c
+FILES = \
+	$(addprefix $(PARSING_DIR), $(PARSING_FILES)) \
+	$(addprefix $(CORE_DIR), $(CORE_FILES)) \
+	$(addprefix $(IO_DIR), $(IO_FILES)) \
+	$(MAIN_FILES)
 
+# Objects / deps
+OBJ = $(addprefix $(OBJ_DIR), $(FILES:.c=.o))
+DEPS = $(addprefix $(OBJ_DIR), $(FILES:.c=.d))
 
-OBJS = $(SRCS:$(SRCDIR)/%.c=$(BUILDDIR)/%.o)
-DEPS = $(OBJS:.o=.d)
+# Compiler & Flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -MMD -MP \
+	-I include \
+	-I $(MLX_DIR) \
+	-I $(LIBFT_DIR)libft_functions/includes \
+	-I $(LIBFT_DIR)vectors/includes \
+	-I $(LIBFT_DIR)ft_printf/includes \
+	-I $(LIBFT_DIR)get_next_line/includes
+
+# Libraries
+LIBFT = $(LIBFT_DIR)libft.a
+MLXLIB = $(MLX_DIR)libmlx_Linux.a
+LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lbsd
 
 MAKEFLAGS += --no-print-directory
 
-.DEFAULT_GOAL = all  # Set default goal to make all
+# Colors
+GREEN = \033[32m
+YELLOW = \033[33m
+RED = \033[31m
+PURPLE = \033[35m
+RESET = \033[0m
 
-# Base rule
-all: printstart $(CUBE)
+.PHONY: all lib clean fclean re banner debug fdebug norm gdb print-vars FORCE
+.DEFAULT_GOAL = all
 
-$(CUBE):$(MLXLIB) $(OBJS) #$(LIBFT)
-	@printf "\n$(MAGENTA)🔨Compile exec🔨$(CYAN)\n"
-	@printf "$(YELLOW)Compile $(CYAN)$@ $(YELLOW)from $(CYAN)$^$(RESET)\n"
-	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ $(OBJS) $(LIBS)
-	@printf "\n$(YELLOW)✅ Build done!$(RESET)\n\n"
+all: banner lib $(NAME)
 
-# $(LIBFT): FORCE
-# 	@$(MAKE) -C ./libft
+banner:
+	@echo "$(PURPLE)🚀 Building cube$(RESET)"
 
-# Relink prevention for linked projects
-FORCE:
-# Individual source file rule
-$(BUILDDIR)/%.o: $(SRCDIR)/%.c
+# Build executable
+$(NAME): $(OBJ) $(LIBFT) $(MLXLIB)
+	@echo "$(YELLOW)Link $(NAME)$(RESET)"
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS)
+	@echo "$(GREEN)✅ Done$(RESET)"
+
+# Object rule
+$(OBJ_DIR)%.o: %.c Makefile
 	@mkdir -p $(dir $@)
-	@printf "$(GREEN)🔨Compiling $(CYAN) $@ $(GREEN)from $(CYAN)$<"
-	@$(CC) $(CFLAGS) $(NORELINK) $(INCLUDE) -o $@ -c $<
-	@printf "$(RESET)\n"
+	@echo "CC $< -> $@"
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(MLXLIB):
-	@echo "🔧 Building MiniLibX..."
-	@$(MAKE) -C minilibx-linux > /dev/null 2>&1
+-include $(DEPS)
 
+# Library aggregation
+FORCE:
+lib: $(LIBFT) $(MLXLIB)
 
+$(LIBFT): FORCE
+	@echo "📦 libft"
+	@$(MAKE) -C $(LIBFT_DIR) || echo "$(RED)libft build failed$(RESET)"
+
+$(MLXLIB): FORCE
+	@echo "📦 mlx"
+	@$(MAKE) -C $(MLX_DIR) || echo "$(RED)mlx build failed$(RESET)"
+
+# Cleaning
 clean:
-	@printf "$(RED)🗑️  "
-#	@$(MAKE) clean -C ./libft > /dev/null
-	$(RM) -r $(BUILDDIR)
-	@printf "$(RESET)\n"
-
+	@echo "$(RED)🧹 clean objects$(RESET)"
+	@$(MAKE) -C $(LIBFT_DIR) clean || true
+	@$(MAKE) -C $(MLX_DIR) clean || true
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@printf "$(RED)🗑️  "
-#	@$(MAKE) fclean -C ./libft > /dev/null
-	$(RM) $(CUBE)
-	@printf "$(RESET)\n"
+	@echo "$(RED)🧹 full clean$(RESET)"
+	@$(MAKE) -C $(LIBFT_DIR) fclean || true
+	@rm -f $(NAME)
 
 re: fclean all
 
-# Compile for valgrind
-debug: CFLAGS = -Wall -Wextra -Werror -g3
-debug: fclean all
-	valgrind $(shell cat .valgrindrc) ./cube
+# Debug targets
+debug: CFLAGS += -g3
+debug: re
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
-# Compile for debug mode + valgrind
-fdebug: CFLAGS = -Wall -Wextra -Werror -g3 -DDEBUG_MODE=1
-fdebug: fclean all
-	DEBUG_MODE=1 valgrind $(shell cat .valgrindrc) --trace-children=yes ./cube
+fdebug: CFLAGS += -g3 -DDEBUG_MODE=1
+fdebug: re
+	DEBUG_MODE=1 valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./$(NAME)
 
-# Norminette for source and include
 norm:
-	norminette src/ inc/
+	norminette . include/
 
 gdb:
-	gdb ./$(CUBE) -ex "break main"
+	gdb ./$(NAME) -ex "break main"
 
-
-.PHONY: all FORCE clean fclean re debug gdb tester
-
-# COLORS
-RESET = \033[0m
-RED = \033[1;31m
-GREEN = \033[1;32m
-YELLOW = \033[1;33m
-BLUE = \033[1;34m
-MAGENTA = \033[1;35m
-CYAN = \033[1;36m
-WHITE = \033[1;37m
-GREY = \033[1;90m
+print-vars:
+	@echo NAME=$(NAME)\nOBJ=$(OBJ)\nFILES=$(FILES)
