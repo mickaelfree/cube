@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include <stdint.h>
 #include "../include/draw.h"
-static void	render_3d_view(t_game *g)
+void	render_3d_view(t_game *g)
 {
 	float	fov;
 	float	half_fov;

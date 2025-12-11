@@ -43,15 +43,15 @@ typedef struct s_map
 	int			height;
 }				t_map;
 
-typedef struct s_vector
+typedef struct s_player_vector
 {
 	float		x;
 	float		y;
-}				t_vector;
+}				t_player_vector;
 
 typedef struct s_player
 {
-	t_vector	position;
+	t_player_vector position;
         float		angle;
 
 }				t_player;
