@@ -93,17 +93,6 @@ typedef struct s_parse
 	char		player_dir;
 }				t_parse;
 
-typedef struct s_texture
-{
-	void *img;  //image de mlx
-	char *data; // data des pixel
-	int			width;
-	int			height;
-	int bpp; //bits par pixel
-	int			line_size;
-	int endian; //ordre des octes
-}				t_texture;
-
 typedef struct s_config
 {
 	t_parse		parse;
@@ -139,9 +128,6 @@ void			process_input(t_game *g);
 void	render_minimap(t_game *g);
 int				game_loop(t_game *g);
 void	render_3d_view(t_game *g);
-	t_map		map;
-	t_config	config;
-}				t_game;
 
 void			init_hooks(t_game *g);
 void			run_game(t_game *g);
