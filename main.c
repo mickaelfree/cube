@@ -6,103 +6,103 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:17:44 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/10 02:53:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 04:31:33 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <string.h>
-#include "include/cube.h"
-int	**malloc_grid(int width, int height)
-{
-	int	**grid;
-	int	i;
+#include "cube.h"
+#include "parsing.h"
 
-	grid = malloc(sizeof(int *) * height);
-	if (!grid)
-		return (NULL);
-	i = 0;
-	while (i < height)
+// int	**malloc_grid(int width, int height)
+// {
+// 	int	**grid;
+// 	int	i;
+
+// 	grid = malloc(sizeof(int *) * height);
+// 	if (!grid)
+// 		return (NULL);
+// 	i = 0;
+// 	while (i < height)
+// 	{
+// 		grid[i] = malloc(sizeof(int) * width);
+// 		if (!grid[i])
+// 		{
+// 			while (i--)
+// 				free(grid[i]);
+// 			free(grid);
+// 			return (NULL);
+// 		}
+// 		i++;
+// 	}
+// 	return (grid);
+// }
+// int	load_test_map(t_map *map)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	test_grid[16][16] = {
+// 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+// 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 		{1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1},
+// 		{1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+// 		{1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+// 		{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+// 		{1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+// 		{1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1},
+// 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 		{1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1},
+// 		{1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1},
+// 		{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+// 		{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 		{1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1},
+// 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+// 	};
+
+// 	map->width = 16;
+// 	map->height = 16;
+// 	map->grid = malloc_grid(16, 16);
+// 	if (!map->grid)
+// 		return (0);
+
+// 	i = 0;
+// 	while (i < 16)
+// 	{
+// 		j = 0;
+// 		while (j < 16)
+// 		{
+// 			map->grid[i][j] = test_grid[i][j];
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+//         return (1);
+// }
+
+// void init_player(t_game *g)
+// {
+// 	g->player.position.x = 8.5;
+// 	g->player.position.y = 8.5;
+// 	g->player.angle = 0.1f;
+// }
+
+int main(int argc, char **argv)
+{
+	t_game	game;
+
+	if (argc != 2)
 	{
-		grid[i] = malloc(sizeof(int) * width);
-		if (!grid[i])
-		{
-			while (i--)
-				free(grid[i]);
-			free(grid);
-			return (NULL);
-		}
-		i++;
+		printf("Usage: %s <map.cub>\n", argv[0]);
+		return (1);
 	}
-	return (grid);
-}
-int	load_test_map(t_map *map)
-{
-	int	i;
-	int	j;
-	int	test_grid[16][16] = {
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1},
-		{1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-		{1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1},
-		{1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-	};
-
-	map->width = 16;
-	map->height = 16;
-	map->grid = malloc_grid(16, 16);
-	if (!map->grid)
-		return (0);
-
-	i = 0;
-	while (i < 16)
+	game.mlx = NULL;
+	memset(&game.input, 0, sizeof(t_input));
+	if (parse_file(argv[1], &game) == -1)
 	{
-		j = 0;
-		while (j < 16)
-		{
-			map->grid[i][j] = test_grid[i][j];
-			j++;
-		}
-		i++;
+		printf("Error: Failed to parse map file\n");
+		return (1);
 	}
-        return (1);
-}
-
-void init_player(t_game *g)
-{
-	g->player.position.x = 8.5;
-	g->player.position.y = 8.5;
-	g->player.angle = 0.1f;
-}
-
-int main(int argc,char **argv)
-{
-        t_game game;
-
-
-        //TODO: faire la struct du jeux et toute les struct qui en decoule 
-        //TODO: parser la map
-        //parser(&game.map)
-
-        //TODO: init le jeux
-        game.mlx = NULL;
-        init_player(&game);
-        memset(&game.input, 0, sizeof(t_input));
-
-	load_test_map(&game.map);
-        run_game(&game);
-        (void)argc;
-        (void)argv;
+	run_game(&game);
 	return (0);
 }

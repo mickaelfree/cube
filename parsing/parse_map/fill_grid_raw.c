@@ -6,9 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 22:01:27 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/09 22:09:38 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 06:08:35 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "parsing.h"
 
 int	fill_grid_row(char *line, int *row, int width)
 {
@@ -19,8 +21,7 @@ int	fill_grid_row(char *line, int *row, int width)
 	{
 		if (line[x] == '1')
 			row[x] = 1;
-		else if (line[x] == '0' || line[x] == 'N' || line[x] == 'S'
-			|| line[x] == 'E' || line[x] == 'W')
+		else if (is_player_char(line[x]) || line[x] == '0')
 			row[x] = 0;
 		else if (line[x] == ' ')
 			row[x] = -1;

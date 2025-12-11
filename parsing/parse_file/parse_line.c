@@ -6,13 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 00:26:18 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 06:26:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 03:09:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-#include "vectors.h"
 
 static int	process_line(char *line, t_parser *p, t_config *cfg, int *in_map);
 static void	trim_newline(char *line);

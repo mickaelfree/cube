@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 23:44:19 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 03:35:17 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 03:09:42 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSING_H
 
 # include "cube.h"
-# include "vectors.h"
+#include "vectors.h"
 # include <fcntl.h>
 
 typedef enum s_texture_id

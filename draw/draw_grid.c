@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 23:07:56 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/09 23:09:17 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 05:53:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	draw_grid(t_game *g)
 	floor_color = 0x0000FF;
 	my = 0;
 	while (my < g->map.height)
+	
 	{
 		mx = 0;
 		while (mx < g->map.width)
@@ -34,6 +35,8 @@ void	draw_grid(t_game *g)
 			px = 20 + mx * size;
 			py = WIN_H - 20 - (g->map.height - my) * size;
 			if (g->map.grid[my][mx] > 0)
+				draw_rect(&g->framebuffer, px, py, size, size, wall_color);
+			else if (g->map.grid[my][mx] == -1)
 				draw_rect(&g->framebuffer, px, py, size, size, wall_color);
 			else
 				draw_rect(&g->framebuffer, px, py, size, size, floor_color);

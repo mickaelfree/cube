@@ -6,11 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 23:07:00 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/09 23:07:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 06:03:59 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 int	is_player_char(char c)
 {
+	printf("is player %c\n", c);
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

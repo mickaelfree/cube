@@ -1,15 +1,8 @@
-CUBE= cube
-CFLAGS = #-Wall -Wextra -Werror
-NORELINK = -MMD -MP
-INCLUDE = -I /include -I minilibx-linux
-LIBS = minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm
-MLXLIB = libmlx_Linux.a
 NAME = cube
 
 # Directories
-CORE_DIR = core/
-IO_DIR = io/
 PARSING_DIR = parsing/
+
 PARSING_FILES = parse_colors/is_color_id.c\
 				parse_colors/parse_color_line.c\
 				parse_file/parse_file.c\
@@ -34,31 +27,27 @@ LIBFT_DIR = libft/
 MLX_DIR = minilibx-linux/
 
 # Source lists
-CORE_FILES = loop.c
-IO_FILES = input.c
 MAIN_FILES = main.c
 
-#SRCS = $(SRCDIR)/main.c
-SRCS = main.c \
-	core/run_game.c \
-	core/game_loop.c \
-	draw/draw_3d_column.c\
-	draw/draw_line.c \
-	draw/draw_player_dot.c \
-	draw/draw_player_ray.c \
-	draw/draw_fov_cone.c \
-	draw/draw_grid.c \
-	draw/draw_rect.c \
-	draw/put_pixel.c \
-	draw/utils.c \
-	render/render_minimap.c \
-	render/render_3d_view.c \
-	assets/xpm.c \
-	io/input.c
+CORE_FILES = core/run_game.c \
+	   		 core/game_loop.c \
+	   		 draw/draw_3d_column.c\
+	  		 draw/draw_line.c \
+	  		 draw/draw_player_dot.c \
+	  		 draw/draw_player_ray.c \
+	  		 draw/draw_fov_cone.c \
+	  		 draw/draw_grid.c \
+	  		 draw/draw_rect.c \
+	  		 draw/put_pixel.c \
+	  		 draw/utils.c \
+	  		 render/render_minimap.c \
+	  		 render/render_3d_view.c \
+	  		 assets/xpm.c \
+	  		 io/input.c
+
 FILES = \
 	$(addprefix $(PARSING_DIR), $(PARSING_FILES)) \
-	$(addprefix $(CORE_DIR), $(CORE_FILES)) \
-	$(addprefix $(IO_DIR), $(IO_FILES)) \
+	$(CORE_FILES) \
 	$(MAIN_FILES)
 
 # Objects / deps

@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 22:14:22 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/09 23:16:54 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 06:03:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "parsing.h"
+#include <stdio.h>
 
 static int	check_cell_walls(t_map *map, int x, int y);
 static int	check_walls(t_map *map);
@@ -41,6 +42,7 @@ static int	check_player(t_parse *parse)
 		x = 0;
 		while (parse->raw_map[y][x])
 		{
+			printf("check player : %c\n", parse->raw_map[y][x]);
 			if (is_player_char(parse->raw_map[y][x]))
 			{
 				parse->player_x = x;

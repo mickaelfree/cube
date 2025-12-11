@@ -6,18 +6,20 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 09:24:31 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 03:33:53 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 05:44:02 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
 #include "vectors.h"
+#include <math.h>
 
 static int	alloc_grid(t_map *map);
 static int	build_grid_map(t_parse *parse, t_map *map);
 static int	build_raw_map(t_parser *parser, t_parse *parse);
 static int	get_map_width(t_vector *map_lines);
+static int	init_player_from_map(t_game *game);
 
 int	parse_map(t_parser *parser, t_game *game)
 {
@@ -27,6 +29,11 @@ int	parse_map(t_parser *parser, t_game *game)
 	game->map.width = get_map_width(&parser->map_lines);
 	if (build_raw_map(parser, &game->config.parse) == -1)
 		return (-1);
+	if (init_player_from_map(game) == -1)
+	{
+		printf("Error: No player found in map\n");
+		return (-1);
+	}
 	if (build_grid_map(&game->config.parse, &game->map) == -1)
 		return (-1);
 	return (0);
@@ -108,4 +115,42 @@ static int	get_map_width(t_vector *map_lines)
 		i++;
 	}
 	return ((int)max_w);
+}
+
+static int	init_player_from_map(t_game *game)
+{
+	int x;
+	int y;
+	char c;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (game->config.parse.raw_map[y]
+			&& game->config.parse.raw_map[y][x])
+		{
+			c = game->config.parse.raw_map[y][x];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			{
+				game->player.position.x = (float)x + 0.5f;
+				game->player.position.y = (float)y + 0.5f;
+				if (c == 'N')
+					game->player.angle = 3.0f * M_PI / 2.0f;
+				else if (c == 'S')
+					game->player.angle = M_PI / 2.0f;
+				else if (c == 'E')
+					game->player.angle = 0.0f;
+				else if (c == 'W')
+					game->player.angle = M_PI;
+				game->config.parse.player_dir = c;
+				game->config.parse.player_x = x;
+				game->config.parse.player_y = y;
+				return (0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (-1);
 }
