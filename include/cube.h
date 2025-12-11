@@ -115,6 +115,7 @@ typedef struct s_game
         t_texture       wall_texture;
 	t_map		map;
 	t_player	player;
+        t_config	config;
         void            *draw_data;
 
 }				t_game;
@@ -128,7 +129,6 @@ void			process_input(t_game *g);
 void	render_minimap(t_game *g);
 int				game_loop(t_game *g);
 void	render_3d_view(t_game *g);
-
 void			init_hooks(t_game *g);
 void			run_game(t_game *g);
 int				game_loop(t_game *g);

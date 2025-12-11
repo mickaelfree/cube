@@ -13,24 +13,26 @@
 #include <stdio.h>
 #include <string.h>
 #include "include/cube.h"
-static int	**malloc_grid(int width, int height)
+int	**malloc_grid(int width, int height)
 {
+	int	**grid;
 	int	i;
 
-	if (game->config.parse.no_texture)
-		free(game->config.parse.no_texture);
-	if (game->config.parse.so_texture)
-		free(game->config.parse.so_texture);
-	if (game->config.parse.we_texture)
-		free(game->config.parse.we_texture);
-	if (game->config.parse.ea_texture)
-		free(game->config.parse.ea_texture);
-	if (game->config.parse.raw_map)
+	grid = malloc(sizeof(int *) * height);
+	if (!grid)
+		return (NULL);
+	i = 0;
+	while (i < height)
 	{
-		i = 0;
-		while (game->config.parse.raw_map[i])
-			free(game->config.parse.raw_map[i++]);
-		free(game->config.parse.raw_map);
+		grid[i] = malloc(sizeof(int) * width);
+		if (!grid[i])
+		{
+			while (i--)
+				free(grid[i]);
+			free(grid);
+			return (NULL);
+		}
+		i++;
 	}
 	return (grid);
 }
@@ -74,6 +76,7 @@ int	load_test_map(t_map *map)
 		}
 		i++;
 	}
+        return (1);
 }
 
 void init_player(t_game *g)
@@ -101,24 +104,5 @@ int main(int argc,char **argv)
         run_game(&game);
         (void)argc;
         (void)argv;
-
-	if (ac != 2)
-	{
-		printf("Usage: %s <map.cub>\n", av[0]);
-		return (1);
-	}
-	ft_memset(&game, 0, sizeof(t_game));
-	if (parse_file(av[1], &game) == -1)
-	{
-		printf("Error\n Invalid map file.\n");
-		free_game(&game);
-		return (1);
-	}
-	printf("=== PARSING OK ===\n");
-	print_textures(&game.config.parse);
-	print_colors(&game.config);
-	print_player(&game.config.parse);
-	print_map(&game.map);
-	free_game(&game);
 	return (0);
 }
