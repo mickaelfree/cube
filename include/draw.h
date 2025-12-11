@@ -6,15 +6,15 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/09 23:12:23 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/10 02:24:10 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 
-#define WIN_W 1280
-#define WIN_H 720
+#define WIN_W 3840
+#define WIN_H 2160
 # include "../minilibx-linux/mlx.h"
 #include "cube.h"
 # include <stdint.h>

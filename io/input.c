@@ -10,70 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/cube.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
 
-
-
-static int inbound(t_game *g,float x,float y)
+static int	inbound(t_game *g, float x, float y)
 {
-        int map_x;
-        int map_y;
+	int	map_x;
+	int	map_y;
 
-        map_x = (int)x;
-        map_y = (int)y;
-        if(map_x < 0 || map_x >= g->map.width || map_y < 0 || map_y >= g->map.height)
-                return (0);
-        return (g->map.grid[map_y][map_x] == 0);
-
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 0 || map_x >= g->map.width || map_y < 0
+		|| map_y >= g->map.height)
+		return (0);
+	return (g->map.grid[map_y][map_x] == 0);
 }
-int key_press(int keycode,t_game *game)
+int	key_press(int keycode, t_game *game)
 {
-        if (keycode == ESC )
-                game->input.quit = 1;
-        if (keycode == A)
-                game->input.left = 1;
-        if (keycode == W )
-                game->input.forward = 1;
-        if (keycode == S)
-                game->input.backward = 1;
-        if (keycode == D)
-                game->input.right= 1;
-        if (keycode == Q)
-                game->input.rotate_right= 1;
-        if (keycode == E)
-                game->input.rotate_left= 1;
-        if (keycode == AR_LEFT)
-                game->input.rotate_right= 1;
-        if (keycode == AR_RIGHT)
-                game->input.rotate_left= 1;
-        if (keycode == M)
-                game->input.togle_minimap = !game->input.togle_minimap;
-        return (0);
+	if (keycode == ESC)
+		game->input.quit = 1;
+	if (keycode == A)
+		game->input.left = 1;
+	if (keycode == W)
+		game->input.forward = 1;
+	if (keycode == S)
+		game->input.backward = 1;
+	if (keycode == D)
+		game->input.right = 1;
+	if (keycode == Q)
+		game->input.rotate_right = 1;
+	if (keycode == E)
+		game->input.rotate_left = 1;
+	if (keycode == AR_LEFT)
+		game->input.rotate_right = 1;
+	if (keycode == AR_RIGHT)
+		game->input.rotate_left = 1;
+	if (keycode == M)
+		game->input.togle_minimap = !game->input.togle_minimap;
+	return (0);
 }
-int key_release(int keycode, t_game *game)
+int	key_release(int keycode, t_game *game)
 {
-        if (keycode == ESC )
-                game->input.quit = 0;
-        if (keycode == W )
-                game->input.forward = 0;
-        if (keycode == A)
-                game->input.left = 0;
-        if (keycode == S)
-                game->input.backward = 0;
-        if (keycode == D)
-                game->input.right= 0;
-        if (keycode == Q)
-                game->input.rotate_right= 0;
-        if (keycode == E)
-                game->input.rotate_left= 0;
-        if (keycode == AR_LEFT)
-                game->input.rotate_right= 0;
-        if (keycode == AR_RIGHT)
-                game->input.rotate_left= 0;
-        return (0);
+	if (keycode == ESC)
+		game->input.quit = 0;
+	if (keycode == W)
+		game->input.forward = 0;
+	if (keycode == A)
+		game->input.left = 0;
+	if (keycode == S)
+		game->input.backward = 0;
+	if (keycode == D)
+		game->input.right = 0;
+	if (keycode == Q)
+		game->input.rotate_right = 0;
+	if (keycode == E)
+		game->input.rotate_left = 0;
+	if (keycode == AR_LEFT)
+		game->input.rotate_right = 0;
+	if (keycode == AR_RIGHT)
+		game->input.rotate_left = 0;
+	return (0);
 }
 
 int	close_hook(t_game *game)
@@ -82,69 +79,71 @@ int	close_hook(t_game *game)
 	return (0);
 }
 
-void process_input(t_game *game)
+void	process_input(t_game *game)
 {
-    float rotation_speed = ROTATION_SPEED;
-    float cos_angle = cos(game->player.angle);
-    float sin_angle = sin(game->player.angle);
-    float new_x;
-    float new_y;
-        
-    
-        if (game->input.rotate_left == 1)
-                game->player.angle += rotation_speed;
-        if (game->input.rotate_right == 1)
-                game->player.angle -= rotation_speed;
-        if (game->input.forward == 1)
-        {
-                new_x = game->player.position.x + cos_angle * MOVE_SPEED;
-                new_y = game->player.position.y + sin_angle * MOVE_SPEED;
-                if (inbound(game, new_x, new_y))
-                {
-                game->player.position.x = new_x;
-                game->player.position.y = new_y;
-                }
-        }
-        if (game->input.backward == 1)
-        {
-                new_x = game->player.position.x - cos_angle * MOVE_SPEED;
-                new_y = game->player.position.y - sin_angle * MOVE_SPEED;
-                if (inbound(game, new_x, new_y))
-                {
-                game->player.position.x = new_x;
-                game->player.position.y = new_y;
-                }
-        }
-        if (game->input.left == 1)
-        {
-                new_x = game->player.position.x + sin_angle * MOVE_SPEED;
-                new_y = game->player.position.y - cos_angle * MOVE_SPEED;
-                if (inbound(game, new_x, new_y))
-                {
-                game->player.position.x = new_x;
-                game->player.position.y = new_y;
-                }
-        }
-        if (game->input.right == 1)
-        {
-                new_x = game->player.position.x - sin_angle * MOVE_SPEED;
-                new_y = game->player.position.y + cos_angle * MOVE_SPEED;
-                if (inbound(game, new_x, new_y))
-                {
-                game->player.position.x = new_x;
-                game->player.position.y = new_y;
-                }
-        }
-    if (game->player.angle < 0)
-        game->player.angle += 2 * M_PI;
-    if (game->player.angle >= 2 * M_PI)
-        game->player.angle -= 2 * M_PI;
+	float	rotation_speed;
+	float	cos_angle;
+	float	sin_angle;
+	float	new_x;
+	float	new_y;
+
+	rotation_speed = ROTATION_SPEED;
+	cos_angle = cos(game->player.angle);
+	sin_angle = sin(game->player.angle);
+	if (game->input.rotate_left == 1)
+		game->player.angle += rotation_speed;
+	if (game->input.rotate_right == 1)
+		game->player.angle -= rotation_speed;
+	if (game->input.forward == 1)
+	{
+		new_x = game->player.position.x + cos_angle * MOVE_SPEED;
+		new_y = game->player.position.y + sin_angle * MOVE_SPEED;
+		if (inbound(game, new_x, new_y))
+		{
+			game->player.position.x = new_x;
+			game->player.position.y = new_y;
+		}
+	}
+	if (game->input.backward == 1)
+	{
+		new_x = game->player.position.x - cos_angle * MOVE_SPEED;
+		new_y = game->player.position.y - sin_angle * MOVE_SPEED;
+		if (inbound(game, new_x, new_y))
+		{
+			game->player.position.x = new_x;
+			game->player.position.y = new_y;
+		}
+	}
+	if (game->input.left == 1)
+	{
+		new_x = game->player.position.x + sin_angle * MOVE_SPEED;
+		new_y = game->player.position.y - cos_angle * MOVE_SPEED;
+		if (inbound(game, new_x, new_y))
+		{
+			game->player.position.x = new_x;
+			game->player.position.y = new_y;
+		}
+	}
+	if (game->input.right == 1)
+	{
+		new_x = game->player.position.x - sin_angle * MOVE_SPEED;
+		new_y = game->player.position.y + cos_angle * MOVE_SPEED;
+		if (inbound(game, new_x, new_y))
+		{
+			game->player.position.x = new_x;
+			game->player.position.y = new_y;
+		}
+	}
+	if (game->player.angle < 0)
+		game->player.angle += 2 * M_PI;
+	if (game->player.angle >= 2 * M_PI)
+		game->player.angle -= 2 * M_PI;
 }
 
-void init_hooks(t_game *game)
+void	init_hooks(t_game *game)
 {
-        mlx_hook(game->win,2,1L<<0, key_press,game);
-        mlx_hook(game->win,KeyRelease,KeyReleaseMask, key_release, game);
-        mlx_hook(game->win,17,0, close_hook, game);
-        mlx_loop_hook(game->mlx,game_loop,game);
+	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
+	mlx_hook(game->win, 17, 0, close_hook, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
 }
