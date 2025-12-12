@@ -27,7 +27,7 @@ void	draw_3d_column(t_game *g, int x, float distance)
 	y = 0;
 	while (y < wall_start)
 	{
-		put_pixel(&g->framebuffer, x, y, 0x87CEEB);
+		put_pixel(&g->framebuffer, x, y, g->config.parse.ceiling_color);
 		y++;
 	}
 	y = wall_start;
@@ -49,7 +49,7 @@ void	draw_3d_column(t_game *g, int x, float distance)
 	y = wall_end;
 	while (y < WIN_H)
 	{
-		put_pixel(&g->framebuffer, x, y, 0x228B22);
+		put_pixel(&g->framebuffer, x, y, g->config.parse.floor_color);
 		y++;
 	}
 }
