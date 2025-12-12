@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 04:30:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:17:37 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@
 # define WIN_W 880
 # define WIN_H 880
 
-# include "../minilibx-linux/mlx.h"
 # include "cube.h"
-# include <math.h>
 # include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
+
 
 # define SCREEN_LEFT -1.0f
 # define SCREEN_RIGHT 1.0f

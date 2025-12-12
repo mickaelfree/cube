@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:17:44 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 04:31:33 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:23:22 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "cube.h"
 #include "parsing.h"
+#include <stdio.h>
 
 // int	**malloc_grid(int width, int height)
 // {

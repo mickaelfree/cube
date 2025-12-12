@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 04:09:57 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 04:36:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/12 00:20:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "parsing.h"
+#include <stdio.h>
 
 static int	parse_file_content(t_parser *parser, t_game *game);
 static void	init_parser(t_parser *parser);
@@ -69,24 +70,6 @@ static int	parse_file_content(t_parser *parser, t_game *game)
         return (-1);
     if (validate_map(game) == -1) 
         return (-1);
-    
-    printf("Map dimensions: %d x %d\n", game->map.width, game->map.height);
-    printf("Player position: (%.2f, %.2f)\n", game->player.position.x, game->player.position.y);
-    printf("Player angle: %.2f\n", game->player.angle);
-    printf("Textures: NO=%s, SO=%s, WE=%s, EA=%s\n",
-        game->config.parse.no_texture,
-        game->config.parse.so_texture,
-        game->config.parse.we_texture,
-        game->config.parse.ea_texture);
-    
-    printf("\nMap grid:\n");
-    for (int y = 0; y < game->map.height; y++)
-    {
-        for (int x = 0; x < game->map.width; x++)
-            printf("%d", game->map.grid[y][x]);
-        printf("\n");
-    }
-    
     return (0);
 }
 

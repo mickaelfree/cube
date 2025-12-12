@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_extension.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 04:57:43 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 02:56:21 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:10:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

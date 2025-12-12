@@ -3,23 +3,24 @@ NAME = cube
 # Directories
 PARSING_DIR = parsing/
 
-PARSING_FILES = parse_colors/is_color_id.c\
-				parse_colors/parse_color_line.c\
-				parse_file/parse_file.c\
-				parse_file/parse_line.c\
-				parse_map/fill_grid_raw.c\
-				parse_map/is_map_char.c\
-				parse_map/parse_map.c\
-				parse_map/store_map_line.c\
-				parse_texture/is_texture_id.c\
-				parse_texture/parse_texture_line.c\
-				parse_texture/set_texture_path.c\
-				read_file/read_file.c\
-				read_file/validate_extension.c\
-				utils_parsing/free_parser.c\
-				utils_parsing/is_empty_line.c\
-				utils_parsing/is_player_char.c\
-				utils_parsing/skip_spaces.c\
+PARSING_FILES = parse_colors/is_color_id.c \
+				parse_colors/parse_color_line.c \
+				parse_file/parse_file.c \
+				parse_file/parse_line.c \
+				parse_map/fill_grid_raw.c \
+				parse_map/is_map_char.c \
+				parse_map/parse_map.c \
+				parse_map/store_map_line.c \
+				parse_map/init_player_from_map.c \
+				parse_texture/is_texture_id.c \
+				parse_texture/parse_texture_line.c \
+				parse_texture/set_texture_path.c \
+				read_file/read_file.c \
+				read_file/validate_extension.c \
+				utils_parsing/free_parser.c \
+				utils_parsing/is_empty_line.c \
+				utils_parsing/is_player_char.c \
+				utils_parsing/skip_spaces.c \
 				validate_map/validate_map.c
 
 OBJ_DIR = .obj/
@@ -43,7 +44,11 @@ CORE_FILES = core/run_game.c \
 	  		 render/render_minimap.c \
 	  		 render/render_3d_view.c \
 	  		 assets/xpm.c \
-	  		 io/input.c
+	  		 io/input.c \
+			 io/init_hooks.c \
+			 io/key_press.c \
+			 io/key_release.c \
+			 io/inbound_collision.c
 
 FILES = \
 	$(addprefix $(PARSING_DIR), $(PARSING_FILES)) \

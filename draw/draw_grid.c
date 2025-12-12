@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 23:07:56 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 05:53:31 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:16:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
 
 void	draw_grid(t_game *g)
 {

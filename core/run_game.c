@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/10 02:07:24 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:20:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../include/draw.h"
-#include <stdint.h>
+
+#include "mlx.h"
+#include "draw.h"
+#include <stdlib.h>
 
 void	run_game(t_game *g)
 {
@@ -24,8 +26,9 @@ void	run_game(t_game *g)
 	if (!g->framebuffer.img)
 		exit(1);
 	g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img,
-			&g->framebuffer.bpp, &g->framebuffer.line_size,
-			&g->framebuffer.endian);
+											&g->framebuffer.bpp,
+											&g->framebuffer.line_size,
+											&g->framebuffer.endian);
 	load_all_textures(g);
 	init_hooks(g);
 	mlx_loop(g->mlx);

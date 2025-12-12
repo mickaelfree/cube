@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 00:26:18 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 03:09:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:09:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ static int	process_line(char *line, t_parser *p, t_config *cfg, int *in_map)
 		line[len - 1] = '\0';
 	trimmed = skip_spaces(line);
 	if (is_empty_line(line))
+	{
+		if (*in_map)
+			return (-1);
 		return (0);
+	}
 	if (is_texture_id(trimmed))
 		return (parse_texture_line(trimmed, &cfg->parse, p));
 	if (is_color_id(trimmed) != -1)

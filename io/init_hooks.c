@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   store_map_line.c                                   :+:      :+:    :+:   */
+/*   init_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 03:27:10 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 23:10:10 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/12/11 22:52:39 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/12/11 23:21:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "vectors.h"
+#include "cube.h"
+#include <X11/X.h>
+#include <X11/keysym.h>
+#include "mlx.h"
 
-int	store_map_line(char *line, t_vector *map_lines)
+static int	close_hook(t_game *game);
+
+void	init_hooks(t_game *game)
 {
-	char	*dup;
+	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release, game);
+	mlx_hook(game->win, 17, 0, close_hook, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
+}
 
-	dup = ft_strdup(line);
-	if (!dup)
-		return (-1);
-	if (add_vector(map_lines, &dup, 1) == -1)
-	{
-		free(dup);
-		return (-1);
-	}
+static int	close_hook(t_game *game)
+{
+	game->input.quit = 1;
 	return (0);
 }

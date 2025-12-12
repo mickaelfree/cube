@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:39:06 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/06 18:39:44 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:16:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
 
 void	put_pixel(t_texture *fb, int x, int y, uint32_t color)
 {

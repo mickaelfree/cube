@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:52:38 by mickmart          #+#    #+#             */
-/*   Updated: 2025/10/06 15:52:41 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:21:14 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../include/cube.h"
+
+#include "cube.h"
 #include <stdio.h>
+#include "mlx.h"
 
 int	load_xpm_texture(t_game *game, t_texture *texture, char *path)
 {

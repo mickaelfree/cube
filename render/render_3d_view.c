@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d_view.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:02:39 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/10 02:03:23 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/12 01:31:56 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
+#include <math.h>
 
 void	render_3d_view(t_game *g)
 {
@@ -48,6 +49,7 @@ void	render_3d_view(t_game *g)
 			ray_y += dy;
 			distance += step;
 		}
+		distance = distance * cos(current_angle - g->player.angle);
 		draw_3d_column(g, x, distance);
 		x++;
 	}

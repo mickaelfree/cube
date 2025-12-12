@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 04:49:22 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 05:46:06 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:10:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static int	get_texture_id(char *line)
 {
 	int				i;
 	const char *const	ids[] = {
-	[ID_NO] = "NO ",
-	[ID_SO] = "SO ",
-	[ID_WE] = "WE ",
-	[ID_EA] = "EA ",
+	[ID_NO] = "NO",
+	[ID_SO] = "SO",
+	[ID_WE] = "WE",
+	[ID_EA] = "EA",
 	};
 
 	if (!line)
@@ -47,8 +47,12 @@ static int	get_texture_id(char *line)
 	i = 1;
 	while (i < ID_COUNT)
 	{
-		if (ids[i] && ft_strncmp(line, ids[i], 3) == 0)
-			return (i);
+		if (ids[i] && ft_strncmp(line, ids[i], 2) == 0)
+		{
+			// Vérifier que le caractère suivant est un whitespace
+			if (line[2] == ' ' || line[2] == '\t')
+				return (i);
+		}
 		i++;
 	}
 	return (-1);

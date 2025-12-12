@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:47:28 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/06 18:52:46 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:16:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
 
 void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1,
 		uint32_t color)

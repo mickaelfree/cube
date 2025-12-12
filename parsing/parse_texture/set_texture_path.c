@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 05:08:54 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/10 03:28:03 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:10:21 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	set_texture_path(char *line, t_parse *parse, int id)
 	texture_ptr = get_texture_ptr(parse, id);
 	if (!texture_ptr || *texture_ptr != NULL)
 		return (-1);
-	path = skip_spaces(line + 3);
+	path = skip_spaces(line + 2);
 	*texture_ptr = ft_strtrim(path, " \t\n");
 	if (*texture_ptr == NULL)
 		return (-1);

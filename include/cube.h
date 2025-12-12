@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 04:15:30 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:18:18 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
-
-# include "../minilibx-linux/mlx.h"
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
 
 # define SCREEN_LEFT -1.0f
 # define SCREEN_RIGHT 1.0f
@@ -35,6 +30,7 @@
 # define AR_RIGHT 65363
 # define MOVE_SPEED 0.02f
 # define ROTATION_SPEED 0.02f
+# define COLLISION_RADIUS 0.2f
 
 typedef struct s_map
 {
@@ -132,4 +128,8 @@ void				render_3d_view(t_game *g);
 void				init_hooks(t_game *g);
 void				run_game(t_game *g);
 int					game_loop(t_game *g);
+int					key_release(int keycode, t_game *game);
+int					key_press(int keycode, t_game *game);
+int					inbound(t_game *g, float x, float y);
+
 #endif

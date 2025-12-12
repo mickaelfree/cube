@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_ray.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 23:09:57 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/09 23:10:33 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/12 00:10:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
+#include <math.h>
 
 void	draw_player_ray(t_game *g)
 {

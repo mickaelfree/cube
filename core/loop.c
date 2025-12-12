@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/09 23:15:00 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:20:29 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdint.h>
-#include "../include/draw.h"
+
+#include "draw.h"
+#include "mlx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
 void	render_3d_view(t_game *g)
 {
 	float	fov;

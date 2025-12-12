@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_column.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 19:08:20 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/08 19:09:06 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:14:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
 
 void	draw_3d_column(t_game *g, int x, float distance)
 {

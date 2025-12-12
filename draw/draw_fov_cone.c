@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw_fov_cone.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 23:11:49 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/09 23:15:54 by mickmart         ###   ########.fr       */
+/*   Updated: 2025/12/11 23:17:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/draw.h"
+#include "draw.h"
+#include "math.h"
 
 void	draw_fov_cone(t_game *g)
 {
