@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 23:20:36 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/13 00:12:12 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	run_game(t_game *g)
 											&g->framebuffer.bpp,
 											&g->framebuffer.line_size,
 											&g->framebuffer.endian);
+        fps_init(&g->fps);
 	load_all_textures(g);
 	init_hooks(g);
 	mlx_loop(g->mlx);

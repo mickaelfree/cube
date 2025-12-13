@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 23:18:18 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/12/13 00:18:17 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define SCREEN_RIGHT 1.0f
 # define SCREEN_RANGE (SCREEN_RIGHT - SCREEN_LEFT)
 # define TILE_SIZE 1.0f
-//binding
+// binding
 # define ESC 65307
 # define W 119
 # define A 97
@@ -31,6 +31,23 @@
 # define MOVE_SPEED 0.02f
 # define ROTATION_SPEED 0.02f
 # define COLLISION_RADIUS 0.2f
+
+# include "mlx.h"
+# include <sys/time.h>
+# include <unistd.h>
+
+typedef struct s_timer
+{
+	struct timeval	timer;
+}					t_timer;
+
+typedef struct s_fps_counter
+{
+	int		frame_count;
+	long	last_update;
+	float	current_fps;
+	int		should_update;  // Ajouter ce flag
+}	t_fps_counter;
 
 typedef struct s_map
 {
@@ -112,13 +129,14 @@ typedef struct s_game
 	t_map			map;
 	t_player		player;
 	t_config		config;
+	t_fps_counter	fps;
 	void			*draw_data;
 
 }					t_game;
 
-//TODO: faire une struct pour ranger tout les variable de draw
+// TODO: faire une struct pour ranger tout les variable de draw
 //
-//TODO: ranger toute les fontion dans le bon fichier
+// TODO: ranger toute les fontion dans le bon fichier
 void				init_hooks(t_game *g);
 void				run_game(t_game *g);
 void				process_input(t_game *g);
@@ -126,10 +144,15 @@ void				render_minimap(t_game *g);
 int					game_loop(t_game *g);
 void				render_3d_view(t_game *g);
 void				init_hooks(t_game *g);
-void				run_game(t_game *g);
 int					game_loop(t_game *g);
 int					key_release(int keycode, t_game *game);
 int					key_press(int keycode, t_game *game);
 int					inbound(t_game *g, float x, float y);
+long				get_time_ms(void);
+void				fps_init(t_fps_counter *fps);
+void				fps_update(t_fps_counter *fps);
+void				fps_reset_stats(t_fps_counter *fps);
+void				fps_print_stats(t_fps_counter *fps);
+void				draw_fps_on_screen(t_game *g);
 
 #endif

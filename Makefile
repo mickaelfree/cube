@@ -37,6 +37,7 @@ CORE_FILES = core/run_game.c \
 	  		 draw/draw_player_dot.c \
 	  		 draw/draw_player_ray.c \
 	  		 draw/draw_fov_cone.c \
+	  		 draw/draw_fps.c \
 	  		 draw/draw_grid.c \
 	  		 draw/draw_rect.c \
 	  		 draw/put_pixel.c \
@@ -44,6 +45,8 @@ CORE_FILES = core/run_game.c \
 	  		 render/render_minimap.c \
 	  		 render/render_3d_view.c \
 	  		 assets/xpm.c \
+			 util/time.c \
+			 util/fps.c \
 	  		 io/input.c \
 			 io/init_hooks.c \
 			 io/key_press.c \
