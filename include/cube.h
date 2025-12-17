@@ -46,7 +46,7 @@ typedef struct s_fps_counter
 	int		frame_count;
 	long	last_update;
 	float	current_fps;
-	int		should_update;  // Ajouter ce flag
+	int		should_update;
 }	t_fps_counter;
 
 typedef struct s_map
