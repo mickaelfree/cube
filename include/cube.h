@@ -125,7 +125,10 @@ typedef struct s_game
 	void			*img;
 	t_input			input;
 	t_texture		framebuffer;
-	t_texture		wall_texture;
+        t_texture		north_texture;
+        t_texture		south_texture;
+        t_texture		west_texture;
+        t_texture		east_texture;
 	t_map			map;
 	t_player		player;
 	t_config		config;

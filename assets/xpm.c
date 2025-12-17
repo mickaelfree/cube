@@ -44,7 +44,10 @@ int	get_texture_pixel(t_texture *texture, int x, int y)
 void	load_all_textures(t_game *game)
 {
 	printf("load_all_textures\n");
-	load_xpm_texture(game, &game->wall_texture,
-		"assets/neon_brick_wall_64.xpm");
+	load_xpm_texture(game, &game->north_texture, game->config.parse.no_texture);
+	load_xpm_texture(game, &game->east_texture, game->config.parse.ea_texture);
+
+	load_xpm_texture(game, &game->south_texture, game->config.parse.ea_texture);
+	load_xpm_texture(game, &game->west_texture, game->config.parse.we_texture);
 	//        exit(0);
 }
