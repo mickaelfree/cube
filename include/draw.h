@@ -19,13 +19,17 @@
 # include "cube.h"
 # include <stdint.h>
 
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 # define SCREEN_LEFT -1.0f
 # define SCREEN_RIGHT 1.0f
 # define SCREEN_RANGE (SCREEN_RIGHT - SCREEN_LEFT)
 # define TILE_SIZE 1.0f
 
-float	ft_absf(float x);
+float	ft_abs(float x);
 void	put_pixel(t_texture *fb, int x, int y, uint32_t color);
 void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1,
 			uint32_t color);
@@ -34,7 +38,7 @@ void	draw_grid(t_game *g);
 void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color);
 void	draw_player_ray(t_game *g);
 void	draw_fov_cone(t_game *g);
-void	draw_3d_column(t_game *g, int x, float distance);
+void	draw_3d_column(t_game *g, int x, float distance, int wall_direction);
 int		get_texture_pixel(t_texture *texture, int x, int y);
 void	load_all_textures(t_game *game);
 

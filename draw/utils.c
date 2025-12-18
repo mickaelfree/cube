@@ -12,7 +12,7 @@
 
 #include "draw.h"
 
-float	ft_absf(float x)
+float	ft_abs(float x)
 {
 	if (x < 0)
 		return (-x);
