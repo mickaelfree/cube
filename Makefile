@@ -31,22 +31,22 @@ MLX_DIR = minilibx-linux/
 MAIN_FILES = main.c
 
 CORE_FILES = core/run_game.c \
-	   		 core/game_loop.c \
+			 core/game_loop.c \
 	   		 draw/draw_3d_column.c\
 	  		 draw/draw_line.c \
-	  		 draw/draw_player_dot.c \
-	  		 draw/draw_player_ray.c \
-	  		 draw/draw_fov_cone.c \
 	  		 draw/draw_fps.c \
-	  		 draw/draw_grid.c \
-	  		 draw/draw_rect.c \
 	  		 draw/put_pixel.c \
-	  		 draw/utils.c \
+			 minimap/minimap_draw.c \
+			 minimap/draw_player_on_minimap.c \
 	  		 render/render_minimap.c \
 	  		 render/render_3d_view.c \
-	  		 assets/xpm.c \
-			 util/time.c \
-			 util/fps.c \
+	  		 render/render_3d_raycast.c \
+	  		 assets/get_texture_pixel.c \
+			 assets/load_all_textures.c \
+			 utils/time.c \
+			 utils/draw_utils.c \
+			 utils/fps.c \
+			 utils/minimap_utils.c \
 	  		 io/input.c \
 			 io/init_hooks.c \
 			 io/key_press.c \

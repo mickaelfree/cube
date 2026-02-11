@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_rect.c                                        :+:      :+:    :+:   */
+/*   get_texture_pixel.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/06 18:40:46 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 23:16:34 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/10/06 15:52:38 by mickmart          #+#    #+#             */
+/*   Updated: 2026/01/30 18:58:26 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "cube.h"
 
-void	draw_rect(t_texture *fb, int x, int y, int w, int h, uint32_t color)
+int	get_texture_pixel(t_texture *texture, int x, int y)
 {
-	int	i;
-	int	j;
+	int	*data;
+	int	index;
 
-	i = 0;
-	while (i < h)
-	{
-		j = 0;
-		while (j < w)
-		{
-			put_pixel(fb, x + j, y + i, color);
-			j++;
-		}
-		i++;
-	}
+	if (!texture || !texture->data || !texture->img)
+		return (0x8B4513);
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+		return (0x8B4513);
+	data = (int *)texture->data;
+	index = (y * texture->line_size / 4) + x;
+	return (data[index]);
 }

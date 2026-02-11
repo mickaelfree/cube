@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/13 00:18:17 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/01/31 17:44:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@
 # define M 109
 # define AR_LEFT 65361
 # define AR_RIGHT 65363
-# define MOVE_SPEED 0.02f
-# define ROTATION_SPEED 0.02f
+# define MOVE_SPEED 5.0f
+# define ROTATION_SPEED 3.0f
 # define COLLISION_RADIUS 0.2f
 
-# include "mlx.h"
 # include <sys/time.h>
 # include <unistd.h>
 
@@ -68,6 +67,7 @@ typedef struct s_player
 	float			angle;
 
 }					t_player;
+
 typedef struct s_input
 {
 	int				forward;
@@ -88,7 +88,7 @@ typedef struct s_texture
 	int				height;
 	int bpp; // bits par pixel
 	int				line_size;
-	int endian; // ordre des octes
+	int endian; // ordre des octets
 }					t_texture;
 
 typedef struct s_parse
@@ -134,6 +134,8 @@ typedef struct s_game
 	t_config		config;
 	t_fps_counter	fps;
 	void			*draw_data;
+	float			delta_time;
+	long			last_frame_time;
 
 }					t_game;
 

@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 04:09:57 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/12 00:20:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/11 18:33:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "parsing.h"
-#include <stdio.h>
+#include "ft_dprintf.h"
 
 static int	parse_file_content(t_parser *parser, t_game *game);
 static void	init_parser(t_parser *parser);
@@ -23,19 +23,19 @@ int	parse_file(const char *filename, t_game *game)
 
 	if (validate_extension(filename) == -1)
 	{
-		printf("invalid extensuin\n");
+		ft_dprintf(2, "invalid extensuin\n");
 		return (-1);
 	}
 	init_parser(&parser);
 	if (read_file(filename, &parser.lines) == -1)
 	{
-		printf("could not read file\n");
+		ft_dprintf(2, "could not read file\n");
 		free_parser(&parser);
 		return (-1);
 	}
 	if (parse_file_content(&parser, game) == -1)
 	{
-		printf("could not parse file content\n");
+		ft_dprintf(2, "could not parse file content\n");
 		free_parser(&parser);
 		return (-1);
 	}
@@ -63,7 +63,7 @@ static int	parse_file_content(t_parser *parser, t_game *game)
     init_parse(&game->config.parse);
     if (parse_lines(parser, &game->config) == -1)
     {
-        printf("could not parse lines\n");
+        ft_dprintf(2, "could not parse lines\n");
         return (-1);
     }
     if (parse_map(parser, game) == -1)

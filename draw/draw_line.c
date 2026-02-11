@@ -6,23 +6,23 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:47:28 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/11 23:16:34 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/01/30 19:18:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1,
-		uint32_t color)
+void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1, uint32_t color)
 {
 	int	dx;
 	int	dy;
 	int	err;
 	int	e2;
-	int sx, sy;
-
-	dx = ft_absf(x1 - x0);
-	dy = ft_absf(y1 - y0);
+	int sx;
+	int sy;
+	
+	dx = (int)ft_abs(x1 - x0);
+	dy = (int)ft_abs(y1 - y0);
 	if (x0 < x1)
 		sx = 1;
 	else

@@ -6,14 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 09:24:31 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 23:23:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/11 18:33:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
 #include "vectors.h"
-#include <stdio.h>
+#include "ft_dprintf.h"
 
 static int	alloc_grid(t_map *map);
 static int	build_grid_map(t_parse *parse, t_map *map);
@@ -30,7 +30,7 @@ int	parse_map(t_parser *parser, t_game *game)
 		return (-1);
 	if (init_player_from_map(game) == -1)
 	{
-		printf("Error: No player found in map\n");
+		ft_dprintf(2, "Error: No player found in map\n");
 		return (-1);
 	}
 	if (build_grid_map(&game->config.parse, &game->map) == -1)

@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 04:49:22 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 23:10:17 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/11 18:33:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-#include <stdio.h>
+#include "ft_dprintf.h"
 
 static int	get_texture_id(char *line);
 
@@ -25,7 +25,7 @@ int	parse_texture_line(char *line, t_parse *parse, t_parser *parser)
 		return (-1);
 	if (set_texture_path(line, parse, id) == -1)
 	{
-		printf("Failed to set texture path for ID %d\n", id);
+		ft_dprintf(2, "Failed to set texture path for ID %d\n", id);
 		return (-1);
 	}
 	parser->textures_set++;

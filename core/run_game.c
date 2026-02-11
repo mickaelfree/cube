@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2025/12/13 00:12:12 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/01/31 20:48:39 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ void	run_game(t_game *g)
 	if (!g->framebuffer.img)
 		exit(1);
 	g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img,
-											&g->framebuffer.bpp,
-											&g->framebuffer.line_size,
-											&g->framebuffer.endian);
-        fps_init(&g->fps);
-	load_all_textures(g);
+			&g->framebuffer.bpp,
+			&g->framebuffer.line_size,
+			&g->framebuffer.endian);
+	fps_init(&g->fps);
+	g->delta_time = 0.016f;
+	g->last_frame_time = get_time_ms();
+	if (load_all_textures(g) != 0)
+		exit(1);
 	init_hooks(g);
 	mlx_loop(g->mlx);
 }

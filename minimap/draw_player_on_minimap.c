@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_3d_view.c                                   :+:      :+:    :+:   */
+/*   draw_player_on_minimap.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/10 02:02:39 by mickmart          #+#    #+#             */
-/*   Updated: 2026/01/30 15:34:41 by akarapkh         ###   ########.fr       */
+/*   Created: 2026/01/30 18:45:01 by akarapkh          #+#    #+#             */
+/*   Updated: 2026/01/30 18:45:33 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include <math.h>
 
-void	render_3d_view(t_game *g)
+void	draw_player_on_minimap(t_game *g, int *center)
 {
-	t_ray_data	ray;
-	int			x;	
-	float		plane_dist;
-	float		current_angle;
-	float		ray_angle;
+	int	i;
+	int	j;
+	int	ray[2];
 
-	plane_dist = (WIN_W / 2.0f) / tan(FOV / 2.0f);
-	x = 0;
-	while (x < WIN_W)
+	i = -2;
+	while (i <= 2)
 	{
-		ray_angle = atan2((x - WIN_W / 2.0f), plane_dist);
-		current_angle = g->player.angle + ray_angle;
-		cast_ray(g, &ray, current_angle, ray_angle);
-		draw_3d_column(g, x, ray.distance, ray.wall_direction, ray.wall_x);
-		x++;
+		j = -2;
+		while (j <= 2)
+		{
+			put_pixel(&g->framebuffer, center[0] + i, center[1] + j, 0x00FF00);
+			j++;
+		}
+		i++;
 	}
+	ray[0] = center[0] + (int)(cosf(g->player.angle) * 15);
+	ray[1] = center[1] + (int)(sinf(g->player.angle) * 15);
+	draw_line(&g->framebuffer, center[0], center[1], ray[0], ray[1], 0xFF0000);
 }
