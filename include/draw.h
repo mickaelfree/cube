@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/12 03:21:29 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/13 00:32:06 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ typedef struct s_cast_ray_data
 	int			hit;
 }				t_cast_ray_data;
 
+void			init_trig_tables(t_game *game);
+float			fast_cos(t_game *game, float angle);
+float			fast_sin(t_game *game, float angle);
 float			ft_abs(float x);
 void			put_pixel(t_texture *fb, int x, int y, uint32_t color);
 void			draw_line(t_texture *fb, t_line_params *params);
