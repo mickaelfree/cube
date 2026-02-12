@@ -70,20 +70,33 @@ typedef struct s_line_data
 
 typedef struct s_line_params
 {
+	uint32_t	color;
 	int			x0;
 	int			y0;
 	int			x1;
 	int			y1;
-	uint32_t	color;
 }				t_line_params;
 
 typedef struct s_column_params
 {
-	int			x;
 	float		distance;
-	int			wall_direction;
 	float		wall_x;
+	int			x;
+	int			wall_direction;
 }				t_column_params;
+
+typedef struct s_cast_ray_data
+{
+	float		delta_x;
+	float		delta_y;
+	float		side_x;
+	float		side_y;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+}				t_cast_ray_data;
 
 float			ft_abs(float x);
 void			put_pixel(t_texture *fb, int x, int y, uint32_t color);
