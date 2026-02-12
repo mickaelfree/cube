@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "parsing.h"
+#include <stddef.h>
 
 int	is_color_id(char *line)
 {
-    if (!line || !*line)
-        return (-1);
-    if (*line == 'F' && (line[1] == ' ' || line[1] == '\t'))
-        return (ID_F);
-    if (*line == 'C' && (line[1] == ' ' || line[1] == '\t'))
-        return (ID_C);
-    return (-1);
+	if (!line || !*line)
+		return (-1);
+	if (*line == 'F' && (line[1] == ' ' || line[1] == '\t'))
+		return (ID_F);
+	if (*line == 'C' && (line[1] == ' ' || line[1] == '\t'))
+		return (ID_C);
+	return (-1);
 }

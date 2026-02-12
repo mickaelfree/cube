@@ -15,7 +15,7 @@
 char	*skip_spaces(char *str)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;

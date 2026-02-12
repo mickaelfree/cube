@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:30:00 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/11 18:21:40 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 02:54:42 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <math.h>
 
 static void	calc_wall_x(t_ray_data *ray, float perp_wall_dist);
-static void	init_dda(t_ray_data *ray, t_game *g, float angle, float plane_angle);
+static void	init_dda(t_ray_data *ray, t_game *g, float angle,
+				float plane_angle);
 
 void	cast_ray(t_game *g, t_ray_data *ray, float angle, float plane_angle)
 {

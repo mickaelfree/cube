@@ -6,14 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 09:24:31 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/11 18:33:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 02:56:00 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_dprintf.h"
 #include "libft.h"
 #include "parsing.h"
 #include "vectors.h"
-#include "ft_dprintf.h"
 
 static int	alloc_grid(t_map *map);
 static int	build_grid_map(t_parse *parse, t_map *map);
