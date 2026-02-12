@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 00:44:32 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 23:09:37 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:29:25 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	parse_color_line(char *line, t_config *config, t_parser *parser)
 static int	parse_rgb(char *str, int *r, int *g, int *b)
 {
 	int	offset;
-	int i;
+	int	i;
 
 	i = 0;
 	str = skip_spaces(str);

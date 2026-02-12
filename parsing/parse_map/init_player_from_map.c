@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 06:38:20 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 23:22:42 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:29:30 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "math.h"
+#include "parsing.h"
 
 static void	set_player_angle(t_game *game, char c);
 static void	set_player_position(t_game *game, int x, int y, char c);

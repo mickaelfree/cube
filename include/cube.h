@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/01/31 17:44:55 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:13:00 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ typedef struct s_timer
 
 typedef struct s_fps_counter
 {
-	int		frame_count;
-	long	last_update;
-	float	current_fps;
-	int		should_update;
-}	t_fps_counter;
+	int				frame_count;
+	long			last_update;
+	float			current_fps;
+	int				should_update;
+}					t_fps_counter;
 
 typedef struct s_map
 {
@@ -125,10 +125,10 @@ typedef struct s_game
 	void			*img;
 	t_input			input;
 	t_texture		framebuffer;
-        t_texture		north_texture;
-        t_texture		south_texture;
-        t_texture		west_texture;
-        t_texture		east_texture;
+	t_texture		north_texture;
+	t_texture		south_texture;
+	t_texture		west_texture;
+	t_texture		east_texture;
 	t_map			map;
 	t_player		player;
 	t_config		config;

@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 04:49:22 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/11 18:33:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:29:32 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_dprintf.h"
 #include "libft.h"
 #include "parsing.h"
-#include "ft_dprintf.h"
 
 static int	get_texture_id(char *line);
 
@@ -34,14 +34,14 @@ int	parse_texture_line(char *line, t_parse *parse, t_parser *parser)
 
 static int	get_texture_id(char *line)
 {
-	int				i;
-	const char *const	ids[] = {
-	[ID_NO] = "NO",
-	[ID_SO] = "SO",
-	[ID_WE] = "WE",
-	[ID_EA] = "EA",
-	};
+	int	i;
 
+	const char *const ids[] = {
+		[ID_NO] = "NO",
+		[ID_SO] = "SO",
+		[ID_WE] = "WE",
+		[ID_EA] = "EA",
+	};
 	if (!line)
 		return (-1);
 	i = 1;

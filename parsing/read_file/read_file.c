@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 05:06:42 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/12/11 23:10:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:29:33 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	read_file(const char *filename, t_vector *lines)
 
 static int	store_line(char *line, t_vector *lines)
 {
-	char *dup;
+	char	*dup;
 
 	dup = ft_strdup(line);
 	if (!dup)

@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/12 01:05:28 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:21:29 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIN_W 1920
 # define WIN_H 1080
-# define FOV (M_PI / 2.5f)
+# define FOV 1.2566f // 72 degrees pi / 2.5
 
 # include "cube.h"
 # include <stdint.h>
@@ -58,7 +58,6 @@ typedef struct s_column_data
 	int			tex_x;
 }				t_column_data;
 
-
 typedef struct s_line_data
 {
 	int			dx;
@@ -88,7 +87,7 @@ typedef struct s_column_params
 
 float			ft_abs(float x);
 void			put_pixel(t_texture *fb, int x, int y, uint32_t color);
-void			draw_line(t_texture *fb,t_line_params *params);
+void			draw_line(t_texture *fb, t_line_params *params);
 void			draw_rect(t_texture *fb, int x, int y, int w, int h,
 					uint32_t color);
 
