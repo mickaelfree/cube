@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/12 03:13:00 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/13 00:23:57 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@
 
 # include <sys/time.h>
 # include <unistd.h>
+# include <math.h>
+
+typedef struct s_trig_table
+{
+	float			sin_table[3600];
+	float			cos_table[3600];
+}					t_trig_table;
 
 typedef struct s_timer
 {
@@ -133,6 +140,7 @@ typedef struct s_game
 	t_player		player;
 	t_config		config;
 	t_fps_counter	fps;
+  t_trig_table	trig;
 	void			*draw_data;
 	float			delta_time;
 	long			last_frame_time;

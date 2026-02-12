@@ -19,27 +19,19 @@ static void	init_dda(t_ray_data *ray, t_game *g, float angle,
 
 void	cast_ray(t_game *g, t_ray_data *ray, float angle, float plane_angle)
 {
-	int		map_x;
-	int		map_y;
-	float	delta_x;
-	float	delta_y;
-	float	side_x;
-	float	side_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
+  t_cast_ray_data	data;
 
 	init_dda(ray, g, angle, plane_angle);
-	map_x = (int)ray->ray_x;
-	map_y = (int)ray->ray_y;
+	data.map_x = (int)ray->ray_x;
+	data.map_y = (int)ray->ray_y;
 	if (ray->dx == 0)
 		delta_x = 1e30;
 	else
 		delta_x = fabs(1 / ray->dx);
 	if (ray->dy == 0)
 		delta_y = 1e30;
-	else
-		delta_y = fabs(1 / ray->dy);
+  else
+    delta_y = fabs(1 / ray->dy);
 	if (ray->dx < 0)
 	{
 		step_x = -1;
