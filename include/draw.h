@@ -17,9 +17,9 @@
 # define WIN_H 1080
 # define FOV (M_PI / 2.5f)
 
-# include <string.h>
 # include "cube.h"
 # include <stdint.h>
+# include <string.h>
 
 # define NORTH 0
 # define SOUTH 1
@@ -58,18 +58,37 @@ typedef struct s_column_data
 	int			tex_x;
 }				t_column_data;
 
+
+typedef struct s_line_data
+{
+	int			dx;
+	int			dy;
+	int			sx;
+	int			sy;
+	int			err;
+	int			e2;
+}				t_line_data;
+
+typedef struct s_line_params
+{
+	int			x0;
+	int			y0;
+	int			x1;
+	int			y1;
+	uint32_t	color;
+}				t_line_params;
+
 typedef struct s_column_params
 {
-	int		x;
-	float	distance;
-	int		wall_direction;
-	float	wall_x;
-}	t_column_params;
+	int			x;
+	float		distance;
+	int			wall_direction;
+	float		wall_x;
+}				t_column_params;
 
 float			ft_abs(float x);
 void			put_pixel(t_texture *fb, int x, int y, uint32_t color);
-void			draw_line(t_texture *fb, int x0, int y0, int x1, int y1,
-					uint32_t color);
+void			draw_line(t_texture *fb,t_line_params *params);
 void			draw_rect(t_texture *fb, int x, int y, int w, int h,
 					uint32_t color);
 

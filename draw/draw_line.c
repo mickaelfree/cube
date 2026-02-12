@@ -12,41 +12,41 @@
 
 #include "draw.h"
 
-void	draw_line(t_texture *fb, int x0, int y0, int x1, int y1, uint32_t color)
+static void	init_line_data(t_line_data *data, t_line_params *params)
 {
-	int	dx;
-	int	dy;
-	int	err;
-	int	e2;
-	int sx;
-	int sy;
-	
-	dx = (int)ft_abs(x1 - x0);
-	dy = (int)ft_abs(y1 - y0);
-	if (x0 < x1)
-		sx = 1;
+	data->dx = (int)ft_abs(params->x1 - params->x0);
+	data->dy = (int)ft_abs(params->y1 - params->y0);
+	if (params->x0 < params->x1)
+		data->sx = 1;
 	else
-		sx = -1;
-	if (y0 < y1)
-		sy = 1;
+		data->sx = -1;
+	if (params->y0 < params->y1)
+		data->sy = 1;
 	else
-		sy = -1;
-	err = dx - dy;
+		data->sy = -1;
+	data->err = data->dx - data->dy;
+}
+
+void	draw_line(t_texture *fb, t_line_params *params)
+{
+	t_line_data	data;
+
+	init_line_data(&data, params);
 	while (1)
 	{
-		put_pixel(fb, x0, y0, color);
-		if (x0 == x1 && y0 == y1)
+		put_pixel(fb, params->x0, params->y0, params->color);
+		if (params->x0 == params->x1 && params->y0 == params->y1)
 			break ;
-		e2 = 2 * err;
-		if (e2 > -dy)
+		data.e2 = 2 * data.err;
+		if (data.e2 > -data.dy)
 		{
-			err -= dy;
-			x0 += sx;
+			data.err -= data.dy;
+			params->x0 += data.sx;
 		}
-		if (e2 < dx)
+		if (data.e2 < data.dx)
 		{
-			err += dx;
-			y0 += sy;
+			data.err += data.dx;
+			params->y0 += data.sy;
 		}
 	}
 }

@@ -17,7 +17,7 @@ void	draw_player_on_minimap(t_game *g, int *center)
 {
 	int	i;
 	int	j;
-	int	ray[2];
+  t_line_params	params;
 
 	i = -2;
 	while (i <= 2)
@@ -30,7 +30,9 @@ void	draw_player_on_minimap(t_game *g, int *center)
 		}
 		i++;
 	}
-	ray[0] = center[0] + (int)(cosf(g->player.angle) * 15);
-	ray[1] = center[1] + (int)(sinf(g->player.angle) * 15);
-	draw_line(&g->framebuffer, center[0], center[1], ray[0], ray[1], 0xFF0000);
+  params.x0 = center[0];
+	params.y0 = center[1];
+	params.x1 = center[0] + (int)(cosf(g->player.angle) * 15);
+	params.y1 = center[1] + (int)(sinf(g->player.angle) * 15);
+	draw_line(&g->framebuffer,&params);
 }
