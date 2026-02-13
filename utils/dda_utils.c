@@ -6,7 +6,7 @@
 /*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 00:42:04 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 02:03:54 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:14:32 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,25 @@ void	setup_dda(t_cast_ray_data *dda, t_ray_data *ray)
 	setup_dda_y(dda, ray);
 }
 
+static void	update_wall_direction(t_ray_data *ray, t_cast_ray_data *dda,
+		int is_vertical)
+{
+	if (is_vertical)
+	{
+		if (dda->step_x < 0)
+			ray->wall_direction = EAST;
+		else
+			ray->wall_direction = WEST;
+	}
+	else
+	{
+		if (dda->step_y < 0)
+			ray->wall_direction = SOUTH;
+		else
+			ray->wall_direction = NORTH;
+	}
+}
+
 int	perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray)
 {
 	while (1)
@@ -66,19 +85,13 @@ int	perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray)
 		{
 			dda->side_x += dda->delta_x;
 			dda->map_x += dda->step_x;
-			if (dda->step_x < 0)
-				ray->wall_direction = EAST;
-			else
-				ray->wall_direction = WEST;
+			update_wall_direction(ray, dda, 1);
 		}
 		else
 		{
 			dda->side_y += dda->delta_y;
 			dda->map_y += dda->step_y;
-			if (dda->step_y < 0)
-				ray->wall_direction = SOUTH;
-			else
-				ray->wall_direction = NORTH;
+			update_wall_direction(ray, dda, 0);
 		}
 		if (dda->map_x < 0 || dda->map_x >= g->map.width || dda->map_y < 0
 			|| dda->map_y >= g->map.height)
