@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 01:19:49 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:22:56 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,16 @@ typedef struct s_cast_ray_data
 	int			step_y;
 	int			hit;
 }				t_cast_ray_data;
+
+typedef struct s_render_data
+{
+	t_ray_data		ray;
+	t_column_params	params;
+	int				x;
+	float			plane_dist;
+  float			current_angle;
+	float			ray_angle;
+}				t_render_data;
 
 void			init_trig_tables(t_game *game);
 float			fast_cos(t_game *game, float angle);
