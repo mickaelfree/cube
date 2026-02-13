@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "cube.h"
 #include "parsing.h"
 #include <stdio.h>
+#include <string.h>
 
 // int	**malloc_grid(int width, int height)
 // {
@@ -88,7 +88,7 @@
 // 	g->player.angle = 0.1f;
 // }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 

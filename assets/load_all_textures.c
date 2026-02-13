@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 18:54:27 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/01/31 20:49:56 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/12 03:12:13 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ static int	load_xpm_texture(t_game *game, t_texture *texture, char *path);
 
 int	load_all_textures(t_game *game)
 {
-	if (load_xpm_texture(game, &game->north_texture, game->config.parse.no_texture) != 0)
+	if (load_xpm_texture(game, &game->north_texture,
+			game->config.parse.no_texture) != 0)
 		return (-1);
-	if (load_xpm_texture(game, &game->east_texture, game->config.parse.ea_texture) != 0)
+	if (load_xpm_texture(game, &game->east_texture,
+			game->config.parse.ea_texture) != 0)
 		return (-1);
-	if (load_xpm_texture(game, &game->south_texture, game->config.parse.so_texture) != 0)
+	if (load_xpm_texture(game, &game->south_texture,
+			game->config.parse.so_texture) != 0)
 		return (-1);
-	if (load_xpm_texture(game, &game->west_texture, game->config.parse.we_texture) != 0)
+	if (load_xpm_texture(game, &game->west_texture,
+			game->config.parse.we_texture) != 0)
 		return (-1);
 	return (0);
 }

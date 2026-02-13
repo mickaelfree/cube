@@ -33,6 +33,8 @@ MAIN_FILES = main.c
 CORE_FILES = core/run_game.c \
 			 core/game_loop.c \
 	   		 draw/draw_3d_column.c\
+	   		 draw/draw_ceiling.c\
+	   		 draw/draw_floor.c\
 	  		 draw/draw_line.c \
 	  		 draw/draw_fps.c \
 	  		 draw/put_pixel.c \
@@ -44,6 +46,8 @@ CORE_FILES = core/run_game.c \
 	  		 assets/get_texture_pixel.c \
 			 assets/load_all_textures.c \
 			 utils/time.c \
+			 utils/dda_utils.c \
+			 utils/init_trig_tables.c \
 			 utils/draw_utils.c \
 			 utils/fps.c \
 			 utils/minimap_utils.c \
