@@ -46,6 +46,8 @@ CORE_FILES = core/run_game.c \
 	  		 assets/get_texture_pixel.c \
 			 assets/load_all_textures.c \
 			 utils/time.c \
+			 utils/dda_utils.c \
+			 utils/init_trig_tables.c \
 			 utils/draw_utils.c \
 			 utils/fps.c \
 			 utils/minimap_utils.c \

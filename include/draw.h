@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 00:32:06 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/13 01:19:49 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void			draw_rect(t_texture *fb, int x, int y, int w, int h,
 int				get_texture_pixel(t_texture *texture, int x, int y);
 int				load_all_textures(t_game *game);
 
+void	setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
+int	perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray);
 void			cast_ray(t_game *g, t_ray_data *ray, float angle,
 					float plane_angle);
 int				determine_wall_direction(float ray_x, float ray_y, float dx,
