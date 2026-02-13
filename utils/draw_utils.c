@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:48:46 by mickmart          #+#    #+#             */
-/*   Updated: 2026/01/30 19:09:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/13 02:11:31 by mickmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,3 @@ float	ft_abs(float x)
 		return (-x);
 	return (x);
 }
-
