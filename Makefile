@@ -66,9 +66,9 @@ FILES = \
 OBJ = $(addprefix $(OBJ_DIR), $(FILES:.c=.o))
 DEPS = $(addprefix $(OBJ_DIR), $(FILES:.c=.d))
 
-# Compiler & Flags
+# Compiler & Flags -fsanitize=address
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -fsanitize=address -g3\
+CFLAGS = -Wall -Wextra -Werror -MMD -MP  -g3\
 	-I include \
 	-I $(MLX_DIR) \
 	-I $(LIBFT_DIR)libft_functions/includes \

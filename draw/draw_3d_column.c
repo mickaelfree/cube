@@ -40,12 +40,14 @@ static void	draw_wall(t_game *g, t_column_data *data, int x)
 	while (data->y < data->wall_end)
 	{
 		tex_y = (int)data->tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
 		if (tex_y >= data->current_texture->height)
 			tex_y = data->current_texture->height - 1;
 		data->fb_pixel = (uint32_t *)(g->framebuffer.data + data->y
 				* g->framebuffer.line_size + x * (g->framebuffer.bpp / 8));
 		*data->fb_pixel = data->tex_data[(tex_y
-				* data->current_texture->line_size / 4) + data->tex_x];
+				* (data->current_texture->line_size / 4)) + data->tex_x];
 		data->tex_pos += data->tex_step;
 		data->y++;
 	}

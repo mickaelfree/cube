@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "draw.h"
+#include "mlx.h"
 #include <stdlib.h>
 
 void	run_game(t_game *g)
@@ -26,14 +26,14 @@ void	run_game(t_game *g)
 	if (!g->framebuffer.img)
 		exit(1);
 	g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img,
-			&g->framebuffer.bpp,
-			&g->framebuffer.line_size,
+			&g->framebuffer.bpp, &g->framebuffer.line_size,
 			&g->framebuffer.endian);
 	fps_init(&g->fps);
 	g->delta_time = 0.016f;
 	g->last_frame_time = get_time_ms();
 	if (load_all_textures(g) != 0)
 		exit(1);
+	init_trig_tables(g);
 	init_hooks(g);
 	mlx_loop(g->mlx);
 }
