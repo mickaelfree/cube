@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "draw.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <math.h>
@@ -25,8 +26,8 @@ void	process_input(t_game *game)
 	float	sin_a;
 
 	process_rotation(game);
-	cos_a = cos(game->player.angle);
-	sin_a = sin(game->player.angle);
+	cos_a = fast_cos(game,game->player.angle);
+	sin_a = fast_sin(game,game->player.angle);
 	process_movement(game, cos_a, sin_a);
 }
 

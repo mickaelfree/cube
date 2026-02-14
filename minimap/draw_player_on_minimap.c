@@ -32,7 +32,7 @@ void	draw_player_on_minimap(t_game *g, int *center)
 	}
 	params.x0 = center[0];
 	params.y0 = center[1];
-	params.x1 = center[0] + (int)(cosf(g->player.angle) * 15);
-	params.y1 = center[1] + (int)(sinf(g->player.angle) * 15);
+	params.x1 = center[0] + (int)(fast_cos(g,g->player.angle) * 15);
+	params.y1 = center[1] + (int)(fast_sin(g,g->player.angle) * 15);
 	draw_line(&g->framebuffer, &params);
 }
