@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "cube.h"
+#include "draw.h"
 
 static int	angle_to_index(float angle)
 {
@@ -43,6 +44,13 @@ void	init_trig_tables(t_game *game)
 		angle = (float)i * M_PI / 1800.0f;
 		game->trig.cos_table[i] = cosf(angle);
 		game->trig.sin_table[i] = sinf(angle);
+		i++;
+	}
+	game->trig.plane_dist = (WIN_W / 2.0f) / tanf(FOV / 2.0f);
+	i = 0;
+	while (i < WIN_W)
+	{
+		game->trig.ray_angles[i] = atan2f((i - WIN_W / 2.0f), game->trig.plane_dist);
 		i++;
 	}
 }

@@ -40,6 +40,8 @@ typedef struct s_trig_table
 {
 	float			sin_table[3600];
 	float			cos_table[3600];
+	float			ray_angles[1920];
+	float			plane_dist;
 }					t_trig_table;
 
 typedef struct s_timer
