@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:01:08 by mickmart          #+#    #+#             */
-/*   Updated: 2026/01/31 17:44:55 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/16 11:40:51 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	game_loop(t_game *game)
 		exit(0);
 	}
 	process_input(game);
-	render_3d_view(game);
+	if (render_3d_view(game) != 0)
+		return (-1);
 	if (game->input.togle_minimap == 1)
 		render_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->framebuffer.img, 0, 0);

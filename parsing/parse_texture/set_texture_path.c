@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 05:08:54 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/12 03:29:32 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 13:37:16 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	set_texture_path(char *line, t_parse *parse, int id)
 	*texture_ptr = ft_strtrim(path, " \t\n");
 	if (*texture_ptr == NULL)
 		return (-1);
+	if (**texture_ptr == '\0')
+	{
+		free(*texture_ptr);
+		*texture_ptr = NULL;
+		return (-1);
+	}
 	return (0);
 }
 

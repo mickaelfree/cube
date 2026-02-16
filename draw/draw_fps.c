@@ -6,20 +6,46 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 23:15:45 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/12 01:17:32 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:03:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "mlx.h"
-#include <stdio.h>
+#include "libft.h"
+
+static void	build_fps_text(char *fps_text, int fps_value)
+{
+	char	*fps_str;
+	int		i;
+	int		j;
+
+	fps_text[0] = 'F';
+	fps_text[1] = 'P';
+	fps_text[2] = 'S';
+	fps_text[3] = ':';
+	fps_text[4] = ' ';
+	fps_str = ft_itoa(fps_value);
+	if (!fps_str)
+	{
+		fps_text[5] = '0';
+		fps_text[6] = '\0';
+		return ;
+	}
+	i = 0;
+	j = 5;
+	while (fps_str[i])
+		fps_text[j++] = fps_str[i++];
+	fps_text[j] = '\0';
+	free(fps_str);
+}
 
 void	draw_fps_on_screen(t_game *g)
 {
 	char	fps_text[32];
 	int		color;
 
-	snprintf(fps_text, sizeof(fps_text), "FPS: %.0f", g->fps.current_fps);
+	build_fps_text(fps_text, (int)g->fps.current_fps);
 	if (g->fps.current_fps >= 60)
 		color = 0x00FF00;
 	else if (g->fps.current_fps >= 30)

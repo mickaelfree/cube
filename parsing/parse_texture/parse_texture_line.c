@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 04:49:22 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/12 03:29:32 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:26:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	parse_texture_line(char *line, t_parse *parse, t_parser *parser)
 		return (-1);
 	if (set_texture_path(line, parse, id) == -1)
 	{
-		ft_dprintf(2, "Failed to set texture path for ID %d\n", id);
+		ft_dprintf(2, "Error: Failed to set texture path for ID %d\n", id);
 		return (-1);
 	}
 	parser->textures_set++;
@@ -34,14 +34,14 @@ int	parse_texture_line(char *line, t_parse *parse, t_parser *parser)
 
 static int	get_texture_id(char *line)
 {
-	int	i;
-
-	const char *const ids[] = {
-		[ID_NO] = "NO",
-		[ID_SO] = "SO",
-		[ID_WE] = "WE",
-		[ID_EA] = "EA",
+	int					i;
+	const char *const	ids[] = {
+	[ID_NO] = "NO",
+	[ID_SO] = "SO",
+	[ID_WE] = "WE",
+	[ID_EA] = "EA",
 	};
+
 	if (!line)
 		return (-1);
 	i = 1;
@@ -49,7 +49,6 @@ static int	get_texture_id(char *line)
 	{
 		if (ids[i] && ft_strncmp(line, ids[i], 2) == 0)
 		{
-			// Vérifier que le caractère suivant est un whitespace
 			if (line[2] == ' ' || line[2] == '\t')
 				return (i);
 		}

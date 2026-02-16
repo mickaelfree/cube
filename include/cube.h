@@ -6,17 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 00:23:57 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 16:36:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-# define SCREEN_LEFT -1.0f
-# define SCREEN_RIGHT 1.0f
-# define SCREEN_RANGE (SCREEN_RIGHT - SCREEN_LEFT)
-# define TILE_SIZE 1.0f
 // binding
 # define ESC 65307
 # define W 119
@@ -34,7 +30,6 @@
 
 # include <sys/time.h>
 # include <unistd.h>
-# include <math.h>
 
 typedef struct s_trig_table
 {
@@ -91,13 +86,13 @@ typedef struct s_input
 
 typedef struct s_texture
 {
-	void *img;  // image de mlx
-	char *data; // data des pixel
+	void			*img;
+	char			*data;
 	int				width;
 	int				height;
-	int bpp; // bits par pixel
+	int				bpp;
 	int				line_size;
-	int endian; // ordre des octets
+	int				endian;
 }					t_texture;
 
 typedef struct s_parse
@@ -142,7 +137,7 @@ typedef struct s_game
 	t_player		player;
 	t_config		config;
 	t_fps_counter	fps;
-  t_trig_table	trig;
+	t_trig_table	trig;
 	void			*draw_data;
 	float			delta_time;
 	long			last_frame_time;
@@ -157,7 +152,7 @@ void				run_game(t_game *g);
 void				process_input(t_game *g);
 void				render_minimap(t_game *g);
 int					game_loop(t_game *g);
-void				render_3d_view(t_game *g);
+int					render_3d_view(t_game *g);
 void				init_hooks(t_game *g);
 int					game_loop(t_game *g);
 int					key_release(int keycode, t_game *game);

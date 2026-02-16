@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 04:09:57 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/12 03:29:26 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:18:46 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@ int	parse_file(const char *filename, t_game *game)
 
 	if (validate_extension(filename) == -1)
 	{
-		ft_dprintf(2, "invalid extensuin\n");
+		ft_dprintf(2, "Error: Invalid extension\n");
 		return (-1);
 	}
 	init_parser(&parser);
 	if (read_file(filename, &parser.lines) == -1)
 	{
-		ft_dprintf(2, "could not read file\n");
+		ft_dprintf(2, "Error: Could not read file\n");
 		free_parser(&parser);
 		return (-1);
 	}
 	if (parse_file_content(&parser, game) == -1)
 	{
-		ft_dprintf(2, "could not parse file content\n");
+		ft_dprintf(2, "Error: Could not parse file content\n");
+		free_map(&game->map);
+		free_parse(&game->config.parse);
 		free_parser(&parser);
 		return (-1);
 	}
@@ -63,7 +65,7 @@ static int	parse_file_content(t_parser *parser, t_game *game)
 	init_parse(&game->config.parse);
 	if (parse_lines(parser, &game->config) == -1)
 	{
-		ft_dprintf(2, "could not parse lines\n");
+		ft_dprintf(2, "Error: Could not parse lines\n");
 		return (-1);
 	}
 	if (parse_map(parser, game) == -1)

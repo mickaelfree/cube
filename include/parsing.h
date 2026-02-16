@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 23:44:19 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/11 20:30:34 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:18:47 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char			*skip_spaces(char *str);
 int				is_empty_line(char *line);
 int				is_player_char(char c);
 void			free_parser(t_parser *parser);
+void			free_parse(t_parse *parse);
+void			free_map(t_map *map);
 
 // PARSE MAP
 int				is_map_char(char c);

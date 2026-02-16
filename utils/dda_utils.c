@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   dda_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 00:42:04 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 02:14:32 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 13:00:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
+#include <math.h>
 
 static void	setup_dda_x(t_cast_ray_data *dda, t_ray_data *ray)
 {

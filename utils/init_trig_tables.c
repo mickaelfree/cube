@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_trig_tables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 00:18:26 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 00:27:36 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 13:01:13 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "cube.h"
 #include "draw.h"
+#include <math.h>
 
 static int	angle_to_index(float angle)
 {
@@ -50,7 +52,8 @@ void	init_trig_tables(t_game *game)
 	i = 0;
 	while (i < WIN_W)
 	{
-		game->trig.ray_angles[i] = atan2f((i - WIN_W / 2.0f), game->trig.plane_dist);
+		game->trig.ray_angles[i] = atan2f((i - WIN_W / 2.0f),
+				game->trig.plane_dist);
 		i++;
 	}
 }

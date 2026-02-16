@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:59:56 by mickmart          #+#    #+#             */
-/*   Updated: 2026/01/31 17:44:55 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/16 13:02:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	process_input(t_game *game)
 	float	sin_a;
 
 	process_rotation(game);
-	cos_a = fast_cos(game,game->player.angle);
-	sin_a = fast_sin(game,game->player.angle);
+	cos_a = fast_cos(game, game->player.angle);
+	sin_a = fast_sin(game, game->player.angle);
 	process_movement(game, cos_a, sin_a);
 }
 

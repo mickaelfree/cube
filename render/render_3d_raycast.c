@@ -6,12 +6,33 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 18:30:00 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/13 02:31:51 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:19:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include <math.h>
+
+static void	init_ray(t_ray_data *ray, t_game *g, float angle);
+static void	calc_wall_x(t_ray_data *ray, float perp_dist);
+static void	calc_dist(t_ray_data *r, t_cast_ray_data *d, float pa, t_game *g);
+
+void	cast_ray(t_game *g, t_ray_data *ray, float angle, float plane_angle)
+{
+	t_cast_ray_data	dda;
+
+	init_ray(ray, g, angle);
+	dda.map_x = (int)ray->ray_x;
+	dda.map_y = (int)ray->ray_y;
+	setup_dda(&dda, ray);
+	dda.hit = 0;
+	if (!perform_dda(g, &dda, ray))
+	{
+		ray->distance = 1000.0f;
+		return ;
+	}
+	calc_dist(ray, &dda, plane_angle, g);
+}
 
 static void	init_ray(t_ray_data *ray, t_game *g, float angle)
 {
@@ -43,21 +64,4 @@ static void	calc_dist(t_ray_data *r, t_cast_ray_data *d, float pa, t_game *g)
 		raw_dist = 0.001f;
 	r->distance = raw_dist * fast_cos(g, pa);
 	calc_wall_x(r, raw_dist);
-}
-
-void	cast_ray(t_game *g, t_ray_data *ray, float angle, float plane_angle)
-{
-	t_cast_ray_data	dda;
-
-	init_ray(ray, g, angle);
-	dda.map_x = (int)ray->ray_x;
-	dda.map_y = (int)ray->ray_y;
-	setup_dda(&dda, ray);
-	dda.hit = 0;
-	if (!perform_dda(g, &dda, ray))
-	{
-		ray->distance = 1000.0f;
-		return ;
-	}
-	calc_dist(ray, &dda, plane_angle, g);
 }

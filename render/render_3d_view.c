@@ -6,20 +6,46 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:02:39 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 02:23:20 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:10:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include <math.h>
 #include <pthread.h>
+#include <unistd.h>
 
-typedef struct s_thread_data
+static void	init_thread_data(t_thread_data *td, t_game *g, int i, int slice);
+static void	*render_thread(void *arg);
+static int	get_num_threads(void);
+
+int	render_3d_view(t_game *g)
 {
-	t_game	*game;
-	int		start_x;
-	int		end_x;
-}	t_thread_data;
+	pthread_t		threads[MAX_THREADS];
+	t_thread_data	td[MAX_THREADS];
+	int				i;
+	int				slice;
+	int				num_threads;
+
+	num_threads = get_num_threads();
+	slice = WIN_W / num_threads;
+	i = 0;
+	while (i < num_threads)
+	{
+		td[i].num_threads = num_threads;
+		init_thread_data(td, g, i, slice);
+		if (pthread_create(&threads[i], NULL, render_thread, &td[i]) != 0)
+			return (-1);
+		i++;
+	}
+	i = 0;
+	while (i < num_threads)
+	{
+		if (pthread_join(threads[i], NULL) != 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
 
 static void	*render_thread(void *arg)
 {
@@ -47,31 +73,20 @@ static void	init_thread_data(t_thread_data *td, t_game *g, int i, int slice)
 {
 	td[i].game = g;
 	td[i].start_x = i * slice;
-	if (i == 3)
+	if (i == td[i].num_threads - 1)
 		td[i].end_x = WIN_W;
 	else
 		td[i].end_x = (i + 1) * slice;
 }
 
-void	render_3d_view(t_game *g)
+static int	get_num_threads(void)
 {
-	pthread_t		threads[4];
-	t_thread_data	td[4];
-	int				i;
-	int				slice;
+	long	num_cores;
 
-	slice = WIN_W / 4;
-	i = 0;
-	while (i < 4)
-	{
-		init_thread_data(td, g, i, slice);
-		pthread_create(&threads[i], NULL, render_thread, &td[i]);
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		pthread_join(threads[i], NULL);
-		i++;
-	}
+	num_cores = sysconf(_SC_NPROCESSORS_ONLN);
+	if (num_cores <= 0)
+		return (4);
+	if (num_cores > MAX_THREADS)
+		return (MAX_THREADS);
+	return ((int)num_cores);
 }

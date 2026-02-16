@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fps.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mickmart <mickmart@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 22:04:44 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/12 02:55:44 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 16:45:22 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-#include <stdio.h>
 
 void	fps_init(t_fps_counter *fps);
 void	fps_update(t_fps_counter *fps);

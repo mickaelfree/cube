@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 02:22:56 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 15:10:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include "cube.h"
 # include <stdint.h>
-# include <string.h>
 
 # define NORTH 0
 # define SOUTH 1
@@ -28,8 +27,9 @@
 
 # define SCREEN_LEFT -1.0f
 # define SCREEN_RIGHT 1.0f
-# define SCREEN_RANGE (SCREEN_RIGHT - SCREEN_LEFT)
 # define TILE_SIZE 1.0f
+
+# define MAX_THREADS 16
 
 typedef struct s_ray_data
 {
@@ -104,9 +104,17 @@ typedef struct s_render_data
 	t_column_params	params;
 	int				x;
 	float			plane_dist;
-  float			current_angle;
+	float			current_angle;
 	float			ray_angle;
 }				t_render_data;
+
+typedef struct s_thread_data
+{
+	t_game	*game;
+	int		start_x;
+	int		end_x;
+	int		num_threads;
+}	t_thread_data;
 
 void			init_trig_tables(t_game *game);
 float			fast_cos(t_game *game, float angle);
@@ -114,14 +122,12 @@ float			fast_sin(t_game *game, float angle);
 float			ft_abs(float x);
 void			put_pixel(t_texture *fb, int x, int y, uint32_t color);
 void			draw_line(t_texture *fb, t_line_params *params);
-void			draw_rect(t_texture *fb, int x, int y, int w, int h,
-					uint32_t color);
 
 int				get_texture_pixel(t_texture *texture, int x, int y);
 int				load_all_textures(t_game *game);
 
-void	setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
-int	perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray);
+void			setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
+int				perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray);
 void			cast_ray(t_game *g, t_ray_data *ray, float angle,
 					float plane_angle);
 int				determine_wall_direction(float ray_x, float ray_y, float dx,

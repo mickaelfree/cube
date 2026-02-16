@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 09:24:31 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/12 02:56:00 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 17:18:52 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ static int	build_raw_map(t_parser *parser, t_parse *parse)
 	while (i < parser->map_lines.size)
 	{
 		line = (char **)at_vector(&parser->map_lines, i);
-		parse->raw_map[i] = ft_strtrim(*line, "\n");
-		if (!parse->raw_map[i])
-			return (-1);
+		parse->raw_map[i] = *line;
 		i++;
 	}
 	parse->raw_map[i] = NULL;
