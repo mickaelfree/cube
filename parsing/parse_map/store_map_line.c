@@ -17,7 +17,6 @@ int	store_map_line(char *line, t_vector *map_lines)
 {
 	char	*dup;
 
-	(void)line;
 	dup = ft_strdup(line);
 	if (!dup)
 		return (-1);
