@@ -68,7 +68,7 @@ DEPS = $(addprefix $(OBJ_DIR), $(FILES:.c=.d))
 
 # Compiler & Flags -fsanitize=address
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -fsanitize=address  -g3 -std=gnu17\
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -fsanitize=address -g3\
 	-I include \
 	-I $(MLX_DIR) \
 	-I $(LIBFT_DIR)libft_functions/includes \
