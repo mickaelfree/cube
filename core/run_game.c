@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2026/01/31 20:48:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:54:11 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include "mlx.h"
+#include "libft.h"
 #include <stdlib.h>
 
 void	run_game(t_game *g)

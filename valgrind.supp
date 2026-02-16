@@ -1,0 +1,19 @@
+{
+   X11_writev_uninit
+   Memcheck:Param
+   writev(vector[...])
+   fun:__writev
+   fun:*
+   obj:*/libxcb.so.*
+}
+
+{
+   X11_writev_uninit_XSend
+   Memcheck:Param
+   writev(vector[...])
+   fun:__writev
+   ...
+   fun:_XSend
+}
+
+

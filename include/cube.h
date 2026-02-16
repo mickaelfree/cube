@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 16:36:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:01:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,6 @@ void				fps_update(t_fps_counter *fps);
 void				fps_reset_stats(t_fps_counter *fps);
 void				fps_print_stats(t_fps_counter *fps);
 void				draw_fps_on_screen(t_game *g);
+void				cleanup_game(t_game *game);
 
 #endif

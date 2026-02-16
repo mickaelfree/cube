@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 03:27:10 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/12 03:29:31 by mickmart         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:10:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	store_map_line(char *line, t_vector *map_lines)
 {
 	char	*dup;
 
+	(void)line;
 	dup = ft_strdup(line);
 	if (!dup)
 		return (-1);

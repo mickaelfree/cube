@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:01:08 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 11:40:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:01:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	game_loop(t_game *game)
 	if (game->input.quit == 1)
 	{
 		printf("input.quit = %d \n", game->input.quit);
-		mlx_destroy_window(game->mlx, game->win);
+		cleanup_game(game);
 		exit(0);
 	}
 	process_input(game);

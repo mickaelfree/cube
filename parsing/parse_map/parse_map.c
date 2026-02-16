@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 09:24:31 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/16 17:18:52 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:33:56 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	parse_map(t_parser *parser, t_game *game)
 		ft_dprintf(2, "Error: No player found in map\n");
 		return (-1);
 	}
-	if (build_grid_map(&game->config.parse, &game->map) == -1)
+	if (build_grid_map(&game->config.parse, &game->map) != 0)
 		return (-1);
 	return (0);
 }
@@ -42,7 +42,7 @@ static int	build_grid_map(t_parse *parse, t_map *map)
 {
 	int	y;
 
-	if (alloc_grid(map) == -1)
+	if (alloc_grid(map) != 0)
 		return (-1);
 	y = 0;
 	while (y < map->height)
@@ -61,12 +61,16 @@ static int	alloc_grid(t_map *map)
 	map->grid = malloc(sizeof(int *) * map->height);
 	if (!map->grid)
 		return (-1);
+	ft_memset(map->grid, 0, sizeof(int *) * map->height);
 	i = 0;
 	while (i < map->height)
 	{
 		map->grid[i] = malloc(sizeof(int) * map->width);
 		if (!map->grid[i])
+		{
+			free_map(map);
 			return (-1);
+		}
 		ft_memset(map->grid[i], -1, sizeof(int) * map->width);
 		i++;
 	}
