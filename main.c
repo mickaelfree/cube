@@ -14,7 +14,6 @@
 #include "parsing.h"
 #include "ft_dprintf.h"
 #include "libft.h"
-#include <string.h>
 
 int	main(int argc, char **argv)
 {
