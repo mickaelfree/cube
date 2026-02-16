@@ -12,11 +12,6 @@
 
 #include "cube.h"
 
-void	fps_init(t_fps_counter *fps);
-void	fps_update(t_fps_counter *fps);
-void	fps_reset_stats(t_fps_counter *fps);
-void	fps_print_stats(t_fps_counter *fps);
-
 void	fps_init(t_fps_counter *fps)
 {
 	fps->frame_count = 0;

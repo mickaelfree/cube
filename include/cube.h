@@ -162,7 +162,6 @@ long				get_time_ms(void);
 void				fps_init(t_fps_counter *fps);
 void				fps_update(t_fps_counter *fps);
 void				fps_reset_stats(t_fps_counter *fps);
-void				fps_print_stats(t_fps_counter *fps);
 void				draw_fps_on_screen(t_game *g);
 void				cleanup_game(t_game *game);
 
