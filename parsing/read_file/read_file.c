@@ -27,7 +27,10 @@ int	read_file(const char *filename, t_vector *lines)
 		return (-1);
 	line = get_next_line(fd);
 	if (!line)
+	{
+		close(fd);
 		return (-1);
+	}
 	while (line)
 	{
 		if (store_line(line, lines) == -1)
