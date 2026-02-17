@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 22:04:44 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 16:45:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:22:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,4 @@ void	fps_update(t_fps_counter *fps)
 		fps->last_update = current_time;
 		fps->should_update = 1;
 	}
-}
-
-void	fps_reset_stats(t_fps_counter *fps)
-{
-	fps_init(fps);
 }

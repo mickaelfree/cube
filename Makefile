@@ -44,7 +44,6 @@ CORE_FILES = core/run_game.c \
 	  		 render/render_minimap.c \
 	  		 render/render_3d_view.c \
 	  		 render/render_3d_raycast.c \
-	  		 assets/get_texture_pixel.c \
 			 assets/load_all_textures.c \
 			 utils/time.c \
 			 utils/dda_utils.c \
@@ -69,7 +68,7 @@ DEPS = $(addprefix $(OBJ_DIR), $(FILES:.c=.d))
 
 # Compiler & Flags -fsanitize=address
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3\
+CFLAGS = -Wall -Wextra -Werror -MMD -MP \
 	-I include \
 	-I $(MLX_DIR) \
 	-I $(LIBFT_DIR)libft_functions/includes \

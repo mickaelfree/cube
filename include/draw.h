@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 15:10:36 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:25:18 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,70 +33,70 @@
 
 typedef struct s_ray_data
 {
-	float		current_angle;
-	float		step;
-	float		ray_x;
-	float		ray_y;
-	float		dx;
-	float		dy;
-	float		distance;
-	float		wall_x;
-	int			wall_direction;
-}				t_ray_data;
+	float			current_angle;
+	float			step;
+	float			ray_x;
+	float			ray_y;
+	float			dx;
+	float			dy;
+	float			distance;
+	float			wall_x;
+	int				wall_direction;
+}					t_ray_data;
 
 typedef struct s_column_data
 {
-	t_texture	*current_texture;
-	int			*tex_data;
-	uint32_t	*fb_pixel;
-	float		tex_step;
-	float		tex_pos;
-	int			wall_height;
-	int			wall_start;
-	int			wall_end;
-	int			y;
-	int			tex_x;
-}				t_column_data;
+	t_texture		*current_texture;
+	int				*tex_data;
+	uint32_t		*fb_pixel;
+	float			tex_step;
+	float			tex_pos;
+	int				wall_height;
+	int				wall_start;
+	int				wall_end;
+	int				y;
+	int				tex_x;
+}					t_column_data;
 
 typedef struct s_line_data
 {
-	int			dx;
-	int			dy;
-	int			sx;
-	int			sy;
-	int			err;
-	int			e2;
-}				t_line_data;
+	int				dx;
+	int				dy;
+	int				sx;
+	int				sy;
+	int				err;
+	int				e2;
+}					t_line_data;
 
 typedef struct s_line_params
 {
-	uint32_t	color;
-	int			x0;
-	int			y0;
-	int			x1;
-	int			y1;
-}				t_line_params;
+	uint32_t		color;
+	int				x0;
+	int				y0;
+	int				x1;
+	int				y1;
+}					t_line_params;
 
 typedef struct s_column_params
 {
-	float		distance;
-	float		wall_x;
-	int			x;
-	int			wall_direction;
-}				t_column_params;
+	float			distance;
+	float			wall_x;
+	int				x;
+	int				wall_direction;
+}					t_column_params;
 
 typedef struct s_cast_ray_data
 {
-	float		delta_x;
-	float		delta_y;
-	float		side_x;
-	float		side_y;
-	int			map_x;
-	int			map_y;
-	int			step_x;
-	int			step_y;
-	int			hit;
-}				t_cast_ray_data;
+	float			delta_x;
+	float			delta_y;
+	float			side_x;
+	float			side_y;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	int				hit;
+}					t_cast_ray_data;
 
 typedef struct s_render_data
 {
@@ -106,45 +106,37 @@ typedef struct s_render_data
 	float			plane_dist;
 	float			current_angle;
 	float			ray_angle;
-}				t_render_data;
+}					t_render_data;
 
 typedef struct s_thread_data
 {
-	t_game	*game;
-	int		start_x;
-	int		end_x;
-	int		num_threads;
-}	t_thread_data;
+	t_game			*game;
+	int				start_x;
+	int				end_x;
+	int				num_threads;
+}					t_thread_data;
 
-void			init_trig_tables(t_game *game);
-float			fast_cos(t_game *game, float angle);
-float			fast_sin(t_game *game, float angle);
-float			ft_abs(float x);
-void			put_pixel(t_texture *fb, int x, int y, uint32_t color);
-void			draw_line(t_texture *fb, t_line_params *params);
+// RENDER
+void				cast_ray(t_game *g, t_ray_data *ray, float angle,
+						float plane_angle);
+void				render_minimap(t_game *g);
+int					render_3d_view(t_game *g);
 
-int				get_texture_pixel(t_texture *texture, int x, int y);
-int				load_all_textures(t_game *game);
+// MINIMAP
+void				draw_circular_grid(t_game *g, int *center);
+void				draw_player_on_minimap(t_game *g, int *center);
 
-void			setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
-int				perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray);
-void			cast_ray(t_game *g, t_ray_data *ray, float angle,
-					float plane_angle);
-int				determine_wall_direction(float ray_x, float ray_y, float dx,
-					float dy);
+// DRAW
+void				put_pixel(t_texture *fb, int x, int y, uint32_t color);
+void				draw_line(t_texture *fb, t_line_params *params);
+void				draw_3d_column(t_game *g, t_column_params *params);
+void				draw_ceiling(t_game *g, t_column_data *data, int x);
+void				draw_fps_on_screen(t_game *g);
+void				draw_floor(t_game *g, t_column_data *data, int x);
 
-void			draw_3d_column(t_game *g, t_column_params *params);
-void			draw_ceiling(t_game *g, t_column_data *data, int x);
-void			draw_floor(t_game *g, t_column_data *data, int x);
-
-int				is_in_fov(t_game *g, float mx, float my, float radius);
-void			draw_minimap_pixel(t_game *g, int *pos, int *center);
-void			get_minimap_center(int *result);
-void			draw_circular_grid(t_game *g, int *center);
-void			draw_player_on_minimap(t_game *g, int *center);
-void			draw_player_dot(t_game *g);
-void			draw_grid(t_game *g);
-void			draw_player_ray(t_game *g);
-void			draw_fov_cone(t_game *g);
+// UTILS
+void				setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
+int					perform_dda(t_game *g, t_cast_ray_data *dda,
+						t_ray_data *ray);
 
 #endif

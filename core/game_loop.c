@@ -6,11 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:01:08 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 20:01:44 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:04:01 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "draw.h"
 #include "mlx.h"
 #include <stdio.h>
 #include <stdlib.h>

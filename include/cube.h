@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 20:01:44 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:18:29 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,25 +144,31 @@ typedef struct s_game
 
 }					t_game;
 
-// TODO: faire une struct pour ranger tout les variable de draw
-//
-// TODO: ranger toute les fontion dans le bon fichier
+// IO
 void				init_hooks(t_game *g);
-void				run_game(t_game *g);
 void				process_input(t_game *g);
-void				render_minimap(t_game *g);
-int					game_loop(t_game *g);
-int					render_3d_view(t_game *g);
-void				init_hooks(t_game *g);
-int					game_loop(t_game *g);
-int					key_release(int keycode, t_game *game);
-int					key_press(int keycode, t_game *game);
 int					inbound(t_game *g, float x, float y);
+int					key_press(int keycode, t_game *game);
+int					key_release(int keycode, t_game *game);
+
+// CORE
+int					game_loop(t_game *g);
+void				run_game(t_game *g);
+void				cleanup_game(t_game *game);
+
+// UTILS
 long				get_time_ms(void);
 void				fps_init(t_fps_counter *fps);
 void				fps_update(t_fps_counter *fps);
-void				fps_reset_stats(t_fps_counter *fps);
-void				draw_fps_on_screen(t_game *g);
-void				cleanup_game(t_game *game);
+float				ft_abs(float x);
+float				fast_cos(t_game *game, float angle);
+float				fast_sin(t_game *game, float angle);
+void				init_trig_tables(t_game *game);
+void				get_minimap_center(int *result);
+int					is_in_fov(t_game *g, float mx, float my, float radius);
+void				draw_minimap_pixel(t_game *g, int *pos, int *center);
+
+// ASSETS
+int					load_all_textures(t_game *game);
 
 #endif
