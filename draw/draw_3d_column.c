@@ -38,7 +38,7 @@ void	draw_3d_column(t_game *g, t_column_params *params)
 		data.wall_end = WIN_H;
 	draw_ceiling(g, &data, params->x);
 	if (data.current_texture->data && data.current_texture->img)
-		draw_wall(g, &data, params->x);
+		draw_wall(g, &data, params->x * (g->framebuffer.bpp / 8));
 	draw_floor(g, &data, params->x);
 }
 
@@ -58,7 +58,9 @@ static void	select_texture(t_column_data *data, t_game *g, int wall_dir)
 
 static void	draw_wall(t_game *g, t_column_data *data, int x)
 {
-	int	tex_y;
+	int			tex_y;
+	uint32_t	*fb_ptr;
+	int			tex_width;
 
 	data->tex_data = (int *)data->current_texture->data;
 	data->tex_step = (float)data->current_texture->height / data->wall_height;
@@ -67,17 +69,14 @@ static void	draw_wall(t_game *g, t_column_data *data, int x)
 	else
 		data->tex_pos = 0;
 	data->y = data->wall_start;
+	fb_ptr = (uint32_t *)(g->framebuffer.data + data->wall_start
+			* g->framebuffer.line_size + x);
+	tex_width = data->current_texture->width;
 	while (data->y < data->wall_end)
 	{
 		tex_y = (int)data->tex_pos;
-		if (tex_y < 0)
-			tex_y = 0;
-		if (tex_y >= data->current_texture->height)
-			tex_y = data->current_texture->height - 1;
-		data->fb_pixel = (uint32_t *)(g->framebuffer.data + data->y
-				* g->framebuffer.line_size + x * (g->framebuffer.bpp / 8));
-		*data->fb_pixel = data->tex_data[(tex_y
-				* (data->current_texture->line_size / 4)) + data->tex_x];
+		*fb_ptr = data->tex_data[tex_y * tex_width + data->tex_x];
+		fb_ptr = (uint32_t *)((char *)fb_ptr + g->framebuffer.line_size);
 		data->tex_pos += data->tex_step;
 		data->y++;
 	}
