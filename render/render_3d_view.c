@@ -18,6 +18,20 @@ static void	init_thread_data(t_thread_data *td, t_game *g, int i, int slice);
 static void	*render_thread(void *arg);
 static int	get_num_threads(void);
 
+static int	join_all_threads(pthread_t *threads, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		if (pthread_join(threads[i], NULL) != 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 int	render_3d_view(t_game *g)
 {
 	pthread_t		threads[MAX_THREADS];
@@ -34,17 +48,13 @@ int	render_3d_view(t_game *g)
 		td[i].num_threads = num_threads;
 		init_thread_data(td, g, i, slice);
 		if (pthread_create(&threads[i], NULL, render_thread, &td[i]) != 0)
+		{
+			join_all_threads(threads, i);
 			return (-1);
+		}
 		i++;
 	}
-	i = 0;
-	while (i < num_threads)
-	{
-		if (pthread_join(threads[i], NULL) != 0)
-			return (-1);
-		i++;
-	}
-	return (0);
+	return (join_all_threads(threads, num_threads));
 }
 
 static void	*render_thread(void *arg)
