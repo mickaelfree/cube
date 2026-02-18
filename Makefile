@@ -46,11 +46,18 @@ CORE_FILES = core/run_game.c \
 	  		 render/render_3d_raycast.c \
 			 assets/load_all_textures.c \
 			 utils/time.c \
-			 utils/dda_utils.c \
-			 utils/init_trig_tables.c \
-			 utils/draw_utils.c \
-			 utils/fps.c \
-			 utils/minimap_utils.c \
+			 utils/dda/setup_dda.c \
+			 utils/dda/perform_dda.c \
+			 utils/trigo_tables/init_trig_tables.c \
+			 utils/trigo_tables/fast_cos.c \
+			 utils/trigo_tables/fast_sin.c \
+			 utils/trigo_tables/angle_to_index.c \
+			 utils/ft_abs.c \
+			 utils/fps/fps_init.c \
+			 utils/fps/fps_update.c \
+			 utils/minimap/draw_minimap_pixel.c \
+			 utils/minimap/get_minimap_center.c \
+			 utils/minimap/is_in_fov.c \
 	  		 io/input.c \
 			 io/init_hooks.c \
 			 io/key_press.c \

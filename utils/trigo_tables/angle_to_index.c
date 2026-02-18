@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*   angle_to_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/06 18:48:46 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/13 02:11:31 by mickmart         ###   ########.fr       */
+/*   Created: 2026/02/18 13:37:07 by akarapkh          #+#    #+#             */
+/*   Updated: 2026/02/18 13:37:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include <math.h>
 
-float	ft_abs(float x)
+int	angle_to_index(float angle)
 {
-	if (x < 0)
-		return (-x);
-	return (x);
+	int	index;
+
+	index = (int)(angle * 1800.0f / M_PI);
+	index = index % 3600;
+	if (index < 0)
+		index += 3600;
+	return (index);
 }

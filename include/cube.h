@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/18 11:56:53 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 13:38:18 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,9 @@ float				fast_cos(t_game *game, float angle);
 float				fast_sin(t_game *game, float angle);
 void				init_trig_tables(t_game *game);
 void				get_minimap_center(int *result);
-int					is_in_fov(t_game *g, float mx, float my, float radius);
 void				draw_minimap_pixel(t_game *g, int *pos, int *center);
+int					is_in_fov(t_game *g, float mx, float my, float radius);
+int					angle_to_index(float angle);
 
 // ASSETS
 int					load_all_textures(t_game *game);

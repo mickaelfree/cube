@@ -6,34 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 00:18:26 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 13:01:13 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 13:39:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "draw.h"
 #include <math.h>
-
-static int	angle_to_index(float angle)
-{
-	int	index;
-
-	index = (int)(angle * 1800.0f / M_PI);
-	index = index % 3600;
-	if (index < 0)
-		index += 3600;
-	return (index);
-}
-
-float	fast_cos(t_game *game, float angle)
-{
-	return (game->trig.cos_table[angle_to_index(angle)]);
-}
-
-float	fast_sin(t_game *game, float angle)
-{
-	return (game->trig.sin_table[angle_to_index(angle)]);
-}
 
 void	init_trig_tables(t_game *game)
 {

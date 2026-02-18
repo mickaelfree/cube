@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fps.c                                              :+:      :+:    :+:   */
+/*   fps_update.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 22:04:44 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/17 14:22:24 by akarapkh         ###   ########.fr       */
+/*   Created: 2026/02/18 13:28:17 by akarapkh          #+#    #+#             */
+/*   Updated: 2026/02/18 13:28:37 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-void	fps_init(t_fps_counter *fps)
-{
-	fps->frame_count = 0;
-	fps->last_update = get_time_ms();
-	fps->current_fps = 0.0f;
-}
 
 void	fps_update(t_fps_counter *fps)
 {
