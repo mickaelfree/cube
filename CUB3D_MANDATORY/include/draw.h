@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/18 15:08:57 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 17:08:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define SCREEN_LEFT -1.0f
 # define SCREEN_RIGHT 1.0f
 # define TILE_SIZE 1.0f
+
+# define PLAYER_DIRECTION 7
 
 typedef struct s_ray_data
 {

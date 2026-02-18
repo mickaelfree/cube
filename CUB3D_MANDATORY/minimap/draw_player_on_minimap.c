@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 18:45:01 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/18 16:06:30 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 17:08:51 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	draw_player_on_minimap(t_game *g, int *center)
 	}
 	params.x0 = center[0];
 	params.y0 = center[1];
-	params.x1 = center[0] - (int)(fast_cos(g, g->player.angle) * 7);
-	params.y1 = center[1] - (int)(fast_sin(g, g->player.angle) * 7);
+	params.x1 = center[0] - (int)(fast_cos(g, g->player.angle)
+			* PLAYER_DIRECTION);
+	params.y1 = center[1] - (int)(fast_sin(g, g->player.angle)
+			* PLAYER_DIRECTION);
 	params.color = 0x0000FF;
 	draw_line(&g->framebuffer, &params);
 }

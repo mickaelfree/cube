@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 19:54:11 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 18:37:43 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-static void	exit_with_cleanup(t_game *g)
-{
-	cleanup_game(g);
-	exit(1);
-}
+static void	exit_with_cleanup(t_game *g);
 
 void	run_game(t_game *g)
 {
@@ -40,6 +36,13 @@ void	run_game(t_game *g)
 	if (load_all_textures(g) != 0)
 		exit_with_cleanup(g);
 	init_trig_tables(g);
+	g->input.last_mouse_x = -1;
 	init_hooks(g);
 	mlx_loop(g->mlx);
+}
+
+static void	exit_with_cleanup(t_game *g)
+{
+	cleanup_game(g);
+	exit(1);
 }

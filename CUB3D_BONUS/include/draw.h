@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/17 15:25:18 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 17:09:58 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define TILE_SIZE 1.0f
 
 # define MAX_THREADS 16
+
+# define PLAYER_DIRECTION 7
 
 typedef struct s_ray_data
 {
