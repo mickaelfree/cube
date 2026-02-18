@@ -13,9 +13,7 @@
 #ifndef DRAW_H
 # define DRAW_H
 
-# define WIN_W 1920
-# define WIN_H 1080
-# define FOV 1.2566f // 72 degrees pi / 2.5
+# define FOV 1.2566f
 
 # include "cube.h"
 # include <stdint.h>
