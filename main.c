@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 
 #include "cube.h"
-#include "parsing.h"
 #include "ft_dprintf.h"
 #include "libft.h"
+#include "parsing.h"
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	ft_memset(&game, 0, sizeof(t_game));
 	if (argc != 2)
 	{
 		ft_dprintf(2, "Usage: %s <map.cub>\n", argv[0]);
