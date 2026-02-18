@@ -45,7 +45,6 @@ tests/
 *.log
 
 # Core dumps
-core
 vgcore.*
 
 # Make files temporaires
