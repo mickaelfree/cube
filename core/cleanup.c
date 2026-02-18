@@ -12,7 +12,6 @@
 
 #include "mlx.h"
 #include "parsing.h"
-#include <stdlib.h>
 
 void	cleanup_game(t_game *game)
 {
@@ -30,7 +29,7 @@ void	cleanup_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->map.grid)
 		free_map(&game->map);
+	free_parse(&game->config.parse);
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
-	free(game);
 }
