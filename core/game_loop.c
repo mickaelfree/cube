@@ -12,7 +12,6 @@
 
 #include "draw.h"
 #include "mlx.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 int	game_loop(t_game *game)
@@ -27,7 +26,6 @@ int	game_loop(t_game *game)
 	fps_update(&game->fps);
 	if (game->input.quit == 1)
 	{
-		printf("input.quit = %d \n", game->input.quit);
 		cleanup_game(game);
 		exit(0);
 	}
@@ -38,5 +36,6 @@ int	game_loop(t_game *game)
 		render_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->framebuffer.img, 0, 0);
 	draw_fps_on_screen(game);
+
 	return (1);
 }
