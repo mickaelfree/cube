@@ -12,30 +12,29 @@
 
 #include "cube.h"
 
+static int	check_point(t_game *g, int map_x, int map_y)
+{
+	if (map_x < 0 || map_x >= g->map.width || map_y < 0
+		|| map_y >= g->map.height)
+		return (0);
+	if (g->map.grid[map_y][map_x] != 0)
+		return (0);
+	return (1);
+}
+
 int	inbound(t_game *g, float x, float y)
 {
-	int	map_x;
-	int	map_y;
-
-	map_x = (int)(x + COLLISION_RADIUS);
-	map_y = (int)(y + COLLISION_RADIUS);
-	if (map_x < 0 || map_x >= g->map.width || map_y < 0
-		|| map_y >= g->map.height || g->map.grid[map_y][map_x] != 0)
+	if (!check_point(g, (int)(x + COLLISION_RADIUS), (int)(y
+				+ COLLISION_RADIUS)))
 		return (0);
-	map_x = (int)(x - COLLISION_RADIUS);
-	map_y = (int)(y - COLLISION_RADIUS);
-	if (map_x < 0 || map_x >= g->map.width || map_y < 0
-		|| map_y >= g->map.height || g->map.grid[map_y][map_x] != 0)
+	if (!check_point(g, (int)(x - COLLISION_RADIUS), (int)(y
+				- COLLISION_RADIUS)))
 		return (0);
-	map_x = (int)(x + COLLISION_RADIUS);
-	map_y = (int)(y - COLLISION_RADIUS);
-	if (map_x < 0 || map_x >= g->map.width || map_y < 0
-		|| map_y >= g->map.height || g->map.grid[map_y][map_x] != 0)
+	if (!check_point(g, (int)(x + COLLISION_RADIUS), (int)(y
+				- COLLISION_RADIUS)))
 		return (0);
-	map_x = (int)(x - COLLISION_RADIUS);
-	map_y = (int)(y + COLLISION_RADIUS);
-	if (map_x < 0 || map_x >= g->map.width || map_y < 0
-		|| map_y >= g->map.height || g->map.grid[map_y][map_x] != 0)
+	if (!check_point(g, (int)(x - COLLISION_RADIUS), (int)(y
+				+ COLLISION_RADIUS)))
 		return (0);
 	return (1);
 }
