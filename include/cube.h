@@ -27,6 +27,8 @@
 # define MOVE_SPEED 5.0f
 # define ROTATION_SPEED 3.0f
 # define COLLISION_RADIUS 0.2f
+# define WIN_W 3840
+# define WIN_H 2160
 
 # include <sys/time.h>
 # include <unistd.h>
@@ -35,7 +37,7 @@ typedef struct s_trig_table
 {
 	float			sin_table[3600];
 	float			cos_table[3600];
-	float			ray_angles[1920];
+	float			ray_angles[WIN_W];
 	float			plane_dist;
 }					t_trig_table;
 
