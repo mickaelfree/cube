@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:02:39 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/16 19:25:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 12:00:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,7 @@
 static void	init_thread_data(t_thread_data *td, t_game *g, int i, int slice);
 static void	*render_thread(void *arg);
 static int	get_num_threads(void);
-
-static int	join_all_threads(pthread_t *threads, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		if (pthread_join(threads[i], NULL) != 0)
-			return (-1);
-		i++;
-	}
-	return (0);
-}
+static int	join_all_threads(pthread_t *threads, int count);
 
 int	render_3d_view(t_game *g)
 {
@@ -99,4 +86,18 @@ static int	get_num_threads(void)
 	if (num_cores > MAX_THREADS)
 		return (MAX_THREADS);
 	return ((int)num_cores);
+}
+
+static int	join_all_threads(pthread_t *threads, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		if (pthread_join(threads[i], NULL) != 0)
+			return (-1);
+		i++;
+	}
+	return (0);
 }

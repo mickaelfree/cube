@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/17 15:18:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/18 11:56:53 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define MOVE_SPEED 5.0f
 # define ROTATION_SPEED 3.0f
 # define COLLISION_RADIUS 0.2f
-# define WIN_W 3840
-# define WIN_H 2160
+# define WIN_W 1920
+# define WIN_H 1000
 
 # include <sys/time.h>
 # include <unistd.h>
