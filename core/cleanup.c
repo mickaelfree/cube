@@ -31,5 +31,8 @@ void	cleanup_game(t_game *game)
 		free_map(&game->map);
 	free_parse(&game->config.parse);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 }
