@@ -12,20 +12,25 @@
 
 #include "draw.h"
 #include "mlx.h"
-#include "libft.h"
 #include <stdlib.h>
+
+static void	exit_with_cleanup(t_game *g)
+{
+	cleanup_game(g);
+	exit(1);
+}
 
 void	run_game(t_game *g)
 {
 	g->mlx = mlx_init();
 	if (!g->mlx)
-		exit(1);
+		exit_with_cleanup(g);
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "cube");
 	if (!g->win)
-		exit(1);
+		exit_with_cleanup(g);
 	g->framebuffer.img = mlx_new_image(g->mlx, WIN_W, WIN_H);
 	if (!g->framebuffer.img)
-		exit(1);
+		exit_with_cleanup(g);
 	g->framebuffer.data = mlx_get_data_addr(g->framebuffer.img,
 			&g->framebuffer.bpp, &g->framebuffer.line_size,
 			&g->framebuffer.endian);
@@ -33,7 +38,7 @@ void	run_game(t_game *g)
 	g->delta_time = 0.016f;
 	g->last_frame_time = get_time_ms();
 	if (load_all_textures(g) != 0)
-		exit(1);
+		exit_with_cleanup(g);
 	init_trig_tables(g);
 	init_hooks(g);
 	mlx_loop(g->mlx);
