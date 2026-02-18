@@ -24,10 +24,12 @@ void	process_input(t_game *game)
 {
 	float	cos_a;
 	float	sin_a;
+	int		angle_idx;
 
 	process_rotation(game);
-	cos_a = fast_cos(game, game->player.angle);
-	sin_a = fast_sin(game, game->player.angle);
+	angle_idx = (int)((game->player.angle + M_PI) * 1800.0f / M_PI) % 3600;
+	cos_a = game->trig.cos_table[angle_idx];
+	sin_a = game->trig.sin_table[angle_idx];
 	process_movement(game, cos_a, sin_a);
 }
 
