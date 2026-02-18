@@ -25,9 +25,6 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Usage: %s <map.cub>\n", argv[0]);
 		return (1);
 	}
-	game.mlx = NULL;
-	game.map.grid = NULL;
-	ft_memset(&game.input, 0, sizeof(t_input));
 	if (parse_file(argv[1], &game) == -1)
 	{
 		ft_dprintf(2, "Error: Failed to parse map file\n");
