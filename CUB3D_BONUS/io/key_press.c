@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 22:51:16 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/18 18:37:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/19 14:51:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static void	toggle_mouse(t_game *game)
 {
 	game->input.mouse_enabled = !game->input.mouse_enabled;
 	if (game->input.mouse_enabled)
+	{
+		mlx_mouse_hide(game->mlx, game->win);
 		mlx_mouse_move(game->mlx, game->win, WIN_W / 2, WIN_H / 2);
+	}
+	if (game->input.mouse_enabled == 0)
+		mlx_mouse_show(game->mlx, game->win);
 	game->input.last_mouse_x = -1;
 }
