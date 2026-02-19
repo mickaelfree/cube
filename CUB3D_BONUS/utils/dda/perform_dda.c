@@ -6,14 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 12:18:44 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/18 12:19:38 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/19 15:42:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
 static void	update_wall_direction(t_ray_data *ray, t_cast_ray_data *dda,
-			int is_vertical);
+				int is_vertical);
 
 int	perform_dda(t_game *g, t_cast_ray_data *dda, t_ray_data *ray)
 {

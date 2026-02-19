@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 12:16:19 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/18 12:22:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/19 15:42:19 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	setup_dda_x(t_cast_ray_data *dda, t_ray_data *ray);
 static void	setup_dda_y(t_cast_ray_data *dda, t_ray_data *ray);
 
-void setup_dda(t_cast_ray_data *dda, t_ray_data *ray)
+void	setup_dda(t_cast_ray_data *dda, t_ray_data *ray)
 {
 	setup_dda_x(dda, ray);
 	setup_dda_y(dda, ray);
