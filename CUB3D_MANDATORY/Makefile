@@ -145,20 +145,8 @@ fclean: clean
 
 re: fclean all
 
-# Debug targets
-debug: CFLAGS += -g3
-debug: re
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
-
-fdebug: CFLAGS += -g3 -DDEBUG_MODE=1
-fdebug: re
-	DEBUG_MODE=1 valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./$(NAME)
-
 norm:
-	norminette . include/
-
-gdb:
-	gdb ./$(NAME) -ex "break main"
+	@norminette include/ core/ draw/ minimap/ render/ assets/ utils/ io/ parsing/ main.c
 
 print-vars:
 	@echo NAME=$(NAME)\nOBJ=$(OBJ)\nFILES=$(FILES)
