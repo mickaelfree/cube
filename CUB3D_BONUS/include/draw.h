@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/22 15:07:10 by akarapkh         ###   ########.fr       */
+/*   Created: 2026/02/22 15:35:36 by akarapkh          #+#    #+#             */
+/*   Updated: 2026/02/22 15:38:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,9 @@ void				setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
 int					perform_dda(t_game *g, t_cast_ray_data *dda,
 						t_ray_data *ray);
 int					place_block(t_game *game);
+int					remove_block(t_game *game);
+void				init_block_ray(t_game *g, t_ray_data *ray,
+						t_cast_ray_data *dda);
+int					is_map_closed(t_game *g);
 
 #endif

@@ -6,16 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 14:21:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/22 15:07:11 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/22 15:39:53 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include <math.h>
 
 static void	get_adjacent_block(int hit_x, int hit_y, int wall_dir, int *out);
 static int	get_target_wall(t_game *g, int *hit_x, int *hit_y, int *wall_dir);
-static void	init_block_ray(t_game *g, t_ray_data *ray, t_cast_ray_data *dda);
 
 int	place_block(t_game *game)
 {
@@ -73,18 +71,4 @@ static int	get_target_wall(t_game *g, int *hit_x, int *hit_y, int *wall_dir)
 	*hit_y = dda.map_y;
 	*wall_dir = ray.wall_direction;
 	return (0);
-}
-
-static void	init_block_ray(t_game *g, t_ray_data *ray, t_cast_ray_data *dda)
-{
-	int	idx;
-
-	ray->ray_x = g->player.position.x;
-	ray->ray_y = g->player.position.y;
-	idx = (int)((g->player.angle + M_PI) * 1800.0f / M_PI) % 3600;
-	ray->dx = g->trig.cos_table[idx];
-	ray->dy = g->trig.sin_table[idx];
-	dda->map_x = (int)ray->ray_x;
-	dda->map_y = (int)ray->ray_y;
-	setup_dda(dda, ray);
 }

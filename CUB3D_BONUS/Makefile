@@ -59,7 +59,10 @@ CORE_FILES = core/run_game.c \
 			 utils/minimap/draw_minimap_pixel.c \
 			 utils/minimap/get_minimap_center.c \
 			 utils/minimap/is_in_fov.c \
-			 utils/place_block.c \
+			 utils/minecraft/place_block.c \
+			 utils/minecraft/remove_block.c \
+			 utils/minecraft/flood_fill.c \
+			 utils/minecraft/init_block_ray.c \
 	  		 io/input.c \
 			 io/init_hooks.c \
 			 io/key_press.c \
