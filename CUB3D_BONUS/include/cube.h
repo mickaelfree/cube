@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:21:16 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/18 17:26:15 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/22 14:07:57 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_input
 	int				last_mouse_x;
 	int				mouse_enabled;
 	int				mouse_warping;
+	unsigned int	crosshair_color;
 }					t_input;
 
 typedef struct s_texture
@@ -149,7 +150,6 @@ typedef struct s_game
 	void			*draw_data;
 	float			delta_time;
 	long			last_frame_time;
-
 }					t_game;
 
 // IO
@@ -159,6 +159,8 @@ int					inbound(t_game *g, float x, float y);
 int					key_press(int keycode, t_game *game);
 int					key_release(int keycode, t_game *game);
 int					mouse_move(int x, int y, t_game *game);
+int					mouse_click(int button, int x, int y, t_game *game);
+int					mouse_release(int button, int x, int y, t_game *game);
 
 // CORE
 int					game_loop(t_game *g);

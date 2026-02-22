@@ -64,6 +64,8 @@ CORE_FILES = core/run_game.c \
 			 io/key_press.c \
 			 io/key_release.c \
 			 io/mouse.c \
+			 io/mouse_click.c \
+			 io/mouse_release.c \
 			 io/inbound_collision.c
 
 FILES = \
