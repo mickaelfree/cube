@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:15:36 by akarapkh          #+#    #+#             */
-/*   Updated: 2026/02/22 15:40:00 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/22 16:06:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	**alloc_visited(int width, int height)
 {
 	int	**visited;
 	int	i;
-
+	(void)width;
 	visited = ft_calloc(height, sizeof(int *));
 	if (!visited)
 		return (NULL);

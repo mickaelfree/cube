@@ -15,3 +15,91 @@
    ...
    fun:_XSend
 }
+
+{
+   mlx_mouse_hide_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:mlx_mouse_hide
+}
+
+{
+   X11_XOpenLC_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_XOpenLC
+}
+
+{
+   X11_XlcCreateLC_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_XlcCreateLC
+}
+
+{
+   X11_XlcDefaultLoader_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_XlcDefaultLoader
+}
+
+{
+   X11_XlcUtf8Loader_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_XlcUtf8Loader
+}
+
+{
+   X11_XrmInitialize_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:XrmInitialize
+}
+
+{
+   X11_XrmGetStringDatabase_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:XrmGetStringDatabase
+}
+
+{
+   X11_XGetDefault_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:XGetDefault
+}
+
+{
+   X11_XcursorGetDisplayInfo_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_XcursorGetDisplayInfo
+}
+
+{
+   dl_open_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dl_open
+}
+
+{
+   dl_map_object_deps_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dl_map_object_deps
+}
