@@ -18,7 +18,6 @@ BONUS_DIR = CUB3D_BONUS
 # Valgrind
 VALGRIND_SUPP = valgrind.supp
 VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
-# Check if suppression file exists (without wildcard)
 VALGRIND_SUPP_EXISTS := $(shell test -f $(VALGRIND_SUPP) && echo yes)
 ifeq ($(VALGRIND_SUPP_EXISTS),yes)
 	VALGRIND_FLAGS += --suppressions=$(VALGRIND_SUPP)
