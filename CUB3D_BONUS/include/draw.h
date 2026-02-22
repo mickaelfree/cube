@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/22 13:51:44 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/22 15:07:10 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,6 @@ void				draw_crosshair(t_game *game);
 void				setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
 int					perform_dda(t_game *g, t_cast_ray_data *dda,
 						t_ray_data *ray);
+int					place_block(t_game *game);
 
 #endif
