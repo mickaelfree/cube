@@ -39,6 +39,7 @@ CORE_FILES = core/run_game.c \
 	  		 draw/draw_line.c \
 	  		 draw/draw_fps.c \
 	  		 draw/put_pixel.c \
+			 draw/draw_crosshair.c \
 			 minimap/minimap_draw.c \
 			 minimap/draw_player_on_minimap.c \
 	  		 render/render_minimap.c \

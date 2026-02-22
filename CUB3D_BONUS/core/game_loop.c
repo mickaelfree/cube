@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 02:01:08 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/17 15:04:01 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/22 13:52:33 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	game_loop(t_game *game)
 		return (-1);
 	if (game->input.togle_minimap == 1)
 		render_minimap(game);
+	if (game->input.mouse_enabled)
+		draw_crosshair(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->framebuffer.img, 0, 0);
 	draw_fps_on_screen(game);
 	return (1);

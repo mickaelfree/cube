@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 18:29:51 by mickmart          #+#    #+#             */
-/*   Updated: 2026/02/18 17:09:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2026/02/22 13:51:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,14 @@
 # define SCREEN_RIGHT 1.0f
 # define TILE_SIZE 1.0f
 
+//CROSSHAIR
+# define CROSSHAIR_SIZE 10
+# define CROSSHAIR_GAP 3
+# define CROSSHAIR_COLOR 0xFFFFFFFF
+
 # define MAX_THREADS 16
 
+//MINIMAP DIRECTION LINE
 # define PLAYER_DIRECTION 7
 
 typedef struct s_ray_data
@@ -133,6 +139,7 @@ void				draw_3d_column(t_game *g, t_column_params *params);
 void				draw_ceiling(t_game *g, t_column_data *data, int x);
 void				draw_fps_on_screen(t_game *g);
 void				draw_floor(t_game *g, t_column_data *data, int x);
+void				draw_crosshair(t_game *game);
 
 // UTILS
 void				setup_dda(t_cast_ray_data *dda, t_ray_data *ray);
